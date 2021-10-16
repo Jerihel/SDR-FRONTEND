@@ -37,7 +37,7 @@ export class LandingPageComponent implements OnInit {
 
   onScroll(event) {
     var navbar = document.querySelector('#nav-bar')
-    if (event.target.scrollTop > 80) {
+    if (event.target.scrollTop > 0) {
       navbar.classList.add('stickyadd')
     } else {
       navbar.classList.remove('stickyadd')
