@@ -8,8 +8,7 @@ import { Item } from 'src/app/models/Item';
 })
 export class LandingPageComponent implements OnInit {
 
-  sticky = true;
-  currentOption = 1;
+  section = "home";
   items: Item[];
 
   constructor() {
@@ -33,24 +32,26 @@ export class LandingPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    document.body.addEventListener("scroll", event => this.onScroll(event))
+    document.body.addEventListener("scroll", event => this.onScroll(event));
   }
 
   onScroll(event) {
-    this.sticky = event.target.scrollTop == 0;
+    var navbar = document.querySelector('#nav-bar')
+    if (event.target.scrollTop > 80) {
+      navbar.classList.add('stickyadd')
+    } else {
+      navbar.classList.remove('stickyadd')
+    }
   }
 
   changeOption(opt) {
-    this.currentOption = opt;
-    switch (opt) {
-      case 1:
-        document.getElementById("home").scrollIntoView({ behavior: "smooth" })
-        break;
-      case 2:
-        document.getElementById("about").scrollIntoView({ behavior: "smooth" })
-        break
-      default:
-        break;
-    }
+    this.section = opt;
+    document.getElementById(`${opt}-anchor`).scrollIntoView({ behavior: "smooth", block: "start" })
+  }
+
+  onSectionChange(section){
+    console.log(section);
+    
+    this.section = section;
   }
 }

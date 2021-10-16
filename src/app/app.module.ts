@@ -1,20 +1,22 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { AppRoutingModule } from "../routers/app-routing.module";
+import { AppRoutingModule } from "./routers/app-routing.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
-import { MaterialModule } from "./material.module";
+import { MaterialModule } from "./modules/material.module";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ReactiveFormsModule } from "@angular/forms";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { AppComponent } from "../components/app-component/app.component";
-import { LandingPageComponent } from "../components/landing-page/landing-page.component";
+import { AppComponent } from "./components/app-component/app.component";
+import { LandingPageComponent } from "./components/landing-page/landing-page.component";
+import { ScrollSpyDirective } from './directives/scroll-spy/scroll-spy.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    ScrollSpyDirective
   ],
   imports: [
     BrowserModule,
