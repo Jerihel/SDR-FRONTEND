@@ -1,0 +1,199 @@
+<nav id="nav-bar"
+  class="navbar navbar-expand-lg custom-nav navbar-light fixed-top sticky {{ sticky ? '' : 'stickyadd' }}">
+  <div class="container">
+    <a class="navbar-brand logo" href="/home">
+      <img src="assets/img/logo-enactus.svg" alt="" class="img-fluid logo-dark">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="mdi mdi-menu"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto" id="main_nav">
+        <li class="nav-item" style="cursor: pointer;">
+          <a class="nav-link" [class.active]="currentOption == 1" (click)="changeOption(1)">Inicio</a>
+        </li>
+        <li class="nav-item" style="cursor: pointer;">
+          <a class="nav-link" [class.active]="currentOption == 2" (click)="changeOption(2)">Conoce más</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="currentOption == 3" (click)="changeOption(3)">Contactanos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="currentOption == 4" (click)="changeOption(4)">Ubicación</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="home_main_sec" id="home">
+  <ngb-carousel>
+    <ng-template ngbSlide *ngFor="let item of items">
+      <div class="d-block w-100">
+        <div class="header_content text-center">
+          <h1 class="text-capitalize mt-4 mb-0 mx-auto">
+            {{item.title}}
+          </h1>
+          <p class="mt-4 mx-auto sub_title">
+            {{item.content}}
+          </p>
+        </div>
+        <div class="mx-auto mt-4">
+          <img [src]="item.image" alt="home side images" class="w-100">
+        </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="client_logo mt-3">
+          <img src="assets/img/logo_ecofiltro.png" alt="logo" class="img-fluid mx-auto d-block">
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="client_logo mt-3">
+          <img src="assets/img/logo_kingo.png" alt="logo" class="img-fluid mx-auto d-block">
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="client_logo mt-3">
+          <img src="assets/img/logo_maravillas.png" alt="logo" class="img-fluid mx-auto d-block">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec_divider mx-auto"></section>
+
+<section class="section" id="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sec_main_head_title mx-auto">
+          <h2 class="text-center">¿Qué es enactus?</h2>
+          <p class="text-muted mt-3 text-justify mx-auto">
+            Enactus es una organización internacional sin fines de lucro que busca desarrollar a las comunidades en
+            donde tiene operaciones. Actualmente, se encuentra en 36 países beneficiando a más de un millón de personas,
+            desde el 2004 realizan funciones en Guatemala.
+            <br><br>
+            Las gestiones en nuestro país se realizan a través de proyectos empresariales sostenibles establecidos en
+            comunidades, en donde se ejecutan ideas de negocios que permiten la transformación de la vida de todos los
+            involucrados en el área personal, profesional, de formación, económica, entre otras.
+            <br><br>
+            Los proyectos son creados y desarrollados por alumnos universitarios quienes los implementan en las
+            poblaciones elegidas con el apoyo de catedráticos, organizadores de Enactus Guatemala, empresarios, entre
+            otros; quienes trabajan en conjunto para generar acciones emprendedoras.
+          </p>
+        </div>
+      </div>
+      <div class="row mt-5 align-items-center px-3">
+        <div class="col-lg-6">
+          <div class="content_features mx-auto mt-3">
+            <h3 class="content_main_title mb-0 mt-4">Misión</h3>
+            <p class="text-muted sub-title mt-4 text-justify">
+              Somos un voluntariado que impacta a comunidades en su medio de sustento y a universitarios en su vida
+              profesional, a través de la gestión de proyectos sostenibles.
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="side_img_content mt-3">
+            <img src="assets/img/vision.png" alt="com"
+              class="img-fluid mx-auto d-block">
+          </div>
+        </div>
+      </div>
+
+      <div class="features_divider"></div>
+
+      <div class="row mt-5 align-items-center px-3">
+        <div class="col-lg-6">
+          <div class="side_img_content mt-3">
+            <img src="assets/img/mision.png" alt="com"
+              class="img-fluid mx-auto d-block">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="content_features mx-auto mt-3">
+            <h3 class="content_main_title mb-0 mt-4">Visión</h3>
+            <p class="text-muted sub-title mt-4 text-justify">
+              Ser los representantes nacionales de la competencia mundial de Enactus.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="footer_main_divider"></div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="footer_logo mt-4">
+          <img src="assets/img/logo-enactus.svg" alt="logo-dark" class="img-fluid">
+          <p class="text-muted sub-title mt-2">Enactus™ Universidad Mariano Gálvez</p>
+          <ul class="list-inline fot_social mt-4">
+            <li class="list-inline-item"><a href="https://www.facebook.com/UMGEnactus/" class="social-icon"><i
+                  class="mdi mdi-facebook"></i></a></li>
+            <li class="list-inline-item"><a href="https://www.instagram.com/enactusumg/" class="social-icon"><i
+                  class="mdi mdi-instagram"></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-2">
+        <div class="footer_menu mt-3">
+          <h5 class="fw-bold">Our Product</h5>
+          <ul class="list-unstyled footer_menu_list mb-0 mt-4">
+            <li><a href="https://themesboss.com/oliver/index_1.html?#">Getbootstrap</a></li>
+            <li><a href="https://themesboss.com/oliver/index_1.html?#">Wordpress</a></li>
+            <li><a href="https://themesboss.com/oliver/index_1.html?#">Shopify</a></li>
+            <li><a href="https://themesboss.com/oliver/index_1.html?#">React</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-2">
+        <div class="footer_menu mt-3">
+          <h5 class="fw-bold">Company</h5>
+          <ul class="list-unstyled footer_menu_list mb-0 mt-4">
+            <li><a href="https://themesboss.com/oliver/index_1.html?#">About</a></li>
+            <li><a href="https://themesboss.com/oliver/index_1.html?#">Terms</a></li>
+            <li><a href="https://themesboss.com/oliver/index_1.html?#">Privacy Policy</a></li>
+            <li><a href="https://themesboss.com/oliver/index_1.html?#">Careers</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-2">
+        <div class="footer_menu mt-3">
+          <h5 class="fw-bold">Services</h5>
+          <ul class="list-unstyled footer_menu_list mb-0 mt-4">
+            <li><a href="https://themesboss.com/oliver/index_1.html?#">Documentation</a></li>
+            <li><a href="https://themesboss.com/oliver/index_1.html?#">Design</a></li>
+            <li><a href="https://themesboss.com/oliver/index_1.html?#">Themes</a></li>
+            <li><a href="https://themesboss.com/oliver/index_1.html?#">Illustrations</a></li>
+            <li><a href="https://themesboss.com/oliver/index_1.html?#">UI Kit</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-2">
+        <div class="footer_menu mt-3">
+          <h5 class="fw-bold">More</h5>
+          <ul class="list-unstyled footer_menu_list mb-0 mt-4">
+            <li><a href="https://themesboss.com/oliver/index_1.html?#">Documentation</a></li>
+            <li><a href="https://themesboss.com/oliver/index_1.html?#">License</a></li>
+            <li><a href="https://themesboss.com/oliver/index_1.html?#">Changelog</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
