@@ -49,9 +49,13 @@ export class LandingPageComponent implements OnInit {
     document.getElementById(`${opt}-anchor`).scrollIntoView({ behavior: "smooth", block: "start" })
   }
 
-  onSectionChange(section){
+  onSectionChange(section) {
     console.log(section);
-    
+
     this.section = section;
+  }
+
+  isLogged() {
+    return false;
   }
 }
