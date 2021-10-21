@@ -13,19 +13,16 @@
           <a class="nav-link" [class.active]="section == 'home'" (click)="changeOption('home')">Inicio</a>
         </li>
         <li class="nav-item" style="cursor: pointer;">
-          <a class="nav-link" [class.active]="section == 'about'" (click)="changeOption('about')">Conoce más</a>
+          <a class="nav-link" [class.active]="section == 'features'" (click)="changeOption('features')">Funciones</a>
         </li>
         <li class="nav-item" style="cursor: pointer;">
-          <a class="nav-link" [class.active]="section == 'emp'" (click)="changeOption('emp')">Emprendimiento</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" [class.active]="section == 'contact'" (click)="changeOption('contact')">Contactanos</a>
         </li>
       </ul>
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ml-auto" style="cursor: pointer;">
         <li class="nav-item" *ngIf="!isLogged()">
           <a class="nav-link" [class.active]="section == 'login'" (click)="changeOption('login')">
-            Iniciar Sesión
+            Iniciar sesión
           </a>
         </li>
         <li class="nav-item" *ngIf="isLogged()">
@@ -42,7 +39,7 @@
 <div scrollSpy [spiedTags]="['DIV']" [offset]="80" (sectionChange)="onSectionChange($event)">
   <div id="home">
     <section class="home_main_sec" id="home-anchor">
-      <ngb-carousel>
+      <ngb-carousel [showNavigationArrows]="false" [showNavigationIndicators]="false">
         <ng-template ngbSlide *ngFor="let item of items">
           <div class="d-block w-100">
             <div class="header_content text-center">
@@ -54,11 +51,25 @@
               </p>
             </div>
             <div class="mx-auto mt-4">
-              <img [src]="item.image" alt="home side images" class="w-100">
+              <!-- <img [src]="item.image" alt="home side images" class="w-100"> -->
             </div>
           </div>
         </ng-template>
       </ngb-carousel>
+      <div class="header_content text-center">
+        <button class="btn btn-custom btn-rounded mb-0 mt-4" mat-raised-button
+          (click)="navigateTo('requirements-anchor')">
+          Iniciar Solicitud
+        </button>
+      </div>
+      <div class="home_mockup mx-auto">
+        <img src="assets/img/home2.svg" alt="home side images" class="img-fluid mx-auto d-block">
+      </div>
+      <div class="curv-img">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 185.4">
+          <path fill="#fff" d="M3000,0v185.4H0V0c496.4,115.6,996.4,173.4,1500,173.4S2503.6,115.6,3000,0z"></path>
+        </svg>
+      </div>
     </section>
 
     <section class="section">
@@ -91,46 +102,38 @@
     <section class="sec_divider mx-auto"></section>
   </div>
 
-  <div id="about">
+  <div id="features">
     <section class="section" style="position: relative;">
-      <div id="about-anchor" style="position: absolute; top: -50px; left: 0"></div>
+      <div id="features-anchor" style="position: absolute; top: -50px; left: 0"></div>
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
             <div class="sec_main_head_title mx-auto">
-              <h2 class="text-center">¿Qué es enactus?</h2>
-              <p class="text-muted mt-3 text-justify mx-auto">
-                Enactus es una organización internacional sin fines de lucro que busca desarrollar a las comunidades en
-                donde tiene operaciones. Actualmente, se encuentra en 36 países beneficiando a más de un millón de
-                personas,
-                desde el 2004 realizan funciones en Guatemala.
-                <br><br>
-                Las gestiones en nuestro país se realizan a través de proyectos empresariales sostenibles establecidos
-                en
-                comunidades, en donde se ejecutan ideas de negocios que permiten la transformación de la vida de todos
-                los
-                involucrados en el área personal, profesional, de formación, económica, entre otras.
-                <br><br>
-                Los proyectos son creados y desarrollados por alumnos universitarios quienes los implementan en las
-                poblaciones elegidas con el apoyo de catedráticos, organizadores de Enactus Guatemala, empresarios,
-                entre
-                otros; quienes trabajan en conjunto para generar acciones emprendedoras.
+              <h2 class="text-center">Explora nuestras increíbles funciones</h2>
+              <p class="text-muted mt-3 text-center mx-auto">
+                Si deseas iniciar el proceso de vinculación con Enactus™ Universidad Mariano Gálvez, lo puedes realizara
+                través de las siguietes opciones.
               </p>
             </div>
           </div>
           <div class="row mt-5 align-items-center px-3">
             <div class="col-lg-6">
               <div class="content_features mx-auto mt-3">
-                <h3 class="content_main_title mb-0 mt-4">Misión</h3>
+                <h3 class="content_main_title mb-0 mt-4">Hub de emprendimiento</h3>
                 <p class="text-muted sub-title mt-4 text-justify">
-                  Somos un voluntariado que impacta a comunidades en su medio de sustento y a universitarios en su vida
-                  profesional, a través de la gestión de proyectos sostenibles.
+                  Este es un espacio dedicado, a la promoción y acceso práctico al desarrollo del emprendimiento, a
+                  través de asesorías, formación, capacitación de acuerdo a las necesidades particulares de los
+                  emprendimientos.
                 </p>
+                <div class="mt-4 pt-3">
+                  <a [routerLink]="" mat-raised-button color="primary" class="btn btn-custom btn-rounded"> Explorar
+                  </a>
+                </div>
               </div>
             </div>
             <div class="col-lg-6">
               <div class="side_img_content mt-3">
-                <img src="assets/img/vision.png" alt="com" class="img-fluid mx-auto d-block">
+                <img src="assets/img/hub.svg" alt="img" class="img-fluid mx-auto d-block">
               </div>
             </div>
           </div>
@@ -140,15 +143,66 @@
           <div class="row mt-5 align-items-center px-3">
             <div class="col-lg-6">
               <div class="side_img_content mt-3">
-                <img src="assets/img/mision.png" alt="com" class="img-fluid mx-auto d-block">
+                <img src="assets/img/enacter.svg" alt="img" class="img-fluid mx-auto d-block">
               </div>
             </div>
             <div class="col-lg-6">
               <div class="content_features mx-auto mt-3">
-                <h3 class="content_main_title mb-0 mt-4">Visión</h3>
+                <h3 class="content_main_title mb-0 mt-4">Enacter</h3>
                 <p class="text-muted sub-title mt-4 text-justify">
-                  Ser los representantes nacionales de la competencia mundial de Enactus.
+                  Estudiante universitario de la UMG, no importa la carrera. Que busca pertenecer a un voluntariado que
+                  busca a través de la acción emprendedora buscar propiciar cambios personales y sociales en Guatemala.
                 </p>
+                <div class="mt-4 pt-3">
+                  <a [routerLink]="" mat-raised-button color="primary" class="btn btn-custom btn-rounded"> Explorar
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="features_divider"></div>
+
+          <div class="row mt-5 align-items-center px-3">
+            <div class="col-lg-6">
+              <div class="content_features mx-auto mt-3">
+                <h3 class="content_main_title mb-0 mt-4">Patrocinador</h3>
+                <p class="text-muted sub-title mt-4 text-justify">
+                  Entidad o persona individual, que busca patrocinar una idea de emprendimiento, a través de apoyo
+                  económico o bien en forma de insumos para la realización del proyecto.
+                </p>
+                <div class="mt-4 pt-3">
+                  <a [routerLink]="" mat-raised-button color="primary" class="btn btn-custom btn-rounded"> Explorar
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="side_img_content mt-3">
+                <img src="assets/img/sponsor.svg" alt="img" class="img-fluid mx-auto d-block">
+              </div>
+            </div>
+          </div>
+
+          <div class="features_divider"></div>
+
+          <div class="row mt-5 align-items-center px-3">
+            <div class="col-lg-6">
+              <div class="side_img_content mt-3">
+                <img src="assets/img/advisor.svg" alt="img" class="img-fluid mx-auto d-block">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="content_features mx-auto mt-3">
+                <h3 class="content_main_title mb-0 mt-4">Asesor</h3>
+                <p class="text-muted sub-title mt-4 text-justify">
+                  Entidad o persona individual, que desde su propio expertis brinda apoyo concreto en la formación de
+                  los involucrados en enactus. Dedicando algunas horas de su tiempo en asesorar los proyectos.
+                </p>
+                <div class="mt-4 pt-3">
+                  <a [routerLink]="" mat-raised-button color="primary" class="btn btn-custom btn-rounded"> Explorar
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -158,6 +212,7 @@
   </div>
 
   <section class="bg-custom section">
+    <div id="requirements-anchor" style="position: absolute; top: -80px; left: 0"></div>
     <div class="curv_top">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 185.4">
         <path fill="#fff" d="M3000,185.4V0H0v185.4C496.4,69.8,996.4,12,1500,12S2503.6,69.8,3000,185.4z"></path>
@@ -167,11 +222,9 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="sec_main_head_title_bg pb-5 mx-auto text-center">
-            <h2>Formas de Apoyo</h2>
+            <h2>Requisitos</h2>
             <p class="mt-3 mx-auto sub-title">
-              Si deseas iniciar el proceso de vinculación con Enactus™ Universidad Mariano Gálvez, lo puedes realizar a
-              través de las
-              siguietes opciones.
+              Para que tu emprendimiento sea tomado en consideración debe encontrarse en una de las siguientes fases.
             </p>
           </div>
         </div>
@@ -189,15 +242,14 @@
                 <img src="assets/img/idea.png" alt="icon" height="44px;" class="me-4">
               </div>
               <div class="ser_content">
-                <h4>Hub de emprendimiento</h4>
-                <p class="text-muted mb-0 mt-3 text-justify">
-                  Este es un espacio dedicado, a la promoción y acceso práctico al desarrollo del emprendimiento, a
-                  través de asesorías, formación, capacitación de acuerdo a las necesidades particulares de los
-                  emprendimientos.
+                <h4>Idea de Emprendimiento</h4>
+                <p class="text-muted mb-0 mt-3">
+                  En esta fase se consideran aquellas ideas que están en fase inicial, aún no tengo definidas mis áreas:
+                  financieras, no sé quiénes son mis socios claves, o no tengo claridad sobre muchas cosas.
                 </p>
               </div>
             </div>
-            <a mat-icon-button data-bs-toggle="collapse" href="#moreHub" role="button" aria-expanded="false"
+            <!--<a mat-icon-button data-bs-toggle="collapse" href="#moreHub" role="button" aria-expanded="false"
               aria-controls="moreHub" class="expand_icon">
               <mat-icon>expand_more</mat-icon>
             </a>
@@ -208,7 +260,7 @@
                   económico o bien en forma de insumos para la realización del proyecto
                 </p>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="col-lg-6">
@@ -218,19 +270,19 @@
                 <img src="assets/img/enacter.png" alt="icon" height="44px;" class="me-4">
               </div>
               <div class="ser_content">
-                <h4>Enacter</h4>
-                <p class="text-muted mb-0 mt-3 text-justify">
-                  Estudiante universitario de la UMG, no importa la carrera. Que busca pertenecer a un voluntariado que
-                  busca a través de la acción emprendedora buscar propiciar cambios personales y sociales en Guatemala
+                <h4>Modelo de negocio</h4>
+                <p class="text-muted mb-0 mt-3">
+                  Esta es una herramienta que te permite tener una presentación integral de tu negocio. Tomando en
+                  cuenta varios elementos claves; una de las mejores es el modelo Canvas.
                 </p>
               </div>
             </div>
-            <a mat-icon-button data-bs-toggle="collapse" href="#moreEnacter" role="button" aria-expanded="false"
+            <!-- <a mat-icon-button data-bs-toggle="collapse" href="#moreEnacter" role="button" aria-expanded="false"
               aria-controls="moreEnacter" class="expand_icon">
               <mat-icon>expand_more</mat-icon>
             </a>
             <div class="collapse" id="moreEnacter">
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -242,19 +294,19 @@
                 <img src="assets/img/sponsor.png" alt="icon" height="44px;" class="me-4">
               </div>
               <div class="ser_content">
-                <h4>Patrocinador</h4>
-                <p class="text-muted mb-0 mt-3 text-justify">
-                  Entidad o persona individual, que busca patrocinar una idea de emprendimiento, a través de apoyo
-                  económico o bien en forma de insumos para la realización del proyecto
+                <h4>Apoyo concreto</h4>
+                <p class="text-muted mb-0 mt-3">
+                  El proyecto ya realizó todo el modelo de negocio, sin embargo, carece de comprensión clara en algunos
+                  elementos como Finanzas para emprendedores, Marketing, E-commerce, Liderazgo empresarial.
                 </p>
               </div>
             </div>
-            <a mat-icon-button data-bs-toggle="collapse" href="#moreSponsor" role="button" aria-expanded="false"
+            <!-- <a mat-icon-button data-bs-toggle="collapse" href="#moreSponsor" role="button" aria-expanded="false"
               aria-controls="moreSponsor" class="expand_icon">
               <mat-icon>expand_more</mat-icon>
             </a>
             <div class="collapse" id="moreSponsor">
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="col-lg-6">
@@ -264,85 +316,235 @@
                 <img src="assets/img/advisor.png" alt="icon" height="44px;" class="me-4">
               </div>
               <div class="ser_content">
-                <h4>Asesor</h4>
-                <p class="text-muted mb-0 mt-3 text-justify">
-                  Entidad o persona individual, que desde su propio expertis brinda apoyo concreto en la formación
-                  de los involucrados en enactus. Dedicando algunas horas de su tiempo en asesorar los proyectos.
+                <h4>Pitch de negocio</h4>
+                <p class="text-muted mb-0 mt-3">
+                  Forma clave de comunicar tu modelo de negocio, que busca de forma práctica compartir el
+                  emprendimiento,
+                  para socios claves, marketing funcional o cualquier otro en donde necesites compartir tu modelo de
+                  negocio.
                 </p>
               </div>
             </div>
-            <a mat-icon-button data-bs-toggle="collapse" href="#moreAdvisor" role="button" aria-expanded="false"
+            <!-- <a mat-icon-button data-bs-toggle="collapse" href="#moreAdvisor" role="button" aria-expanded="false"
               aria-controls="moreAdvisor" class="expand_icon">
               <mat-icon>expand_more</mat-icon>
             </a>
             <div class="collapse" id="moreAdvisor">
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="row cta_section">
+        <div class="col-lg-12">
+          <div class="cta_content text-center">
+            <h1 class="fw-bold text-white mx-auto mb-0">Estamos listos para un proyecto desafiante</h1>
+            <p class="mx-auto mt-4">
+              Para nosotros es muy importante analizar tu solicitud, para que tengamos una
+              experiencia de ganar-ganar. Desde el momento que recibimos tu información a la base de datos, hasta el
+              momento de selección y contacto.
+            </p>
+            <div class="mt-4 pt-2">
+              <button [routerLink]="" class="btn btn-white">
+                Registrar Emprendimiento
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-</div>
 
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="sec_main_head_title mx-auto text-center">
+            <h2 class="">¿Qué tan fácil es empezar?</h2>
+            <p class="text-muted mt-3 mx-auto">
+              La información que nos proveas pasará por el siguiente proceso.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-lg-4">
+          <div class="mt-3 hit_box text-center px-4">
+            <div class="hit_icon mb-4">
+              <p class="mb-0 text-uppercase">Paso 1</p>
+            </div>
+            <div class="hit_detail mt-4">
+              <h4 class="">Recibimiento y Analisis de Solicitud</h4>
+              <p class="text-muted mb-0 mt-3">
+                La información llega a nuestro centro de datos, nuestros expertos en emprendimiento, analizan la
+                información recibida para verificar cómo y en que podemos contribuir.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="mt-3 hit_box text-center px-4">
+            <div class="hit_icon mb-4">
+              <p class="mb-0 text-uppercase">Paso 2</p>
+            </div>
+            <div class="hit_detail mt-4">
+              <h4 class="">Ubicacion Contextualizada</h4>
+              <p class="text-muted mb-0 mt-3">
+                Posteriormente a la fase de analisis, nuestros expertos en emprendimiento, necesitan ubicar el área de
+                apoyo a la cual tu información será enviada.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="mt-3 hit_box text-center px-4">
+            <div class="hit_icon mb-4">
+              <p class="mb-0 text-uppercase">Paso 3</p>
+            </div>
+            <div class="hit_detail mt-4">
+              <h4 class="">Entrevista Individual</h4>
+              <p class="text-muted mb-0 mt-3">
+                Nuestro primer contacto con el emprendedor, será a través de una entrevista virtual para conocernos y
+                resolver dudas.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="contact">
+    <section class="section bg-custom">
+      <div id="contact-anchor" style="position: absolute; top: -80px; left: 0"></div>
+      <div class="curv_top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 185.4">
+          <path fill="#fff" d="M3000,185.4V0H0v185.4C496.4,69.8,996.4,12,1500,12S2503.6,69.8,3000,185.4z"></path>
+        </svg>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="sec_main_head_title_bg pb-5 mx-auto text-center">
+              <h2><span></span>Contacta con nuestro equipo</h2>
+              <p class="mt-3 mx-auto">
+                Por favor, llena la información que solicita en el formulario inferior para poder hacernos saber tus
+                comentarios.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact_sec">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="contact_form mx-auto p-4">
+              <form>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group mt-3">
+                      <label>Nombre</label>
+                      <input name="name" type="text" class="form-control" placeholder="Tu nombre..." required="">
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group mt-3">
+                      <label>Correo electrónico</label>
+                      <input name="email" type="email" class="form-control" placeholder="Tu correo electrónico..."
+                        required="">
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="form-group mt-3">
+                      <label>Asunto</label>
+                      <input type="text" class="form-control" placeholder="Tu asunto..." required="">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="form-group mt-3">
+                      <label>Mensaje</label>
+                      <textarea name="comments" rows="4" class="form-control" placeholder="Tu mensaje..."
+                        required=""></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <button class="btn btn-custom mt-4 mr-3 ml-auto">Enviar mensaje</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section contact_detail_bg">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="contact_detail mt-3 text-center">
+              <div class="contact_icon">
+                <i class="mdi mdi-email"></i>
+              </div>
+              <div class="contact_name mt-3">
+                <h5 class="fw-bold mb-2">Correo Electrónico</h5>
+                <p class="text-muted">soporte@enactusumg.com</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="contact_detail mt-3 text-center">
+              <div class="contact_icon">
+                <i class="mdi mdi-phone"></i>
+              </div>
+              <div class="contact_name mt-3">
+                <h5 class="fw-bold mb-2">Teléfono</h5>
+                <p class="text-muted">+(502) 2222 3333</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="contact_detail mt-3 text-center">
+              <div class="contact_icon">
+                <i class="mdi mdi-watch"></i>
+              </div>
+              <div class="contact_name mt-3">
+                <h5 class="fw-bold mb-2">Horario de Atención</h5>
+                <p class="text-muted mb-0">Lunes a Viernes</p>
+                <p class="text-muted">8:00am a 6:00pm (GMT-6)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
 
 <div class="footer_main_divider"></div>
 
 <footer class="footer">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-4">
-        <div class="footer_logo mt-4">
-          <img src="assets/img/logo-enactus.svg" alt="logo-dark" class="img-fluid">
-          <p class="text-muted sub-title mt-2">Enactus™ Universidad Mariano Gálvez</p>
-          <ul class="list-inline fot_social mt-4">
-            <li class="list-inline-item"><a href="https://www.facebook.com/UMGEnactus/" class="social-icon"><i
-                  class="mdi mdi-facebook"></i></a></li>
-            <li class="list-inline-item"><a href="https://www.instagram.com/enactusumg/" class="social-icon"><i
-                  class="mdi mdi-instagram"></i></a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-2">
-        <div class="footer_menu mt-3">
-          <h5 class="fw-bold">Formar parte</h5>
-          <ul class="list-unstyled footer_menu_list mb-0 mt-4">
-            <li><a href="#">Enacter</a></li>
-            <li><a href="#">Patrocinador</a></li>
-            <li><a href="#">Asesor</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-2">
-        <div class="footer_menu mt-3">
-          <h5 class="fw-bold">Empendimiento</h5>
-          <ul class="list-unstyled footer_menu_list mb-0 mt-4">
-            <li><a href="#">Aplicar</a></li>
-            <li><a href="#">Requisitos</a></li>
-            <li><a href="#">Saber más</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-2">
-        <div class="footer_menu mt-3">
-          <h5 class="fw-bold">Services</h5>
-          <ul class="list-unstyled footer_menu_list mb-0 mt-4">
-            <li><a href="#">Documentation</a></li>
-            <li><a href="#">Design</a></li>
-            <li><a href="#">Themes</a></li>
-            <li><a href="#">Illustrations</a></li>
-            <li><a href="#">UI Kit</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-2">
-        <div class="footer_menu mt-3">
-          <h5 class="fw-bold">More</h5>
-          <ul class="list-unstyled footer_menu_list mb-0 mt-4">
-            <li><a href="#">Documentation</a></li>
-            <li><a href="#">License</a></li>
-            <li><a href="#">Changelog</a></li>
-          </ul>
-        </div>
+    <div class="col-sm-4">
+      <div class="footer_logo mt-4">
+        <img src="assets/img/logo-enactus.svg" alt="logo-dark" class="img-fluid">
+        <p class="text-muted sub-title mt-2">Enactus™ Universidad Mariano Gálvez</p>
+        <ul class="list-inline fot_social mt-4">
+          <li class="list-inline-item"><a href="https://www.facebook.com/UMGEnactus/" class="social-icon">
+              <i class="mdi mdi-facebook"></i></a></li>
+          <li class="list-inline-item"><a href="https://www.instagram.com/enactusumg/" class="social-icon">
+              <i class="mdi mdi-instagram"></i></a></li>
+        </ul>
       </div>
     </div>
   </div>

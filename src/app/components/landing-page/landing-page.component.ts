@@ -45,13 +45,15 @@ export class LandingPageComponent implements OnInit {
   }
 
   changeOption(opt) {
+    this.navigateTo(`${opt}-anchor`);
     this.section = opt;
-    document.getElementById(`${opt}-anchor`).scrollIntoView({ behavior: "smooth", block: "start" })
+  }
+
+  navigateTo(nodeName) {
+    document.getElementById(nodeName).scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   onSectionChange(section) {
-    console.log(section);
-
     this.section = section;
   }
 
