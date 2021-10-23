@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { User } from "src/app/modules/UserDto";
+import { User } from "src/app/models/UserDto";
+import { AuthService } from "src/app/services/auth.service";
 
 @Component({
   selector: "app-root",
@@ -9,8 +10,11 @@ import { User } from "src/app/modules/UserDto";
 })
 export class AppComponent implements OnInit {
 
+  username: string;
+
   constructor(
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     localStorage.setItem("section", "home");
   }
@@ -50,12 +54,14 @@ export class AppComponent implements OnInit {
     localStorage.setItem("section", section)
   }
 
-  getUserStored(): User {
-    return JSON.parse(localStorage.getItem("user_info"));
+  isLogged(): boolean {
+    this.username = this.authService.getUserStored()?.username;
+    return this.authService.isLoggedIn();
   }
 
-  isLogged(): boolean {
-    return !!this.getUserStored() ?? false;
+  logout() {
+    this.router.navigate(['/login']);
+    this.authService.logout();
   }
 
   getSection() {

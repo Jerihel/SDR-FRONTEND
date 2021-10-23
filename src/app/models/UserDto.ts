@@ -1,4 +1,8 @@
-export class User {
+export interface UserDto {
+
+}
+
+export interface User {
   email: string;
   lastName: string;
   name: string;

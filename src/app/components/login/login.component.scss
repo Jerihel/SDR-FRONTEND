@@ -1,15 +1,13 @@
-@import "../../../assets/scss/variables";
+@import "../../../assets/scss/style.scss";
 
 .login-container {
-  background: $primary;
+  background: $text-color;
   height: 100%;
+}
 
-  h1 {
-    color: $accent;
-    text-align: center;
-    font-weight: bold;
-    letter-spacing: 1px;
-  }
+h1 {
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
 .login {
@@ -87,8 +85,8 @@
 
 .input {
   $p: &;
-  background-color: rgba(255, 255, 255, 0.301);
-  border: 1px solid rgba(255, 255, 255, 0.301);
+  background-color: rgba($text-color, 0.2);
+  border: 1px solid rgba($text-color, 0.2);
   height: 50px;
   padding: 11px 20px;
   margin-bottom: 20px;
@@ -108,6 +106,7 @@
   button {
     margin-top: -6.5px;
     margin-right: -15px;
+
     mat-icon {
       margin-top: -1px;
     }
