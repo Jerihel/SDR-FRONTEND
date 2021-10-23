@@ -1,11 +1,44 @@
-<ngx-spinner
-  bdColor="rgba(8,120,183,0.8)"
-  size="medium"
-  color="#ffffff"
-  type="square-loader"
-  [fullScreen]="true"
->
-  <p style="color: white">Cargando...</p>
+<nav id="nav-bar" class="navbar navbar-expand-lg custom-nav navbar-light fixed-top sticky">
+  <div class="container">
+    <a class="navbar-brand logo" href="/home">
+      <img src="assets/img/logo-enactus.svg" alt="" class="img-fluid logo-dark">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="mdi mdi-menu"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto" id="main_nav">
+        <li class="nav-item" style="cursor: pointer;">
+          <a class="nav-link" [class.active]="getSection() == 'home'" (click)="changeOption('home')">Inicio</a>
+        </li>
+        <li class="nav-item" style="cursor: pointer;">
+          <a class="nav-link" [class.active]="getSection() == 'features'"
+            (click)="changeOption('features')">Funciones</a>
+        </li>
+        <li class="nav-item" style="cursor: pointer;">
+          <a class="nav-link" [class.active]="getSection() == 'contact'"
+            (click)="changeOption('contact')">Contactanos</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto" style="cursor: pointer;">
+        <li class="nav-item" *ngIf="!isLogged()">
+          <a class="nav-link" [class.active]="getSection() == 'login'" [routerLink]="['login']">
+            Iniciar sesión
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="isLogged()">
+          <a class="nav-link navbar-link-container active">
+            <mat-icon>account_circle</mat-icon>
+            {{getUserStored().username}}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<ngx-spinner bdColor="rgba(43, 49, 127,0.8)" size="medium" color="#fdbf21" type="square-loader" [fullScreen]="true">
+  <p style="color: #fdbf21">Cargando...</p>
 </ngx-spinner>
 
 <router-outlet></router-outlet>

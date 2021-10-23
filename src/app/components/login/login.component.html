@@ -1,0 +1,18 @@
+<div class="login-container">
+  <div class="align-vertical-center">
+    <section class="login" style="width: 500px">
+      <section class="login__container">
+        <h2 tabindex="0">Inicia sesi&oacute;n</h2>
+        <form [formGroup]="loginForm" class="login__container--form">
+          <input aria-label="Usuario" class="input" type="email" placeholder="Usuario" formControlName="email" />
+          <input aria-label="Contraseña" class="input" type="password" placeholder="Contrase&ntilde;a"
+            formControlName="pass" />
+          <button class="button" (click)="login(loginForm.value)">Iniciar sesi&oacute;n</button>
+          <div class="login__container--remember-me justify-content-center">
+            <a href="/">Olvid&eacute; mi contrase&ntilde;a</a>
+          </div>
+        </form>
+      </section>
+    </section>
+  </div>
+</div>

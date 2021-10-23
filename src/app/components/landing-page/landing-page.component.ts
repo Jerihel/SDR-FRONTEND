@@ -8,7 +8,6 @@ import { Item } from 'src/app/models/Item';
 })
 export class LandingPageComponent implements OnInit {
 
-  section = "home";
   items: Item[];
 
   constructor() {
@@ -46,7 +45,7 @@ export class LandingPageComponent implements OnInit {
 
   changeOption(opt) {
     this.navigateTo(`${opt}-anchor`);
-    this.section = opt;
+    localStorage.setItem("section", opt);
   }
 
   navigateTo(nodeName) {
@@ -54,7 +53,7 @@ export class LandingPageComponent implements OnInit {
   }
 
   onSectionChange(section) {
-    this.section = section;
+    localStorage.setItem("section", section);
   }
 
   isLogged() {
