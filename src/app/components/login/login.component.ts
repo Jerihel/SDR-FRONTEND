@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(login) {
+    if (this.loginForm.invalid) return;
     this.spinner.show();
     this.generalService.postData(`${environment.api}/external/users/login`, {
       "password": login.pass,
@@ -43,10 +44,21 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("user_info", JSON.stringify(res))
       this.router.navigate(['/'])
     }).catch(error => {
-      Swal.fire({
-        text: "Credenciales invalidas.",
-        icon: 'error'
-      })
+      console.log(error);
+
+      if (error.status == 406) {
+        Swal.fire({
+          title: "Credenciales invalidas",
+          text: "Por favor, revisa tu correo o contraseña.",
+          icon: 'error'
+        })
+      } else {
+        Swal.fire({
+          title: "¡Error!",
+          text: "Lo sentimos, ocurrio un error al intentar comunicarse con el servidor. Por favor, intenta de nuevo más tarde.",
+          icon: 'error'
+        })
+      }
     }).finally(() => this.spinner.hide())
   }
 }

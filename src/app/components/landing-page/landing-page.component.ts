@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Item } from 'src/app/models/Item';
 
 @Component({
@@ -6,11 +7,13 @@ import { Item } from 'src/app/models/Item';
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss']
 })
-export class LandingPageComponent implements OnInit {
+export class LandingPageComponent implements AfterViewInit {
 
   items: Item[];
 
-  constructor() {
+  constructor(
+    private route: ActivatedRoute
+  ) {
     this.items = [
       {
         title: "Equipo Enactus",
@@ -30,8 +33,16 @@ export class LandingPageComponent implements OnInit {
     ]
   }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     document.body.addEventListener("scroll", event => this.onScroll(event));
+    this.route.queryParamMap.subscribe(param => {
+      if (param.has("section")) {
+        const section = param.get('section');
+        setTimeout(() => {
+          this.navigateTo(`${section}-anchor`);
+        }, 10);
+      }
+    })
   }
 
   onScroll(event) {

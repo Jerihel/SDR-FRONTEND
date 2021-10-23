@@ -4,9 +4,11 @@
   background: $primary;
   height: 100%;
 
-  h2 {
+  h1 {
     color: $accent;
     text-align: center;
+    font-weight: bold;
+    letter-spacing: 1px;
   }
 }
 
@@ -16,7 +18,6 @@
   justify-content: center;
   flex-direction: column;
   padding: 0px 30px;
-  min-height: calc(100vh - 200px);
 }
 
 .login__container {
@@ -26,7 +27,6 @@
   padding: 60px 68px 40px;
   min-height: 700px;
   width: 100%;
-  justify-content: space-evenly;
   flex-direction: column;
 }
 
@@ -63,21 +63,15 @@
   align-items: center;
   font-size: 14px;
   margin-bottom: 10px;
-
 }
 
 .login__container--social-media>figure>img {
-
   width: 30px;
   margin-right: 10px;
-
 }
 
 .login__container--register {
-
   font-size: 14px;
-
-
 }
 
 .login__container--register a {
@@ -85,7 +79,6 @@
   color: white;
   font-weight: bold;
   text-decoration: none;
-
 }
 
 .login__container--register a:hover {
@@ -93,30 +86,60 @@
 }
 
 .input {
+  $p: &;
   background-color: rgba(255, 255, 255, 0.301);
-  border-left: 0px;
-  border-top: 0px;
-  border-right: 0px;
-  color: white;
-  font-family: 'Muli', sans-serif;
-  outline: none;
-  margin-bottom: 20px;
-  padding: 0px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.301);
   height: 50px;
+  padding: 11px 20px;
+  margin-bottom: 20px;
   border-radius: 25px;
+  transition-duration: 300ms;
+  transition-property: all;
+  display: flex;
+
+  .icon {
+    font-size: 18px;
+    color: $text-color;
+    margin-top: 3px;
+    transition-duration: 300ms;
+    transition-property: all;
+  }
+
+  button {
+    margin-top: -6.5px;
+    margin-right: -15px;
+    mat-icon {
+      margin-top: -1px;
+    }
+  }
+
+  input {
+    width: 100%;
+    color: $text-color;
+    outline: none;
+    border: 0px;
+    font-size: 16px;
+    background-color: transparent;
+    transition-duration: 300ms;
+    transition-property: all;
+
+    &::placeholder {
+      color: $text-color;
+    }
+  }
 
   &:hover {
     border: 1px solid $text-color;
     background-color: transparent;
-    color: $text-color;
-  }
-}
+    padding: 11px 20px;
 
-::placeholder {
-  color: white;
+    input {
+      color: white;
 
-  &:hover {
-    color: $muted;
+      &::placeholder {
+        color: $text-color;
+      }
+    }
   }
 }
 

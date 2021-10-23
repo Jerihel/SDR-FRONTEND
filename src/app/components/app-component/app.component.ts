@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { User } from "src/app/modules/UserDto";
 
 @Component({
@@ -8,7 +9,9 @@ import { User } from "src/app/modules/UserDto";
 })
 export class AppComponent implements OnInit {
 
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
     localStorage.setItem("section", "home");
   }
 
@@ -28,6 +31,8 @@ export class AppComponent implements OnInit {
   changeOption(opt) {
     if (this.navigateTo(`${opt}-anchor`)) {
       localStorage.setItem("section", opt)
+    } else {
+      this.router.navigate(['home'], { queryParams: { section: opt } })
     }
   }
 
