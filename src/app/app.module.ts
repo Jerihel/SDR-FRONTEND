@@ -11,12 +11,14 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { AppComponent } from "./components/app-component/app.component";
 import { LandingPageComponent } from "./components/landing-page/landing-page.component";
 import { ScrollSpyDirective } from './directives/scroll-spy/scroll-spy.directive';
+import { AdminCriterionComponent } from './components/admin-criterion/admin-criterion.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
-    ScrollSpyDirective
+    ScrollSpyDirective,
+    AdminCriterionComponent
   ],
   imports: [
     BrowserModule,
