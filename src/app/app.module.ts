@@ -12,13 +12,15 @@ import { AppComponent } from "./components/app-component/app.component";
 import { LandingPageComponent } from "./components/landing-page/landing-page.component";
 import { ScrollSpyDirective } from './directives/scroll-spy/scroll-spy.directive';
 import { AdminCriterionComponent } from './components/admin-criterion/admin-criterion.component';
+import { LoginComponent } from "./components/login/login.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
     ScrollSpyDirective,
-    AdminCriterionComponent
+    AdminCriterionComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -1,41 +1,3 @@
-<nav id="nav-bar" class="navbar navbar-expand-lg custom-nav navbar-light fixed-top sticky">
-  <div class="container">
-    <a class="navbar-brand logo" href="/home">
-      <img src="assets/img/logo-enactus.svg" alt="" class="img-fluid logo-dark">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="mdi mdi-menu"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav mr-auto" id="main_nav">
-        <li class="nav-item" style="cursor: pointer;">
-          <a class="nav-link" [class.active]="section == 'home'" (click)="changeOption('home')">Inicio</a>
-        </li>
-        <li class="nav-item" style="cursor: pointer;">
-          <a class="nav-link" [class.active]="section == 'features'" (click)="changeOption('features')">Funciones</a>
-        </li>
-        <li class="nav-item" style="cursor: pointer;">
-          <a class="nav-link" [class.active]="section == 'contact'" (click)="changeOption('contact')">Contactanos</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-auto" style="cursor: pointer;">
-        <li class="nav-item" *ngIf="!isLogged()">
-          <a class="nav-link" [class.active]="section == 'login'" (click)="changeOption('login')">
-            Iniciar sesión
-          </a>
-        </li>
-        <li class="nav-item" *ngIf="isLogged()">
-          <a class="nav-link navbar-link-container active">
-            <mat-icon>account_circle</mat-icon>
-            crramosl6
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
 <div scrollSpy [spiedTags]="['DIV']" [offset]="80" (sectionChange)="onSectionChange($event)">
   <div id="home">
     <section class="home_main_sec" id="home-anchor">
@@ -150,8 +112,9 @@
               <div class="content_features mx-auto mt-3">
                 <h3 class="content_main_title mb-0 mt-4">Enacter</h3>
                 <p class="text-muted sub-title mt-4 text-justify">
-                  Estudiante universitario de la UMG, no importa la carrera. Que busca pertenecer a un voluntariado que
-                  busca a través de la acción emprendedora buscar propiciar cambios personales y sociales en Guatemala.
+                  Estudiante universitario de la Universidad Mariano Galvez de Guatemala, que
+                  busca pertenecer a un voluntariado que busca a través de la acción emprendedora buscar propiciar
+                  cambios personales y sociales en Guatemala.
                 </p>
                 <div class="mt-4 pt-3">
                   <a [routerLink]="" mat-raised-button color="primary" class="btn btn-custom btn-rounded"> Explorar
