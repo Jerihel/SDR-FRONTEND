@@ -52,8 +52,21 @@ export class AuthService {
 
   createUser(usuario: UserDto) {
     return this.generalService.postData<User, UserDto>(
-      `${environment.api}usuario`,
+      `${environment.api}/internal/users/create`,
       usuario
+    );
+  }
+
+  getUserProfile() {
+    return this.generalService.getData<User>(
+      `${environment.api}/internal/users/find`,
+      this.getUserStored()?.username
+    );
+  }
+
+  getUsers() {
+    return this.generalService.getData<User>(
+      `${environment.api}/internal/users/find`
     );
   }
 

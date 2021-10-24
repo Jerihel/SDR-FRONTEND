@@ -4,8 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { User } from 'src/app/models/UserDto';
 import { AuthService } from 'src/app/services/auth.service';
-import { GeneralService } from 'src/app/services/general.service';
-import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -46,12 +44,17 @@ export class LoginComponent implements OnInit {
     this.authService.authUser({ password: login.pass, username: login.email }).toPromise().then((res: User) => {
       localStorage.setItem("user_info", JSON.stringify(res))
       if (res.roles.find(item => item.idRole == 4)) {
-        this.router.navigate([this.redirect ?? '/home']);
+        this.redirect = this.redirect ?? '/admin/users';
         localStorage.setItem("section", "users");
       } else {
-        this.router.navigate([this.redirect ?? '/home']);
+        this.redirect = this.redirect ?? '/home';
         localStorage.setItem("section", "home");
       }
+      if (this.redirect?.includes('login')) {
+        this.redirect = '/home';
+        localStorage.setItem("section", "home");
+      }
+      this.router.navigate([this.redirect]);
     }).catch(error => {
       if ([406, 404].includes(error.status)) {
         Swal.fire({
