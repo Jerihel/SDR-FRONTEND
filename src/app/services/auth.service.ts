@@ -2,9 +2,7 @@ import { Injectable } from "@angular/core";
 import { GeneralService } from "./general.service";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
-import { Router } from "@angular/router";
 import { User, UserDto, UserResponse } from "../models/UserDto";
-import { AlertUtils } from "../utils/alert-utils";
 import { map } from "rxjs/operators";
 
 @Injectable({
@@ -15,17 +13,7 @@ export class AuthService {
   constructor(
     private generalService: GeneralService,
     private http: HttpClient,
-    private router: Router,
   ) {
-    if (this.getUserStored() && !this.isLoggedIn()) {
-      this.logout();
-      AlertUtils.showToast(
-        "error",
-        "Token expirado",
-        "Por favor, inicie sesión para continuar."
-      );
-      this.router.navigate(["/login"]);
-    }
   }
 
   getUserStored(): User {
@@ -48,7 +36,7 @@ export class AuthService {
       });
       user.token = undefined;
       localStorage.setItem("user_info", JSON.stringify(user as User))
-      return user;
+      return user as User;
     }));
   }
 

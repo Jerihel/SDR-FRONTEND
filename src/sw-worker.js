@@ -41,17 +41,20 @@ self.addEventListener('message', event => {
     }).then(_ => {
       token = null;
       clearTimeout(refreshTokenTimeout);
-    }).catch(error => navigator.serviceWorker.postMessage({
-      type: "ERROR",
-      error
-    }));
+    }).catch(error => {
+      console.log(error);
+      navigator.serviceWorker.postMessage({
+        type: "ERROR",
+        error
+      })
+    });
   }
 })
 
 self.addEventListener('fetch', event => {
   const isApiUrl = event.request.url.startsWith(api);
   const isInternal = event.request.url.includes('internal')
-  if (isApiUrl && isInternal && token) {
+  if (isApiUrl && isInternal) {
     const modifiedHeaders = new Headers(event.request.headers);
     modifiedHeaders.append('Authorization', token);
 

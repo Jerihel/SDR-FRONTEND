@@ -25,6 +25,7 @@ export class LoginGuard implements CanActivate {
     | boolean
     | UrlTree {
     if (!this.auth.isLoggedIn()) {
+      this.auth.logout();
       this.router.navigate(["/login"], { queryParams: { redirect: state.url } });
       AlertUtils.showToast(
         "info",
