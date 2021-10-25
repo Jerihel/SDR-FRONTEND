@@ -4,16 +4,16 @@ import { Directive, ElementRef, EventEmitter, HostListener, Input, Output } from
   selector: '[scrollSpy]'
 })
 export class ScrollSpyDirective {
-  @Input() public spiedTags = [];
+  @Input() public spiedTags: string[] = [];
   @Input() public offset = 0;
   @Output() public sectionChange = new EventEmitter<string>();
-  private currentSection: string;
+  private currentSection: string = '';
 
   constructor(private _el: ElementRef) { }
 
   @HostListener('body:scroll', ['$event'])
   onScroll(event: any) {
-    let currentSection: string;
+    let currentSection: string = '';
     const children = this._el.nativeElement.children;
     const scrollTop = event.target.scrollTop;
     const parentOffset = event.target.offsetTop + this.offset;

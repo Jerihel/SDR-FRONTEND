@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   hide = true;
   loginForm: FormGroup;
-  redirect: string;
+  redirect: string | null = '';
 
   constructor(
     private authService: AuthService,
@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private route: ActivatedRoute
   ) {
+
     localStorage.setItem('section', 'login');
     this.loginForm = new FormGroup({
       email: new FormControl(null, Validators.required),
@@ -38,11 +39,10 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  login(login) {
+  login(login: any) {
     if (this.loginForm.invalid) return;
     this.spinner.show();
     this.authService.authUser({ password: login.pass, username: login.email }).toPromise().then((res: User) => {
-      localStorage.setItem("user_info", JSON.stringify(res))
       if (res.roles.find(item => item.idRole == 4)) {
         this.redirect = this.redirect ?? '/admin/users';
         localStorage.setItem("section", "users");

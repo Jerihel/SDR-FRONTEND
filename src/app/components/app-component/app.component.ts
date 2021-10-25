@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { User } from "src/app/models/UserDto";
 import { AuthService } from "src/app/services/auth.service";
 
 @Component({
@@ -10,7 +9,7 @@ import { AuthService } from "src/app/services/auth.service";
 })
 export class AppComponent implements OnInit {
 
-  username: string;
+  username: string = '';
 
   constructor(
     private router: Router,
@@ -23,24 +22,23 @@ export class AppComponent implements OnInit {
     document.body.addEventListener("scroll", event => this.onScroll(event));
   }
 
-  onScroll(event) {
+  onScroll(event: any) {
     var navbar = document.querySelector('#nav-bar')
     if (event.target.scrollTop > 0) {
-      navbar.classList.add('stickyadd')
+      navbar?.classList.add('stickyadd')
     } else {
-      navbar.classList.remove('stickyadd')
+      navbar?.classList.remove('stickyadd')
     }
   }
 
-  changeOption(opt) {
-    if (this.navigateTo(`${opt}-anchor`)) {
-      localStorage.setItem("section", opt)
-    } else {
-      this.router.navigate(['home'], { queryParams: { section: opt } })
+  changeOption(opt: string) {
+    localStorage.setItem("section", opt)
+    if (!this.navigateTo(`${opt}-anchor`)) {
+      this.router.navigate(['home']);
     }
   }
 
-  navigateTo(nodeName) {
+  navigateTo(nodeName: string) {
     const node = document.getElementById(nodeName);
 
     if (!node) {
@@ -50,7 +48,7 @@ export class AppComponent implements OnInit {
     return true;
   }
 
-  onSectionChange(section) {
+  onSectionChange(section: string) {
     localStorage.setItem("section", section)
   }
 

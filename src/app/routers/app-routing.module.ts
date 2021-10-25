@@ -13,8 +13,9 @@ const routes: Routes = [
   { path: "admin/users", component: UsersComponent, canActivate: [LoginGuard] }
 ];
 
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }

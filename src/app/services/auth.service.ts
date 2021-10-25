@@ -2,21 +2,20 @@ import { Injectable } from "@angular/core";
 import { GeneralService } from "./general.service";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
-import { JwtHelperService } from "@auth0/angular-jwt";
 import { Router } from "@angular/router";
-import { User, UserDto } from "../models/UserDto";
+import { User, UserDto, UserResponse } from "../models/UserDto";
 import { AlertUtils } from "../utils/alert-utils";
-
-const jwtHelper = new JwtHelperService();
+import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
 })
 export class AuthService {
+
   constructor(
     private generalService: GeneralService,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
   ) {
     if (this.getUserStored() && !this.isLoggedIn()) {
       this.logout();
@@ -30,24 +29,27 @@ export class AuthService {
   }
 
   getUserStored(): User {
-    return JSON.parse(localStorage.getItem("user_info"));
+    return JSON.parse(localStorage.getItem("user_info") as string);
   }
 
   isLoggedIn(): boolean {
-    return !jwtHelper.isTokenExpired(
-      this.getUserStored()?.token.replace("Bearer ", "")
-    );
+    return !!this.getUserStored()
   }
 
-  saveUserToken(user: User) {
-    localStorage.setItem("user_info", JSON.stringify(user));
-  }
-
-  authUser(body) {
-    return this.generalService.postData<User, any>(
+  authUser(body: any) {
+    return this.generalService.postData<UserResponse, any>(
       `${environment.api}/external/users/login`,
       body
-    );
+    ).pipe(map((user) => {
+      navigator.serviceWorker.controller?.postMessage({
+        type: 'SET_TOKEN',
+        token: user.token,
+        api: environment.api
+      });
+      user.token = undefined;
+      localStorage.setItem("user_info", JSON.stringify(user as User))
+      return user;
+    }));
   }
 
   createUser(usuario: UserDto) {
@@ -71,7 +73,10 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('user_info');
+    localStorage.removeItem("user_info");
+    navigator.serviceWorker.controller?.postMessage({
+      type: 'REMOVE_TOKEN'
+    });
   }
 
   async getUserCredentials() {
@@ -79,8 +84,8 @@ export class AuthService {
       const userIp = await this.http
         .get<any>("https://api.ipify.org/?format=json")
         .toPromise();
-      const userLogin = { login: this.getUserStored()?.username ?? "ssem_ex" };
-      return { ip: userIp.ip, login: userLogin.login };
+      const userLogin = { login: this.getUserStored()?.username ?? "sdr_external" };
+      return { ip: userIp.ip, login: userLogin?.login ?? userLogin };
     } catch (error) {
       return null;
     }

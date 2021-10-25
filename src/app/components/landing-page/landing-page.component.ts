@@ -1,4 +1,4 @@
-import { AfterContentInit, AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Item } from 'src/app/models/Item';
 
@@ -45,25 +45,25 @@ export class LandingPageComponent implements AfterViewInit {
     })
   }
 
-  onScroll(event) {
+  onScroll(event: any) {
     var navbar = document.querySelector('#nav-bar')
     if (event.target.scrollTop > 0) {
-      navbar.classList.add('stickyadd')
+      navbar?.classList.add('stickyadd')
     } else {
-      navbar.classList.remove('stickyadd')
+      navbar?.classList.remove('stickyadd')
     }
   }
 
-  changeOption(opt) {
+  changeOption(opt: string) {
     this.navigateTo(`${opt}-anchor`);
     localStorage.setItem("section", opt);
   }
 
-  navigateTo(nodeName) {
-    document.getElementById(nodeName).scrollIntoView({ behavior: "smooth", block: "start" });
+  navigateTo(nodeName: string) {
+    document.getElementById(nodeName)?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  onSectionChange(section) {
+  onSectionChange(section: any) {
     localStorage.setItem("section", section);
   }
 

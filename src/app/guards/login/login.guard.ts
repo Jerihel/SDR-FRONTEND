@@ -9,8 +9,6 @@ import {
 import { Observable } from "rxjs";
 import { AuthService } from "src/app/services/auth.service";
 import { AlertUtils } from "src/app/utils/alert-utils";
-import Swal from "sweetalert2";
-import { SweetAlertIcon } from "sweetalert2";
 
 @Injectable({
   providedIn: "root",
@@ -32,7 +30,6 @@ export class LoginGuard implements CanActivate {
         "info",
         `Por favor, iniciar sesión para acceder al modulo.`
       );
-      this.auth.logout();
       return false;
     }
     return this.validarRutasPorRol(route);
