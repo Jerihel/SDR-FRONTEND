@@ -11,10 +11,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { AppComponent } from "./components/app-component/app.component";
 import { LandingPageComponent } from "./components/landing-page/landing-page.component";
 import { ScrollSpyDirective } from './directives/scroll-spy/scroll-spy.directive';
-<<<<<<< HEAD
 import { AdminCriterionComponent } from './components/admin-criterion/admin-criterion.component';
-=======
->>>>>>> d5721a5211ec76cb478e3fb2a6c76baa68e94af4
 import { LoginComponent } from "./components/login/login.component";
 
 @NgModule({
@@ -22,10 +19,7 @@ import { LoginComponent } from "./components/login/login.component";
     AppComponent,
     LandingPageComponent,
     ScrollSpyDirective,
-<<<<<<< HEAD
     AdminCriterionComponent,
-=======
->>>>>>> d5721a5211ec76cb478e3fb2a6c76baa68e94af4
     LoginComponent
   ],
   imports: [

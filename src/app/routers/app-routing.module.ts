@@ -7,10 +7,7 @@ import { LoginComponent } from "../components/login/login.component";
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
   { path: "home", component: LandingPageComponent },
-<<<<<<< HEAD
   {path: "admin-criterion",component: AdminCriterionComponent},
-=======
->>>>>>> d5721a5211ec76cb478e3fb2a6c76baa68e94af4
   { path: "login", component: LoginComponent }
 ];
 
