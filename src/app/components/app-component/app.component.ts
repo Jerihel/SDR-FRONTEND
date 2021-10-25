@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
   changeOption(opt: string) {
     localStorage.setItem("section", opt)
     if (!this.navigateTo(`${opt}-anchor`)) {
-      this.router.navigate(['home']);
+      this.router.navigate(['home'], { queryParams: { section: opt } });
     }
   }
 

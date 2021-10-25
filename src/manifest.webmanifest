@@ -1,8 +1,8 @@
 {
-  "name": "sdr",
-  "short_name": "sdr",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "name": "Enactus UMG - Sistema de Registro",
+  "short_name": "Enactus UMG - SDR",
+  "theme_color": "#2b317f",
+  "background_color": "#2b317f",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
