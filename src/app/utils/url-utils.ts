@@ -1,6 +1,6 @@
 import { HttpHeaders } from "@angular/common/http";
-import { Param } from "../modules/Params";
-import { User } from "../modules/UserDto";
+import { Param } from "../models/Params";
+import { User } from "../models/UserDto";
 
 export class UrlUtils {
   static toQueryParams(params: any): string {

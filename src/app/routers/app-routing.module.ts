@@ -3,12 +3,20 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { LandingPageComponent } from "../components/landing-page/landing-page.component";
 import { LoginComponent } from "../components/login/login.component";
+import { UsersComponent } from "../components/manager/users/users.component";
+import { LoginGuard } from "../guards/login/login.guard";
+import { NoLoginGuard } from "../guards/no-login/no-login.guard";
 
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
   { path: "home", component: LandingPageComponent },
+<<<<<<< HEAD
   {path: "admin-criterion",component: AdminCriterionComponent},
   { path: "login", component: LoginComponent }
+=======
+  { path: "login", component: LoginComponent, canActivate: [NoLoginGuard] },
+  { path: "admin/users", component: UsersComponent, canActivate: [LoginGuard] }
+>>>>>>> 394ec8c279fbcd01e5686a95145649c738aab824
 ];
 
 @NgModule({

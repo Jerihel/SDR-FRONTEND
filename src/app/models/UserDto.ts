@@ -1,7 +1,8 @@
-export class User {
-  email: string;
-  lastName: string;
-  name: string;
+export interface UserDto {
+
+}
+
+export interface User {
   roles: { idRole: number; idUser: string; }[]
   token: string;
   username: string;
