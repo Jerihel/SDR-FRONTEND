@@ -4,7 +4,7 @@ let api;
 
 const startRefreshTokenTimer = () => {
   const expires = new Date(JSON.parse(atob(token.split('.')[1])).exp * 1000);
-  const timeout = expires.getTime() - Date.now() - 1000;
+  const timeout = expires.getTime() - Date.now() - (1000 * 60 * 2);
   console.log(expires, timeout);
   refreshTokenTimeout = setTimeout(() => refreshToken(), timeout);
 }
