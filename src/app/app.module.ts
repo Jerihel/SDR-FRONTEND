@@ -14,6 +14,7 @@ import { ScrollSpyDirective } from './directives/scroll-spy/scroll-spy.directive
 import { AdminCriterionComponent } from './components/admin-criterion/admin-criterion.component';
 import { LoginComponent } from "./components/login/login.component";
 import { RequestInterceptor } from "./interceptors/request.interceptor";
+import { EditCriterionComponent } from './components/admin-criterion/edit-criterion/edit-criterion.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { RequestInterceptor } from "./interceptors/request.interceptor";
     LandingPageComponent,
     ScrollSpyDirective,
     AdminCriterionComponent,
-    LoginComponent
+    LoginComponent,
+    EditCriterionComponent
   ],
   imports: [
     BrowserModule,
