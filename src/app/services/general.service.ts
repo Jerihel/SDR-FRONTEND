@@ -36,6 +36,17 @@ export class GeneralService {
     });
   }
 
+  patchData<R, B>(
+    baseUrl: string,
+    params?: string | string[] | Param[],
+    body?: B,
+    headers?: Param[]
+  ) {
+    return this.html.patch<R>(this.createUrl(baseUrl, params), body, {
+      headers: UrlUtils.toHeaders(headers),
+    });
+  }
+
   deleteData<R>(
     baseUrl: string,
     params?: string | string[] | Param[],

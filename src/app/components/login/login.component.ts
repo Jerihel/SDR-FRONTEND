@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { User } from 'src/app/models/UserDto';
+import { User, UserResponse } from 'src/app/models/UserDto';
 import { AuthService } from 'src/app/services/auth.service';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -42,7 +43,8 @@ export class LoginComponent implements OnInit {
   login(login: any) {
     if (this.loginForm.invalid) return;
     this.spinner.show();
-    this.authService.authUser({ password: login.pass, username: login.email }).toPromise().then((res: User) => {
+    this.authService.authUser({ password: login.pass, username: login.email }).toPromise().then((res: UserResponse) => {
+
       if (res.roles.find(item => item.idRole == 4)) {
         this.redirect = this.redirect ?? '/admin/users';
         localStorage.setItem("section", "users");
@@ -54,21 +56,38 @@ export class LoginComponent implements OnInit {
         this.redirect = '/home';
         localStorage.setItem("section", "home");
       }
-      this.router.navigate([this.redirect]);
+      navigator.serviceWorker.controller?.postMessage({
+        type: 'SET_TOKEN',
+        token: res.token,
+        api: environment.api
+      });
+      res.token = undefined;
+      localStorage.setItem("user_info", JSON.stringify(res as User));
     }).catch(error => {
+      console.log(error);
+
       if ([406, 404].includes(error.status)) {
         Swal.fire({
           title: "Credenciales invalidas",
-          text: "Por favor, revisa tu correo o contraseña.",
-          icon: 'error'
+          text: "Por favor, revisa que el usuario y la contraseña sean los correctos.",
+          icon: 'error',
+          confirmButtonColor: '#2b317f'
         })
       } else {
         Swal.fire({
           title: "¡Error!",
           text: "Lo sentimos, ocurrio un error al intentar comunicarse con el servidor. Por favor, intenta de nuevo más tarde.",
-          icon: 'error'
+          icon: 'error',
+          confirmButtonColor: '#2b317f'
         })
       }
-    }).finally(() => this.spinner.hide())
+      this.redirect = null;
+    }).finally(() => {
+      setTimeout(() => {
+        if (this.redirect)
+          this.router.navigate([this.redirect]);
+        this.spinner.hide();
+      }, 100);
+    });
   }
 }

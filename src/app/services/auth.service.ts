@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { GeneralService } from "./general.service";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
-import { User, UserDto, UserResponse } from "../models/UserDto";
+import { User, UserDto, UserProfile, UserResponse } from "../models/UserDto";
 import { map } from "rxjs/operators";
 
 @Injectable({
@@ -28,16 +28,7 @@ export class AuthService {
     return this.generalService.postData<UserResponse, any>(
       `${environment.api}/external/users/login`,
       body
-    ).pipe(map((user) => {
-      navigator.serviceWorker.controller?.postMessage({
-        type: 'SET_TOKEN',
-        token: user.token,
-        api: environment.api
-      });
-      user.token = undefined;
-      localStorage.setItem("user_info", JSON.stringify(user as User))
-      return user as User;
-    }));
+    );
   }
 
   createUser(usuario: UserDto) {
@@ -48,7 +39,7 @@ export class AuthService {
   }
 
   getUserProfile() {
-    return this.generalService.getData<User>(
+    return this.generalService.getData<UserProfile>(
       `${environment.api}/internal/users/find`,
       this.getUserStored()?.username
     );
@@ -57,6 +48,13 @@ export class AuthService {
   getUsers() {
     return this.generalService.getData<User>(
       `${environment.api}/internal/users/find`
+    );
+  }
+
+  changePassword(oldPass: string, newPass: string) {
+    return this.generalService.patchData(
+      environment.api, 'internal/users/change/password',
+      { oldPass, newPass, username: this.getUserStored()?.username }
     );
   }
 

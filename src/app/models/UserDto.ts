@@ -10,3 +10,10 @@ export interface User {
 export interface UserResponse extends User {
   token?: string;
 }
+
+export interface UserProfile extends User {
+  name?: string;
+  lastName?: string;
+  email?: string;
+  state?: number;
+}

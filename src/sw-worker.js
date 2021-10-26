@@ -16,7 +16,6 @@ const refreshToken = () => {
       "Authorization": token
     }
   }).then(res => res.json()).then(user => {
-    console.log(user);
     token = user.token;
     startRefreshTokenTimer();
   }).catch(error => {
@@ -33,6 +32,7 @@ self.addEventListener('message', event => {
   }
   if (event.data.type == "REMOVE_TOKEN") {
     console.log("[SW] Removing token");
+    clearTimeout(refreshTokenTimeout);
     fetch(`${api}/internal/users/token/revoke`, {
       method: "POST",
       headers: {
@@ -40,7 +40,6 @@ self.addEventListener('message', event => {
       }
     }).then(_ => {
       token = null;
-      clearTimeout(refreshTokenTimeout);
     }).catch(error => {
       console.log(error);
       navigator.serviceWorker.postMessage({

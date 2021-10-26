@@ -40,6 +40,7 @@ export class LoginGuard implements CanActivate {
     const user = this.auth.getUserStored();
     const path = route.url.join("/");
     if (!user) return false;
+    if (path.startsWith('profile')) return true;
     if (path.startsWith("admin") && user.roles.find(role => role.idRole == 4)) {
       return true;
     }

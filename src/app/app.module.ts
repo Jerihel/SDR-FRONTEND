@@ -16,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { RequestInterceptor } from './interceptors/request.interceptor';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { RequestInterceptor } from './interceptors/request.interceptor';
     LandingPageComponent,
     LoginComponent,
     UsersComponent,
-    ScrollSpyDirective
+    ScrollSpyDirective,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
