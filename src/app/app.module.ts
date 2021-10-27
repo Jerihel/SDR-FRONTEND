@@ -10,7 +10,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { ScrollSpyDirective } from './directives/scroll-spy/scroll-spy.directive';
 import { AdminCriterionComponent } from './components/admin-criterion/admin-criterion.component';
-import { LoginComponent } from "./components/login/login.component";
+
 import { RequestInterceptor } from "./interceptors/request.interceptor";
 import { EditCriterionComponent } from './components/admin-criterion/edit-criterion/edit-criterion.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -19,8 +19,9 @@ import { UsersComponent } from './components/manager/users/users.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { "RequestInterceptor" } from './interceptors/request.interceptor';
+
 import { ProfileComponent } from './components/profile/profile.component';
+import { CreateCriterionComponent } from './components/admin-criterion/create-criterion/create-criterion.component';
 
 @NgModule({
   declarations: [
@@ -31,8 +32,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     ScrollSpyDirective,
     AdminCriterionComponent,
     LoginComponent,
-    EditCriterionComponent
-    ProfileComponent
+    EditCriterionComponent,
+    ProfileComponent,
+    CreateCriterionComponent
   ],
   imports: [
     BrowserModule,
