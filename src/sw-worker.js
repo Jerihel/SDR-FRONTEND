@@ -52,7 +52,7 @@ self.addEventListener('message', event => {
 
 self.addEventListener('fetch', event => {
   const isApiUrl = event.request.url.startsWith(api);
-  const isInternal = event.request.url.includes('internal')
+  const isInternal = event.request.url.includes('internal');
   if (isApiUrl && isInternal) {
     const modifiedHeaders = new Headers(event.request.headers);
     modifiedHeaders.append('Authorization', token);

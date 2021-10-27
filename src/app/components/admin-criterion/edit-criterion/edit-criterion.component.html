@@ -1,0 +1,119 @@
+<div class="row">
+  <div class="col-12 text-center">
+    <h1
+      class="font-weight-bold"
+      style="font-size: 25px; color: #2b317f"
+      mat-dialog-title
+    >
+      EDITAR CRITERIO
+    </h1>
+    <!-- <hr class="hr" width="75%"> -->
+  </div>
+</div>
+<div mat-dialog-content>
+  <form [formGroup]="formEditarCriterio">
+    <div class="item">
+      <div class="item2">
+        <mat-form-field class="col" appearance="outline">
+          <mat-label>Nombre del Criterio</mat-label>
+          <input
+            matInput
+            placeholder="nombre"
+            formControlName="nombre"
+            required
+          />
+          <mat-error
+            *ngIf="
+              this.formEditarCriterio.controls.nombre.dirty &&
+              this.formEditarCriterio.controls.nombre.hasError('required')
+            "
+            >Este campo es obligatorio
+          </mat-error>
+          <mat-error
+            *ngIf="
+              this.formEditarCriterio.controls.nombre.dirty &&
+              (this.formEditarCriterio.controls.nombre.hasError('maxlength') ||
+                this.formEditarCriterio.controls.nombre.hasError('minlength'))
+            "
+            >El texto no debe ser mayor a 150 caracteres o menor a 5
+            caracteres</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <div class="item2">
+        <mat-form-field class="col" appearance="outline">
+          <mat-label>Ponderacion</mat-label>
+          <input
+            matInput
+            type="number"
+            min="1"
+            max="10"
+            formControlName="ponderacion"
+            required
+          />
+          <mat-error
+            *ngIf="
+              this.formEditarCriterio.controls.ponderacion.dirty &&
+              this.formEditarCriterio.controls.ponderacion.hasError('required')
+            "
+            >Este campo es obligatorio</mat-error
+          >
+          <mat-error
+            *ngIf="
+              this.formEditarCriterio.controls.ponderacion.dirty &&
+              (this.formEditarCriterio.controls.ponderacion.hasError('max') ||
+                this.formEditarCriterio.controls.ponderacion.hasError('min'))
+            "
+            >Solo se permiten numeros del 1 al 10</mat-error
+          >
+          <mat-error
+            *ngIf="
+              this.formEditarCriterio.controls.ponderacion.dirty &&
+              this.formEditarCriterio.controls.ponderacion.hasError('pattern')
+            "
+            >Solo se permiten numeros enteros del 1 al 10</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <div class="item2">
+        <mat-form-field class="col" appearance="outline">
+          <mat-label> Estado</mat-label>
+          <mat-select required formControlName="estado" #seleccionEstado>
+            <mat-option
+              *ngFor="let item of catalogueChild"
+              [value]="item.idCatalogueChild"
+            >
+              {{ item.name }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              this.formEditarCriterio.controls.estado.dirty &&
+              this.formEditarCriterio.controls.estado.hasError('required')
+            "
+            >Este campo es Obligatorio</mat-error
+          >
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</div>
+<hr class="hr" width="75%" />
+<div class="row justify-content-center mt-2">
+  <button mat-raised-button class="btn" (click)="regresar()">
+    <i class="fa fa-angle-left mr-2"></i>
+    REGRESAR
+  </button>
+  <button
+    mat-raised-button
+    class="btn ml-2"
+    type="submit"
+    (click)="actualizarCriterio()"
+    [disabled]="!formEditarCriterio.valid"
+  >
+    <i class="material-icons mr-2"> group_add </i>
+    <span>Guardar</span>
+  </button>
+</div>

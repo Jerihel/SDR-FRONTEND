@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { NavigationExtras, Router } from "@angular/router";
 import { AuthService } from "src/app/services/auth.service";
 
 @Component({
@@ -38,6 +38,10 @@ export class AppComponent implements OnInit {
     }
   }
 
+  navTo(route: string) {
+    this.forcedNavigate([route])
+  }
+
   navigateTo(nodeName: string) {
     const node = document.getElementById(nodeName);
 
@@ -57,6 +61,14 @@ export class AppComponent implements OnInit {
     return this.authService.isLoggedIn();
   }
 
+  isAdmin() {
+    return this.authService.getUserStored().roles.find(role => role.idRole == 4) != null;
+  }
+
+  isReviewer() {
+    return this.authService.getUserStored().roles.find(role => role.idRole == 3) != null;
+  }
+
   logout() {
     this.router.navigate(['/login']);
     this.authService.logout();
@@ -64,5 +76,9 @@ export class AppComponent implements OnInit {
 
   getSection() {
     return localStorage.getItem("section");
+  }
+
+  forcedNavigate(commands: any[], extras?: NavigationExtras): Promise<boolean> {
+    return this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => this.router.navigate(commands, extras));
   }
 }

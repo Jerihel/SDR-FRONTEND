@@ -1,0 +1,97 @@
+<div class="col-11 mx-auto center-component main-conteiner">
+  <div class="card mx-auto bg-light">
+    <div class="container bg-white col-11 rounded mt-3">
+      <div class="row justify-content-center">
+        <h1 class="font-weight-bold text-uppercase">Criterios de Evaluación</h1>
+      </div>
+    </div>
+
+    <div class="row mt-3 justify-content-center">
+
+
+      <div class="container mt-2 bg-white rounded col-11 mb-3">
+        <div class="item pb-3">
+
+          <button
+            mat-raised-button
+
+            class="btn btn-custom btn-rounded mb-0 mt-4"
+            (click)="regresar()"
+          >
+            <i class="material-icons mr-2"> arrow_back_ios_new </i>REGRESAR
+          </button>
+          <button
+          mat-raised-button
+
+          class="btn btn-custom btn-rounded mb-0 mt-4"
+          (click)="crearCriterio()"
+        >
+          <i class="material-icons mr-2"> post_add </i>CREAR CRITERIO
+        </button>
+        </div>
+
+
+        <div class="mat-elevation-z8 analista-solicitud-table">
+          <mat-table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="noCriterio">
+              <mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header
+                class="header-table start"
+                >No Criterio</mat-header-cell
+              >
+              <mat-cell *matCellDef="let criterios " data-label="noCriterio "
+                >{{ criterios.noCriterio }}
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="nombreCriterio">
+              <mat-header-cell *matHeaderCellDef mat-sort-header class="header-table"
+                >Nombre Criterio</mat-header-cell
+              >
+              <mat-cell *matCellDef="let criterios" data-label="nombreCriterio">
+              {{ criterios.nombreCriterio |uppercase}}
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="ponderacion">
+              <mat-header-cell *matHeaderCellDef mat-sort-header class="header-table"
+                >Ponderacion</mat-header-cell
+              >
+              <mat-cell *matCellDef="let criterios" data-label="ponderacion">
+                {{ criterios.ponderacion }}
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="estado">
+              <mat-header-cell *matHeaderCellDef mat-sort-header class="header-table"
+                >Estado</mat-header-cell
+              >
+              <mat-cell
+                *matCellDef="let criterios"
+                data-label="estado"
+              >
+                {{ criterios.estado|uppercase}}
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="acciones">
+              <mat-header-cell *matHeaderCellDef class="header-table end"
+                >Acciones</mat-header-cell
+              >
+              <mat-cell *matCellDef="let criterios" data-label="Acciones">
+                <button mat-icon-button (click)="editarUsuario(criterios)" >
+                  <mat-icon>edit</mat-icon>
+                </button>
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayColumnns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayColumnns"></mat-row>
+          </mat-table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

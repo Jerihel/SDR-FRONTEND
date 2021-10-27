@@ -51,7 +51,7 @@ import { CreateCriterionComponent } from './components/admin-criterion/create-cr
     })
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
