@@ -9,8 +9,6 @@ import {
 import { Observable } from "rxjs";
 import { AuthService } from "src/app/services/auth.service";
 import { AlertUtils } from "src/app/utils/alert-utils";
-import Swal from "sweetalert2";
-import { SweetAlertIcon } from "sweetalert2";
 
 @Injectable({
   providedIn: "root",
@@ -27,12 +25,12 @@ export class LoginGuard implements CanActivate {
     | boolean
     | UrlTree {
     if (!this.auth.isLoggedIn()) {
+      this.auth.logout();
       this.router.navigate(["/login"], { queryParams: { redirect: state.url } });
       AlertUtils.showToast(
         "info",
         `Por favor, iniciar sesión para acceder al modulo.`
       );
-      this.auth.logout();
       return false;
     }
     return this.validarRutasPorRol(route);
@@ -42,6 +40,7 @@ export class LoginGuard implements CanActivate {
     const user = this.auth.getUserStored();
     const path = route.url.join("/");
     if (!user) return false;
+    if (path.startsWith('profile')) return true;
     if (path.startsWith("admin") && user.roles.find(role => role.idRole == 4)) {
       return true;
     }

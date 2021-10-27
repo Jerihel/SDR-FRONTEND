@@ -39,10 +39,6 @@ button:focus {
   box-shadow: none !important;
 }
 
-::selection {
-  background: $primary;
-}
-
 ::-moz-selection {
   background: rgba(166, 175, 189, 0.3);
 }
