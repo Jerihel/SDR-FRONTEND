@@ -42,7 +42,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     })
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
