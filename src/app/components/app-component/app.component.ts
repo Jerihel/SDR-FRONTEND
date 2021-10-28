@@ -38,8 +38,9 @@ export class AppComponent implements OnInit {
     }
   }
 
-  navTo(route: string) {
-    this.forcedNavigate([route])
+  navTo(route: string, opt: string) {
+    localStorage.setItem("section", opt)
+    this.forcedNavigate([route]);
   }
 
   navigateTo(nodeName: string) {

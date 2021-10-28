@@ -27,17 +27,17 @@
         <ng-container *ngIf="isLogged() && isAdmin()">
           <li class="nav-item" style="cursor: pointer;">
             <a class="nav-link" [class.active]="getSection() == 'users'"
-              (click)="navTo('admin/users')">Usuarios</a>
+              (click)="navTo('admin/users', 'users')">Usuarios</a>
           </li>
           <li class="nav-item" style="cursor: pointer;">
             <a class="nav-link" [class.active]="getSection() == 'requests'"
-              (click)="navTo('admin/requests')">Solicitudes</a>
+              (click)="navTo('admin/requests', 'requests')">Solicitudes</a>
           </li>
         </ng-container>
         <ng-container *ngIf="isLogged() && isReviewer()">
           <li class="nav-item" style="cursor: pointer;">
-            <a class="nav-link" [class.active]="getSection() == 'users'"
-              (click)="navTo('admin/users')">Revisores</a>
+            <a class="nav-link" [class.active]="getSection() == 'reviewers'"
+              (click)="navTo('admin/reviewers', 'reviewers')">Revisores</a>
           </li>
         </ng-container>
       </ul>

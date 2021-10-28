@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { GeneralService } from "./general.service";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
-import { User, UserDto, UserProfile, UserResponse } from "../models/UserDto";
+import { User, UserCreated, UserDetail, UserDto, UserProfile, UserResponse } from "../models/UserDto";
 import { map } from "rxjs/operators";
 
 @Injectable({
@@ -32,21 +32,21 @@ export class AuthService {
   }
 
   createUser(usuario: UserDto) {
-    return this.generalService.postData<User, UserDto>(
+    return this.generalService.postData<UserCreated, UserDto>(
       `${environment.api}/internal/users/create`,
       usuario
     );
   }
 
-  getUserProfile() {
+  getUserProfile(username?: string) {
     return this.generalService.getData<UserProfile>(
       `${environment.api}/internal/users/find`,
-      this.getUserStored()?.username
+      username ?? this.getUserStored()?.username
     );
   }
 
   getUsers() {
-    return this.generalService.getData<User>(
+    return this.generalService.getData<UserDetail[]>(
       `${environment.api}/internal/users/find`
     );
   }
@@ -55,6 +55,13 @@ export class AuthService {
     return this.generalService.patchData(
       environment.api, 'internal/users/change/password',
       { oldPass, newPass, username: this.getUserStored()?.username }
+    );
+  }
+
+  updateUser(body: any, username: string) {
+    return this.generalService.patchData(
+      `${environment.api}/internal/users/edit`, username,
+      body
     );
   }
 

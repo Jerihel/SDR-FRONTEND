@@ -22,6 +22,9 @@ import { environment } from '../environments/environment';
 
 import { ProfileComponent } from './components/profile/profile.component';
 import { CreateCriterionComponent } from './components/admin-criterion/create-criterion/create-criterion.component';
+import { RequestsComponent } from './components/manager/requests/requests.component';
+import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { CreateCriterionComponent } from './components/admin-criterion/create-cr
     LoginComponent,
     EditCriterionComponent,
     ProfileComponent,
-    CreateCriterionComponent
+    CreateCriterionComponent,
+    ProfileComponent,
+    RequestsComponent,
+    NotFoundPageComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +51,7 @@ import { CreateCriterionComponent } from './components/admin-criterion/create-cr
     HttpClientModule,
     NgxSpinnerModule,
     NgbModule,
+    FontAwesomeModule,
     ServiceWorkerModule.register('sw-worker.js', {
       enabled: environment.production,
       registrationStrategy: 'registerWhenStable:30000'
