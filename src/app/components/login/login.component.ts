@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   hide = true;
   loginForm: FormGroup;
-  redirect: string | null = '';
+  redirect: string | null = null;
 
   constructor(
     private authService: AuthService,
@@ -40,11 +40,11 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  login(login: any) {
+  async login(login: any) {
     if (this.loginForm.invalid) return;
     this.spinner.show();
-    this.authService.authUser({ password: login.pass, username: login.email }).toPromise().then((res: UserResponse) => {
-
+    try {
+      const res = await this.authService.authUser({ password: login.pass, username: login.email }).toPromise();
       if (res.roles.find(item => item.idRole == 4)) {
         this.redirect = this.redirect ?? '/admin/users';
         localStorage.setItem("section", "users");
@@ -63,7 +63,16 @@ export class LoginComponent implements OnInit {
       });
       res.token = undefined;
       localStorage.setItem("user_info", JSON.stringify(res as User));
-    }).catch(error => {
+      setTimeout(() => {
+        if (this.redirect)
+          this.router.navigate([this.redirect]);
+        else {
+
+        }
+        this.spinner.hide();
+      }, 1000);
+    } catch (error: any) {
+      this.spinner.hide();
       console.log(error);
 
       if ([406, 404].includes(error.status)) {
@@ -82,12 +91,6 @@ export class LoginComponent implements OnInit {
         })
       }
       this.redirect = null;
-    }).finally(() => {
-      setTimeout(() => {
-        if (this.redirect)
-          this.router.navigate([this.redirect]);
-        this.spinner.hide();
-      }, 100);
-    });
+    }
   }
 }

@@ -39,9 +39,11 @@ export class LoginGuard implements CanActivate {
   validarRutasPorRol(route: ActivatedRouteSnapshot): boolean {
     const user = this.auth.getUserStored();
     const path = route.url.join("/");
-    if (!user) return false;
     if (path.startsWith('profile')) return true;
-    if (path.startsWith("admin") && user.roles.find(role => role.idRole == 4)) {
+    if (path.startsWith("admin") && user?.roles?.find(role => role.idRole == 4)) {
+      return true;
+    }
+    if (path.startsWith("reviewer") && user?.roles?.find(role => role.idRole == 3)) {
       return true;
     }
 

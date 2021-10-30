@@ -69,12 +69,10 @@ export class UsersComponent implements OnInit {
     this.spinner.show();
     try {
       this.getAllUsers();
-    this.states = await this.generalService.getData(`${environment.api}/external/catalogue/getBy/3`).toPromise();
-    this.roles = await this.generalService.getData(`${environment.api}/external/catalogue/getBy/2`).toPromise();
+      this.states = await this.generalService.getData(`${environment.api}/external/catalogue/getBy/3`).toPromise();
+      this.roles = await this.generalService.getData(`${environment.api}/external/catalogue/getBy/2`).toPromise();
     } catch (error) {
-
-console.log(error);
-
+      console.log(error);
     }
     this.spinner.hide();
   }
