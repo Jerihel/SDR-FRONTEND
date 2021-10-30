@@ -22,12 +22,11 @@ const routes: Routes = [
   { path: "admin-criterion", component: AdminCriterionComponent,canActivate:[LoginGuard] },
   { path: "login", component: LoginComponent },
   { path: "login", component: LoginComponent, canActivate: [NoLoginGuard] },
-  { path: "admin/users", component: UsersComponent, canActivate: [] },
-  { path: "admin/requests", component: RequestsComponent, canActivate: [] },
+  { path: "admin/users", component: UsersComponent, canActivate: [LoginGuard] },
+  { path: "admin/requests", component: RequestsComponent, canActivate: [LoginGuard] },
   { path: "profile", component: ProfileComponent, canActivate: [LoginGuard] },
   { path: "**", component: NotFoundPageComponent },
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
