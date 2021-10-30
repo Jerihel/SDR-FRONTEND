@@ -78,7 +78,7 @@ export class AdminCriterionComponent implements OnInit {
         icon: 'info',
         title: 'Sin Criterios',
         text: error?.error?.message ?? 'No existen criterios de evaluacions',
-        confirmButtonColor:'#2b317f'
+        confirmButtonColor: '#2b317f',
       });
     }
 
@@ -92,7 +92,7 @@ export class AdminCriterionComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
- async editarUsuario(criterio: CriterionEvalutionProjection) {
+  async editarUsuario(criterio: CriterionEvalutionProjection) {
     console.log(`Criterios ${criterio}`);
     const dialogRef = this.dialog.open(EditCriterionComponent, {
       height: '400px',
@@ -100,20 +100,18 @@ export class AdminCriterionComponent implements OnInit {
       disableClose: true,
       data: { criterio },
     });
-   await dialogRef.afterClosed().subscribe((result) => {
+    await dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         console.log('The dialog was closed: ', result);
       }
-
-
-      this.getCriterios().then(()=>{
-        console.log("llenando tabla");
-      });
     });
 
+    this.getCriterios().then(() => {
+      console.log('llenando tabla');
+    });
   }
 
- async crearCriterio() {
+  async crearCriterio() {
     console.log('abriendo dialogo');
     const dialogRef = this.dialog.open(CreateCriterionComponent, {
       height: '400px',
@@ -124,13 +122,11 @@ export class AdminCriterionComponent implements OnInit {
     await dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         console.log('The dialog was close: ', result);
-
-
       }
     });
 
-    this.getCriterios().then(()=>{
-      console.log("llenando tabla");
+    this.getCriterios().then(() => {
+      console.log('llenando tabla');
     });
   }
 }

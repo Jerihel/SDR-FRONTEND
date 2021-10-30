@@ -82,11 +82,11 @@ export class EditCriterionComponent implements OnInit {
       noCriterio: noCriterio,
       nombreCriterio: valorFormulario.nombre,
       ponderacion: valorFormulario.ponderacion,
-      estado: valorFormulario.estado,
+      estadoColaborador: valorFormulario.estado,
       usuarioAgrega: '',
       fechaAgrega: undefined,
       fechaModifica: new Date(),
-      usuarioModifica: localStorage.getItem('username') || '',
+      usuarioModifica: this.obtenerUsuario() || '',
     };
 
     this.criterio
@@ -138,4 +138,13 @@ export class EditCriterionComponent implements OnInit {
       });
     }
   }
+
+ obtenerUsuario() {
+
+
+ let usuario: any=   JSON.parse(localStorage.getItem("user_info") as string);
+
+return usuario.username.toString();
+
+ }
 }
