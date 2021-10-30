@@ -104,8 +104,9 @@ export class AdminCriterionComponent implements OnInit {
         console.log('The dialog was closed: ', result);
       }
 
-      this.getCriterios();
+
     });
+    this.getCriterios();
   }
 
   crearCriterio() {
@@ -120,8 +121,9 @@ export class AdminCriterionComponent implements OnInit {
       if (result) {
         console.log('The dialog was close: ', result);
 
-        this.getCriterios();
+
       }
     });
+    this.getCriterios();
   }
 }

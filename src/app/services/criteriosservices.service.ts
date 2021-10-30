@@ -20,7 +20,7 @@ export class CRITERIOSSERVICESService {
   }
 
   updateCriterio(criterio: CriterionEvalution) {
-    return  this.general.patchData<CriterionEvalution, CriterionEvalution>(`${environment.api}`, "/internal/update/criterion",criterio)
+    return  this.general.patchData<CriterionEvalution, CriterionEvalution>(`${environment.api}`, "internal/update/criterion",criterio)
 
 
   }
