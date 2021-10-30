@@ -9,3 +9,13 @@ export interface CriterionEvalution{
     usuarioModifica?: String
 
 }
+
+
+export interface CriterionUpdate{
+
+   noCriterio:number;
+  nombreCriterio:String;
+   estadoColaborador:number;
+ usuarioModifica:String;
+  ponderacion:number;
+}

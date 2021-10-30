@@ -35,7 +35,7 @@
               <mat-header-cell *matHeaderCellDef mat-sort-header class="header-table pl-2">No. Solicitud
               </mat-header-cell>
               <mat-cell *matCellDef="let item; let i = index" data-label="#">
-                {{ i + 1}}
+                {{ item.noSolicitud}}
               </mat-cell>
             </ng-container>
 
@@ -44,7 +44,7 @@
                 Nombre solicitante
               </mat-header-cell>
               <mat-cell *matCellDef="let item" data-label="Nombre">
-                {{ item.name }}
+                {{ item.nombreSolicitante }}
               </mat-cell>
             </ng-container>
 
@@ -53,7 +53,7 @@
                 Nombre revisor
               </mat-header-cell>
               <mat-cell *matCellDef="let item" data-label="Usuario">
-                {{ item.email }}
+                {{ item.nombreRevisonr }}
               </mat-cell>
             </ng-container>
 

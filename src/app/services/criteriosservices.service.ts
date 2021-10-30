@@ -1,5 +1,5 @@
 import { CriterionDto } from './../models/CriterionDto';
-import { CriterionEvalution } from './../models/CriterioEvaluation';
+import { CriterionEvalution, CriterionUpdate } from './../models/CriterioEvaluation';
 import { GeneralService } from './general.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -19,8 +19,8 @@ export class CRITERIOSSERVICESService {
     );
   }
 
-  updateCriterio(criterio: CriterionEvalution) {
-    return  this.general.patchData<CriterionEvalution, CriterionEvalution>(`${environment.api}/internal/update/criterion`,undefined ,criterio)
+  updateCriterio(criterio: CriterionUpdate) {
+    return  this.general.patchData<CriterionEvalution, CriterionUpdate>(`${environment.api}/internal/update/criterion`,undefined ,criterio)
 
 
   }

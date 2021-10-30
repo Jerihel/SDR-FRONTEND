@@ -1,3 +1,4 @@
+import { CriterionUpdate } from './../../../models/CriterioEvaluation';
 import { CatalogueChildService } from './../../../services/catalogue-child.service';
 import { CriterionEvalutionProjection } from './../../../models/CriterionEvalutionProjection';
 import { Component, Inject, OnInit } from '@angular/core';
@@ -78,14 +79,12 @@ export class EditCriterionComponent implements OnInit {
     console.log(valorFormulario);
     console.log(noCriterio);
 
-    const criterionEvaluation: CriterionEvalution = {
+    const criterionEvaluation: CriterionUpdate = {
       noCriterio: noCriterio,
       nombreCriterio: valorFormulario.nombre,
       ponderacion: valorFormulario.ponderacion,
       estadoColaborador: valorFormulario.estado,
-      usuarioAgrega: '',
-      fechaAgrega: undefined,
-      fechaModifica: new Date(),
+
       usuarioModifica: this.obtenerUsuario() || '',
     };
 
@@ -98,10 +97,8 @@ export class EditCriterionComponent implements OnInit {
           title: 'Criterio Actualizado',
           text: `El criterio ${res.noCriterio} se actualizo correctamente`,
         }).then(() => {
-
-         this.dialogRef.close();
+          this.dialogRef.close();
         });
-
       })
       .catch((err) => {
         console.log('error al actualizar el criterio', err);
@@ -139,12 +136,9 @@ export class EditCriterionComponent implements OnInit {
     }
   }
 
- obtenerUsuario() {
+  obtenerUsuario() {
+    let usuario: any = JSON.parse(localStorage.getItem('user_info') as string);
 
-
- let usuario: any=   JSON.parse(localStorage.getItem("user_info") as string);
-
-return usuario.username.toString();
-
- }
+    return usuario.username.toString();
+  }
 }
