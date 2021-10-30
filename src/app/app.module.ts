@@ -29,6 +29,7 @@ import { NotFoundPageComponent } from './components/not-found-page/not-found-pag
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PatrocinadoresEnactersComponent } from './components/landing-page/form-user-enacters/patrocinadores-enacters/patrocinadores-enacters.component';
 import { FormEnacterComponent } from './components/landing-page/form-user-enacters/form-enacter/form-enacter.component';
+import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
 
 
 @NgModule({
@@ -48,8 +49,8 @@ import { FormEnacterComponent } from './components/landing-page/form-user-enacte
     NotFoundPageComponent,
     PatrocinadoresEnactersComponent,
     FormEnacterComponent,
-    AsesoresEnactersComponent
-
+    AsesoresEnactersComponent,
+    RecoverPasswordComponent
   ],
   imports: [
     BrowserModule,

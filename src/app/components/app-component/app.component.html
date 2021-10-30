@@ -34,17 +34,8 @@
               (click)="navTo('admin/requests', 'requests')">Solicitudes</a>
           </li>
           <li class="nav-item" style="cursor: pointer">
-<<<<<<< HEAD
-            <a
-              class="nav-link"
-              [class.active]="getSection() == 'criterion'"
-              (click)="navTo('admin/criterion', 'criterion')"
-              >Criterios de Evaluacion</a
-            >
-=======
-            <a class="nav-link" [class.active]="getSection() == 'admin-criterion'"
-              (click)="navTo('admin/criterion', 'admin-criterion')">Criterios de Evaluacion</a>
->>>>>>> 61cedf8339e1e632838480ac358a30efc1304d31
+            <a class="nav-link" [class.active]="getSection() == 'criterion'"
+              (click)="navTo('admin/criterion', 'criterion')">Criterios de Evaluacion</a>
           </li>
         </ng-container>
         <ng-container *ngIf="isLogged() && isReviewer()">
@@ -81,7 +72,7 @@
     </div>
   </div>
 </nav>
-<ngx-spinner bdColor="rgba(43, 49, 127,0.8)" size="medium" color="#fdbf21" type="square-loader" [fullScreen]="true">
+<ngx-spinner bdColor="rgba(43, 49, 127,0.8)" size="medium" color="#fdbf21" type="ball-climbing-dot" [fullScreen]="true">
   <p style="color: #fdbf21">Cargando...</p>
 </ngx-spinner>
 

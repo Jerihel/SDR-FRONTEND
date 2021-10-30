@@ -12,6 +12,7 @@ import { AsesoresEnactersComponent } from '../components/landing-page/form-user-
 import { NotFoundPageComponent } from '../components/not-found-page/not-found-page.component';
 import { FormEnacterComponent } from '../components/landing-page/form-user-enacters/form-enacter/form-enacter.component';
 import { PatrocinadoresEnactersComponent } from '../components/landing-page/form-user-enacters/patrocinadores-enacters/patrocinadores-enacters.component';
+import { RecoverPasswordComponent } from '../components/recover-password/recover-password.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
@@ -19,9 +20,8 @@ const routes: Routes = [
   { path: "asesor-form", component: AsesoresEnactersComponent, canActivate: [NoLoginGuard] },
   { path: "form-enacter", component: FormEnacterComponent, canActivate: [NoLoginGuard] },
   { path: "form-patrocinador", component: PatrocinadoresEnactersComponent, canActivate: [NoLoginGuard] },
-  { path: "admin/criterion", component: AdminCriterionComponent, canActivate: [LoginGuard] },
-  { path: "login", component: LoginComponent },
   { path: "login", component: LoginComponent, canActivate: [NoLoginGuard] },
+  { path: "auth/recover/password", component: RecoverPasswordComponent, canActivate: [NoLoginGuard] },
   { path: "admin/users", component: UsersComponent, canActivate: [LoginGuard] },
   { path: "admin/requests", component: RequestsComponent, canActivate: [LoginGuard] },
   { path: "admin/criterion", component: AdminCriterionComponent, canActivate: [LoginGuard] },
