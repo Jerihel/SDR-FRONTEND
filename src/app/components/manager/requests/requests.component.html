@@ -1,3 +1,81 @@
-<div class="section">
-  erasdasd
-</div>
+<section class="section">
+  <div class="mx-1 px-1 mx-sm-2 px-sm-2 mx-md-3 px-md-3 mx-lg-4 px-lg-4 mx-xl-5 px-xl-5">
+    <div class="mt-5">
+      <button mat-raised-button color="accent" class="btn-rounded btn-container mr-3">
+        <mat-icon>arrow_back</mat-icon>
+        Regresar
+      </button>
+      <button mat-raised-button color="accent" class="btn-rounded btn-container">
+        <mat-icon>swap_horiz</mat-icon>
+        Reasignar
+      </button>
+      <div class="mt-4">
+        <mat-form-field appearance="outline" class="col-4 p-0">
+          <mat-label>Filtro de Busqueda</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="nit" #input />
+        </mat-form-field>
+        <div class="mat-elevation-z8 item-table">
+          <mat-table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="select">
+              <mat-header-cell *matHeaderCellDef class="header-table start pt-2">
+                <mat-checkbox id="header" (change)="$event ? masterToggle() : null"
+                  [checked]="selection.hasValue() && isAllSelected()"
+                  [indeterminate]="selection.hasValue() && !isAllSelected()" [color]="'accent'">
+                </mat-checkbox>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let item" data-label="Acciones">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(item) : null"
+                  [checked]="selection.isSelected(item)" [disabled]="[9].includes(item.codigoEstadoSolicitud)"
+                  color="primary">
+                </mat-checkbox>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="#">
+              <mat-header-cell *matHeaderCellDef mat-sort-header class="header-table pl-2">No. Solicitud
+              </mat-header-cell>
+              <mat-cell *matCellDef="let item; let i = index" data-label="#">
+                {{ i + 1}}
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef mat-sort-header class="header-table pl-2">
+                Nombre solicitante
+              </mat-header-cell>
+              <mat-cell *matCellDef="let item" data-label="Nombre">
+                {{ item.name }}
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="reviewer">
+              <mat-header-cell *matHeaderCellDef mat-sort-header class="header-table pl-2">
+                Nombre revisor
+              </mat-header-cell>
+              <mat-cell *matCellDef="let item" data-label="Usuario">
+                {{ item.email }}
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="state">
+              <mat-header-cell *matHeaderCellDef mat-sort-header class="header-table end pl-2">Estado</mat-header-cell>
+              <mat-cell *matCellDef="let item" data-label="Estado">
+                {{ item.state }}
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayColumnns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayColumnns"></mat-row>
+
+            <tr class="mat-row" *matNoDataRow>
+              <td class="pt-3 pl-4" colspan="6">No se encontraron registros para mostrar.</td>
+            </tr>
+          </mat-table>
+
+          <mat-divider></mat-divider>
+          <mat-paginator [pageSizeOptions]="[5, 10, 15, 25, 100]" [pageSize]="15"></mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
