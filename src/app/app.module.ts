@@ -22,6 +22,9 @@ import { environment } from '../environments/environment';
 
 import { ProfileComponent } from './components/profile/profile.component';
 import { CreateCriterionComponent } from './components/admin-criterion/create-criterion/create-criterion.component';
+import { AsesoresEnactersComponent } from './components/landing-page/form-user-enacters/asesores-enacters/asesores-enacters.component';
+import { PatrocinadoresEnactersComponent } from './components/landing-page/form-user-enacters/patrocinadores-enacters/patrocinadores-enacters.component';
+import { FormEnacterComponent } from './components/landing-page/form-user-enacters/form-enacter/form-enacter.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { CreateCriterionComponent } from './components/admin-criterion/create-cr
     LoginComponent,
     EditCriterionComponent,
     ProfileComponent,
-    CreateCriterionComponent
+    CreateCriterionComponent,
+    AsesoresEnactersComponent,
+    PatrocinadoresEnactersComponent,
+    FormEnacterComponent
   ],
   imports: [
     BrowserModule,

@@ -122,7 +122,7 @@ export class EditCriterionComponent implements OnInit {
       console.log('obteniendo catalogos hijos');
       //se obtiene los catalogos con el id 4 que perteneces al catalogo de estados de criterios de evaluacion.
       this.catalogueChild = await this.catalogueChildService
-        .getAllCatalogueChildByParent(4)
+        .getAllCatalogueChildByParent(3)
         .toPromise();
     } catch (error: any) {
       console.log('entrando en el error');
