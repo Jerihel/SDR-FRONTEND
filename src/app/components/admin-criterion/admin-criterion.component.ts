@@ -1,3 +1,4 @@
+import { async } from '@angular/core/testing';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -91,7 +92,7 @@ export class AdminCriterionComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  editarUsuario(criterio: CriterionEvalutionProjection) {
+ async editarUsuario(criterio: CriterionEvalutionProjection) {
     console.log(`Criterios ${criterio}`);
     const dialogRef = this.dialog.open(EditCriterionComponent, {
       height: '400px',
@@ -99,18 +100,20 @@ export class AdminCriterionComponent implements OnInit {
       disableClose: true,
       data: { criterio },
     });
-    dialogRef.afterClosed().subscribe((result) => {
+   await dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         console.log('The dialog was closed: ', result);
       }
 
-      console.log("llenando tabla");
-      this.getCriterios()
+
+      this.getCriterios().then(()=>{
+        console.log("llenando tabla");
+      });
     });
 
   }
 
-  crearCriterio() {
+ async crearCriterio() {
     console.log('abriendo dialogo');
     const dialogRef = this.dialog.open(CreateCriterionComponent, {
       height: '400px',
@@ -118,14 +121,16 @@ export class AdminCriterionComponent implements OnInit {
       disableClose: true,
       data: {},
     });
-    dialogRef.afterClosed().subscribe((result) => {
+    await dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         console.log('The dialog was close: ', result);
 
 
       }
     });
-    console.log("llenando tabla");
-    this.getCriterios()
+
+    this.getCriterios().then(()=>{
+      console.log("llenando tabla");
+    });
   }
 }

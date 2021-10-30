@@ -80,7 +80,7 @@ export class EditCriterionComponent implements OnInit {
 
     const criterionEvaluation: CriterionEvalution = {
       noCriterio: noCriterio,
-      nombreCriterio: valorFormulario.nombreCriterio,
+      nombreCriterio: valorFormulario.nombre,
       ponderacion: valorFormulario.ponderacion,
       estado: valorFormulario.estado,
       usuarioAgrega: '',
