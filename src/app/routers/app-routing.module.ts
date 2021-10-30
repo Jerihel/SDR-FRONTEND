@@ -19,11 +19,11 @@ const routes: Routes = [
   { path: "asesor-form", component: AsesoresEnactersComponent, canActivate: [NoLoginGuard] },
   { path: "form-enacter", component: FormEnacterComponent, canActivate: [NoLoginGuard] },
   { path: "form-patrocinador", component: PatrocinadoresEnactersComponent, canActivate: [NoLoginGuard] },
-  { path: "admin-criterion", component: AdminCriterionComponent, canActivate: [LoginGuard] },
   { path: "login", component: LoginComponent },
   { path: "login", component: LoginComponent, canActivate: [NoLoginGuard] },
   { path: "admin/users", component: UsersComponent, canActivate: [LoginGuard] },
   { path: "admin/requests", component: RequestsComponent, canActivate: [LoginGuard] },
+  { path: "admin/criterion", component: AdminCriterionComponent, canActivate: [LoginGuard] },
   { path: "profile", component: ProfileComponent, canActivate: [LoginGuard] },
   { path: "**", component: NotFoundPageComponent },
 ];

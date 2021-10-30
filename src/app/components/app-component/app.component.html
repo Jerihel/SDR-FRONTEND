@@ -1,110 +1,58 @@
-<nav
-  id="nav-bar"
-  class="navbar navbar-expand-lg custom-nav navbar-light fixed-top sticky"
->
+<nav id="nav-bar" class="navbar navbar-expand-lg custom-nav navbar-light fixed-top sticky">
   <div class="container">
     <a class="navbar-brand logo" href="/home">
-      <img
-        src="assets/img/logo-enactus.svg"
-        alt=""
-        class="img-fluid logo-dark"
-      />
+      <img src="assets/img/logo-enactus.svg" alt="" class="img-fluid logo-dark" />
     </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="mdi mdi-menu"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mr-auto" id="main_nav">
         <li class="nav-item" style="cursor: pointer">
-          <a
-            class="nav-link"
-            [class.active]="getSection() == 'home'"
-            (click)="changeOption('home')"
-            >Inicio</a
-          >
+          <a class="nav-link" [class.active]="getSection() == 'home'" (click)="changeOption('home')">Inicio</a>
         </li>
         <!-- No sign in -->
         <ng-container *ngIf="!isLogged()">
           <li class="nav-item" style="cursor: pointer">
-            <a
-              class="nav-link"
-              [class.active]="getSection() == 'features'"
-              (click)="changeOption('features')"
-              >Funciones</a
-            >
+            <a class="nav-link" [class.active]="getSection() == 'features'"
+              (click)="changeOption('features')">Funciones</a>
           </li>
           <li class="nav-item" style="cursor: pointer">
-            <a
-              class="nav-link"
-              [class.active]="getSection() == 'contact'"
-              (click)="changeOption('contact')"
-              >Contactanos</a
-            >
+            <a class="nav-link" [class.active]="getSection() == 'contact'"
+              (click)="changeOption('contact')">Contactanos</a>
           </li>
         </ng-container>
 
         <ng-container *ngIf="isLogged() && isAdmin()">
           <li class="nav-item" style="cursor: pointer">
-            <a
-              class="nav-link"
-              [class.active]="getSection() == 'users'"
-              (click)="navTo('admin/users', 'users')"
-              >Usuarios</a
-            >
+            <a class="nav-link" [class.active]="getSection() == 'users'"
+              (click)="navTo('admin/users', 'users')">Usuarios</a>
           </li>
           <li class="nav-item" style="cursor: pointer">
-            <a
-              class="nav-link"
-              [class.active]="getSection() == 'requests'"
-              (click)="navTo('admin/requests', 'requests')"
-              >Solicitudes</a
-            >
+            <a class="nav-link" [class.active]="getSection() == 'requests'"
+              (click)="navTo('admin/requests', 'requests')">Solicitudes</a>
           </li>
           <li class="nav-item" style="cursor: pointer">
-            <a
-              class="nav-link"
-              [class.active]="getSection() == 'admin-criterion'"
-              (click)="navTo('admin-criterion', 'admin-criterion')"
-              >Criterios de Evaluacion</a
-            >
+            <a class="nav-link" [class.active]="getSection() == 'admin-criterion'"
+              (click)="navTo('admin/criterion', 'admin-criterion')">Criterios de Evaluacion</a>
           </li>
         </ng-container>
         <ng-container *ngIf="isLogged() && isReviewer()">
           <li class="nav-item" style="cursor: pointer">
-            <a
-              class="nav-link"
-              [class.active]="getSection() == 'reviewers'"
-              (click)="navTo('admin/reviewers', 'reviewers')"
-              >Revisores</a
-            >
+            <a class="nav-link" [class.active]="getSection() == 'reviewers'"
+              (click)="navTo('reviewers', 'reviewers')">Revisores</a>
           </li>
         </ng-container>
       </ul>
       <ul class="navbar-nav ml-auto" style="cursor: pointer">
         <li class="nav-item" *ngIf="!isLogged()">
-          <a
-            class="nav-link"
-            [class.active]="getSection() == 'login'"
-            [routerLink]="['login']"
-          >
+          <a class="nav-link" [class.active]="getSection() == 'login'" [routerLink]="['login']">
             Iniciar sesión
           </a>
         </li>
         <li class="nav-item" *ngIf="isLogged()">
-          <button
-            mat-button
-            [matMenuTriggerFor]="menu"
-            color="accent"
-            class="navbar-link-container"
-          >
+          <button mat-button [matMenuTriggerFor]="menu" color="accent" class="navbar-link-container">
             <mat-icon>person</mat-icon>
             {{ username }}
             <mat-icon>arrow_drop_down</mat-icon>
@@ -124,13 +72,7 @@
     </div>
   </div>
 </nav>
-<ngx-spinner
-  bdColor="rgba(43, 49, 127,0.8)"
-  size="medium"
-  color="#fdbf21"
-  type="square-loader"
-  [fullScreen]="true"
->
+<ngx-spinner bdColor="rgba(43, 49, 127,0.8)" size="medium" color="#fdbf21" type="square-loader" [fullScreen]="true">
   <p style="color: #fdbf21">Cargando...</p>
 </ngx-spinner>
 
