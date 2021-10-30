@@ -22,9 +22,9 @@ import { environment } from '../environments/environment';
 
 import { ProfileComponent } from './components/profile/profile.component';
 import { CreateCriterionComponent } from './components/admin-criterion/create-criterion/create-criterion.component';
-import { AsesoresEnactersComponent } from './components/landing-page/form-user-enacters/asesores-enacters/asesores-enacters.component';
-import { PatrocinadoresEnactersComponent } from './components/landing-page/form-user-enacters/patrocinadores-enacters/patrocinadores-enacters.component';
-import { FormEnacterComponent } from './components/landing-page/form-user-enacters/form-enacter/form-enacter.component';
+import { RequestsComponent } from './components/manager/requests/requests.component';
+import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -38,9 +38,9 @@ import { FormEnacterComponent } from './components/landing-page/form-user-enacte
     EditCriterionComponent,
     ProfileComponent,
     CreateCriterionComponent,
-    AsesoresEnactersComponent,
-    PatrocinadoresEnactersComponent,
-    FormEnacterComponent
+    ProfileComponent,
+    RequestsComponent,
+    NotFoundPageComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +51,7 @@ import { FormEnacterComponent } from './components/landing-page/form-user-enacte
     HttpClientModule,
     NgxSpinnerModule,
     NgbModule,
+    FontAwesomeModule,
     ServiceWorkerModule.register('sw-worker.js', {
       enabled: environment.production,
       registrationStrategy: 'registerWhenStable:30000'
