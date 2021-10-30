@@ -103,6 +103,8 @@ export class AdminCriterionComponent implements OnInit {
       if (result) {
         console.log('The dialog was closed: ', result);
       }
+
+      this.getCriterios();
     });
   }
 
@@ -117,6 +119,8 @@ export class AdminCriterionComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         console.log('The dialog was close: ', result);
+
+        this.getCriterios();
       }
     });
   }

@@ -171,28 +171,52 @@
               </mat-form-field>
             </div>
 
+
+
             <div class="item2">
+              <div class="col">
+                <label class="example-margin">¿Tiene Experiencia realizando asesoría?</label>
+                <mat-radio-group
+                  [(ngModel)]="experienciaAsesoria"
+                  formControlName="experiencia"
+                >
+                  <mat-radio-button class="example-margin" value="S"
+                    >Si</mat-radio-button
+                  >
+                  <mat-radio-button class="example-margin" value="N"
+                    >No</mat-radio-button
+                  >
+                </mat-radio-group>
+              </div>
+            </div>
+
+
+
+
+
+
+            <div class="item2" *ngIf="experienciaAsesoria==='N'">
               <mat-form-field class="col" appearance="outline">
-                <mat-label> ¿Tiene Experiencia realizando asesoría? Si No Justifique</mat-label>
+                <mat-label>  Justifique</mat-label>
                 <input
                 matInput
 
-                formControlName="experiencia"
+                formControlName="experienciaDetalle"
 
                 required
               />
                 <mat-error
                   *ngIf="
-                    this.formAsesor.controls.experiencia.dirty &&
-                    this.formAsesor.controls.experiencia.hasError('required')
+                    this.formAsesor.controls.experienciaDetalle.dirty &&
+                    this.formAsesor.controls.experienciaDetalle.hasError('required')
                   "
                   >Este campo es Obligatorio</mat-error
                 >
                 <mat-error
                 *ngIf="
-                  this.formAsesor.controls.experiencia.dirty &&
-                  (this.formAsesor.controls.experiencia.hasError('maxlength') ||
-                    this.formAsesor.controls.experiencia.hasError('minlength'))
+                  this.formAsesor.controls.experienciaDetalle.dirty &&
+                  (this.formAsesor.controls.experienciaDetalle.hasError('maxlength') ||
+                    this.formAsesor.controls.experienciaDetalle.hasError('minlength'))
                 "
                 >El texto no debe ser mayor a 100 caracteres o menor a 10
                 caracteres</mat-error

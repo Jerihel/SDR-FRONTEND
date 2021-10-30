@@ -17,7 +17,7 @@ import { CatalogueChild } from 'src/app/models/CatalogueChild';
   styleUrls: ['./asesores-enacters.component.scss'],
 })
 export class AsesoresEnactersComponent implements OnInit {
-  catalogueChild: any[] = [
+  catalogoAsesoramiento: any[] = [
     {
       idCatalogueChild: 1,
       name: 'Universidad de los Andes',
@@ -27,8 +27,24 @@ export class AsesoresEnactersComponent implements OnInit {
       name: 'Universidad de las flores',
     },
   ];
-  catalogoAsesoramiento: CatalogueChild[] = [];
-  catalogoTipoAsesoramiento: CatalogueChild[] = [];
+
+
+  catalogoTipoAsesoramiento: any[] = [
+    {
+      idCatalogueChild: 1,
+      name: 'Universidad de los Andes',
+    },
+    {
+      idCatalogueChild: 2,
+      name: 'Universidad de las flores',
+    },
+  ];
+
+  experienciaAsesoria!: string;
+  // catalogoAsesoramiento: CatalogueChild[] = [];
+  // catalogoTipoAsesoramiento: CatalogueChild[] = [];
+
+
   formAsesor!: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
@@ -94,6 +110,14 @@ export class AsesoresEnactersComponent implements OnInit {
         ],
       ],
       experiencia: [
+        "",
+        [
+          Validators.required,
+        ],
+      ],
+      areaAsesorar: ['', [Validators.required]],
+      medioAsesoria: ['', [Validators.required]],
+      experienciaDetalle: [
         '',
         [
           Validators.required,
@@ -101,9 +125,27 @@ export class AsesoresEnactersComponent implements OnInit {
           Validators.minLength(10),
         ],
       ],
-      areaAsesorar: ['', [Validators.required]],
-      medioAsesoria: ['', [Validators.required]],
     });
+
+this.formAsesor.get('experiencia')?.valueChanges.subscribe(value => {
+
+if(value==='S'){
+
+this.formAsesor.get('experienciaDetalle')?.clearValidators();
+
+
+}else{
+
+  this.formAsesor.get('experienciaDetalle')?.setValidators([
+    Validators.required,
+    Validators.maxLength(100),
+    Validators.minLength(10),
+  ]);
+}
+this.formAsesor.get('experienciaDetalle')?.updateValueAndValidity();
+
+});
+
   }
 
   regresar() {
@@ -148,7 +190,7 @@ export class AsesoresEnactersComponent implements OnInit {
       adviserDegree: formulario.profesion,
       currenctActivity: formulario.ocupacion,
       hasExperience: formulario.experiencia,
-      experienceDetail: null,
+      experienceDetail: formulario.experienciaDetalle,
       adviseOn: formulario.areaAsesorar,
       adviseWay: formulario.medioAsesoria,
     };
