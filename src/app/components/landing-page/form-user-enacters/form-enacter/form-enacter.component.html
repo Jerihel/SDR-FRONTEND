@@ -1,0 +1,302 @@
+<div class="col-11 mx-auto center-component main-conteiner">
+  <div class="card mx-auto bg-light">
+    <div class="container bg-white col-11 rounded mt-3">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h1
+            class="font-weight-bold"
+            style="font-size: 25px; color: #2b317f"
+            mat-dialog-title
+          >
+            Formulario Enacters
+          </h1>
+          <!-- <hr class="hr" width="75%"> -->
+        </div>
+      </div>
+      <div >
+        <form [formGroup]="formEditarCriterio">
+          <div class="item">
+            <div class="item2">
+              <mat-form-field class="col" appearance="outline">
+                <mat-label>Nombre </mat-label>
+                <input
+                  matInput
+                  placeholder="nombre"
+                  formControlName="nombre"
+                  required
+                />
+                <mat-error
+                  *ngIf="
+                    this.formEditarCriterio.controls.nombre.dirty &&
+                    this.formEditarCriterio.controls.nombre.hasError('required')
+                  "
+                  >Este campo es obligatorio
+                </mat-error>
+                <mat-error
+                  *ngIf="
+                    this.formEditarCriterio.controls.nombre.dirty &&
+                    (this.formEditarCriterio.controls.nombre.hasError(
+                      'maxlength'
+                    ) ||
+                      this.formEditarCriterio.controls.nombre.hasError(
+                        'minlength'
+                      ))
+                  "
+                  >El texto no debe ser mayor a 75 caracteres o menor a 4
+                  caracteres</mat-error
+                >
+              </mat-form-field>
+            </div>
+
+            <div class="item2">
+              <mat-form-field class="col" appearance="outline">
+                <mat-label>Telefono</mat-label>
+                <input
+                  matInput
+                  type="tel"
+                  formControlName="telefono"
+                  required
+                />
+                <mat-error
+                  *ngIf="
+                    this.formEditarCriterio.controls.telefono.dirty &&
+                    this.formEditarCriterio.controls.telefono.hasError(
+                      'required'
+                    )
+                  "
+                  >Este campo es obligatorio</mat-error
+                >
+
+                <mat-error
+                  *ngIf="
+                    this.formEditarCriterio.controls.telefono.dirty &&
+                    (this.formEditarCriterio.controls.telefono.hasError(
+                      'maxlength'
+                    ) ||
+                      this.formEditarCriterio.controls.telefono.hasError(
+                        'minlength'
+                      ))
+                  "
+                  >El numero de telefono debe ser de 8 caracteres</mat-error
+                >
+                <mat-error
+                  *ngIf="
+                    this.formEditarCriterio.controls.telefono.dirty &&
+                    this.formEditarCriterio.controls.telefono.hasError(
+                      'pattern'
+                    )
+                  "
+                  >Solo se permiten valores numericos
+                  <p></p>
+                </mat-error>
+              </mat-form-field>
+              <p
+                *ngIf="
+                  this.formEditarCriterio.controls.telefono.dirty &&
+                  this.formEditarCriterio.controls.telefono.hasError('pattern')
+                "
+              ></p>
+            </div>
+
+            <div class="item2">
+              <mat-form-field class="col" appearance="outline">
+                <mat-label> Correo</mat-label>
+                <input
+                  matInput
+                  type="email"
+                  placeholder="correo@example.com"
+                  formControlName="correo"
+                  required
+                />
+                <mat-error
+                  *ngIf="
+                    this.formEditarCriterio.controls.correo.dirty &&
+                    this.formEditarCriterio.controls.correo.hasError('required')
+                  "
+                  >Este campo es Obligatorio</mat-error
+                >
+                <mat-error
+                  *ngIf="
+                    this.formEditarCriterio.controls.correo.dirty &&
+                    this.formEditarCriterio.controls.correo.hasError('email')
+                  "
+                  >correo invalido</mat-error
+                >
+              </mat-form-field>
+            </div>
+
+            <div class="item2">
+              <mat-form-field class="col" appearance="outline">
+                <mat-label>Sede</mat-label>
+                <mat-select required formControlName="sede" #seleccionEstado>
+                  <mat-option
+                    *ngFor="let item of catalogueChild"
+                    [value]="item.idCatalogueChild"
+                  >
+                    {{ item.name }}
+                  </mat-option>
+                </mat-select>
+                <mat-error
+                  *ngIf="
+                    this.formEditarCriterio.controls.sede.dirty &&
+                    this.formEditarCriterio.controls.sede.hasError('required')
+                  "
+                  >Este campo es Obligatorio</mat-error
+                >
+              </mat-form-field>
+            </div>
+            <div class="item2">
+              <mat-form-field class="col" appearance="outline">
+                <mat-label>Facultad</mat-label>
+                <mat-select required formControlName="facultad" #seleccionEstado>
+                  <mat-option
+                    *ngFor="let item of catalogueChild"
+                    [value]="item.idCatalogueChild"
+                  >
+                    {{ item.name }}
+                  </mat-option>
+                </mat-select>
+                <mat-error
+                  *ngIf="
+                    this.formEditarCriterio.controls.facultad.dirty &&
+                    this.formEditarCriterio.controls.facultad.hasError('required')
+                  "
+                  >Este campo es Obligatorio</mat-error
+                >
+              </mat-form-field>
+            </div>
+
+            <div class="item2">
+              <mat-form-field class="col" appearance="outline">
+                <mat-label>Carrera</mat-label>
+                <mat-select required formControlName="carrera" #seleccionEstado>
+                  <mat-option
+                    *ngFor="let item of catalogueChild"
+                    [value]="item.idCatalogueChild"
+                  >
+                    {{ item.name }}
+                  </mat-option>
+                </mat-select>
+                <mat-error
+                  *ngIf="
+                    this.formEditarCriterio.controls.carrera.dirty &&
+                    this.formEditarCriterio.controls.carrera.hasError('required')
+                  "
+                  >Este campo es Obligatorio</mat-error
+                >
+              </mat-form-field>
+            </div>
+
+            <div class="item2">
+              <mat-form-field class="col" appearance="outline">
+                <mat-label>Ciclo</mat-label>
+                <input
+                  matInput
+                  type="number"
+                  min="1"
+                  max="10"
+                  formControlName="ciclo"
+                  required
+                />
+                <mat-error
+                  *ngIf="
+                    this.formEditarCriterio.controls.ciclo.dirty &&
+                    this.formEditarCriterio.controls.ciclo.hasError('required')
+                  "
+                  >Este campo es obligatorio</mat-error
+                >
+                <mat-error
+                  *ngIf="
+                    this.formEditarCriterio.controls.ciclo.dirty &&
+                    (this.formEditarCriterio.controls.ciclo.hasError('max') ||
+                      this.formEditarCriterio.controls.ciclo.hasError('min'))
+                  "
+                  >Solo se permiten numeros del 1 al 10</mat-error
+                >
+                <mat-error
+                  *ngIf="
+                    this.formEditarCriterio.controls.ciclo.dirty &&
+                    this.formEditarCriterio.controls.ciclo.hasError('pattern')
+                  "
+                  >Solo se permiten numeros enteros del 1 al 10</mat-error
+                >
+              </mat-form-field>
+            </div>
+
+
+            <div class="item2">
+              <mat-form-field class="col" appearance="outline">
+                <mat-label>Inter&eacute;s</mat-label>
+                <mat-select required formControlName="intereses" #seleccionEstado>
+                  <mat-option
+                    *ngFor="let item of catalogueChild"
+                    [value]="item.idCatalogueChild"
+                  >
+                    {{ item.name }}
+                  </mat-option>
+                </mat-select>
+                <mat-error
+                  *ngIf="
+                    this.formEditarCriterio.controls.intereses.dirty &&
+                    this.formEditarCriterio.controls.intereses.hasError('required')
+                  "
+                  >Este campo es Obligatorio</mat-error
+                >
+              </mat-form-field>
+            </div>
+
+
+            <div class="item2">
+              <mat-form-field class="col" appearance="outline">
+                <mat-label>¿Qu&eacute; buscas al formar parte de nuestro equipo?</mat-label>
+                <mat-select required formControlName="formarParte" #seleccionEstado>
+                  <mat-option
+                    *ngFor="let item of catalogueChild"
+                    [value]="item.idCatalogueChild"
+                  >
+                    {{ item.name }}
+                  </mat-option>
+                </mat-select>
+                <mat-error
+                  *ngIf="
+                    this.formEditarCriterio.controls.formarParte.dirty &&
+                    this.formEditarCriterio.controls.formarParte.hasError('required')
+                  "
+                  >Este campo es Obligatorio</mat-error
+                >
+              </mat-form-field>
+            </div>
+
+
+
+
+
+
+
+
+          </div>
+        </form>
+        <div class="row justify-content-center mt-2">
+          <button mat-raised-button class="btn" (click)="regresar()">
+            <i class="fa fa-angle-left mr-2"></i>
+            REGRESAR
+          </button>
+          <button
+            mat-raised-button
+            class="btn ml-2"
+            type="submit"
+            (click)="regresar()"
+            [disabled]="!formEditarCriterio.valid"
+          >
+            <i class="material-icons mr-2"> group_add </i>
+            <span>Guardar</span>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
