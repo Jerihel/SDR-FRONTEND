@@ -28,7 +28,6 @@ export class AsesoresEnactersComponent implements OnInit {
     },
   ];
 
-
   catalogoTipoAsesoramiento: any[] = [
     {
       idCatalogueChild: 1,
@@ -43,7 +42,6 @@ export class AsesoresEnactersComponent implements OnInit {
   experienciaAsesoria!: string;
   // catalogoAsesoramiento: CatalogueChild[] = [];
   // catalogoTipoAsesoramiento: CatalogueChild[] = [];
-
 
   formAsesor!: FormGroup;
   constructor(
@@ -66,12 +64,10 @@ export class AsesoresEnactersComponent implements OnInit {
         icon: 'error',
         title: 'Error al Crear el formulario ',
         text: error?.error?.message ?? 'Error, por favor intente mas tarde',
-        confirmButtonColor:'#2b317f'
+        confirmButtonColor: '#2b317f',
       });
     }
     this.spinner.hide();
-
-
   }
   private buildForm() {
     this.formAsesor = this.formBuilder.group({
@@ -109,12 +105,7 @@ export class AsesoresEnactersComponent implements OnInit {
           Validators.minLength(10),
         ],
       ],
-      experiencia: [
-        "",
-        [
-          Validators.required,
-        ],
-      ],
+      experiencia: ['', [Validators.required]],
       areaAsesorar: ['', [Validators.required]],
       medioAsesoria: ['', [Validators.required]],
       experienciaDetalle: [
@@ -127,25 +118,20 @@ export class AsesoresEnactersComponent implements OnInit {
       ],
     });
 
-this.formAsesor.get('experiencia')?.valueChanges.subscribe(value => {
-
-if(value==='S'){
-
-this.formAsesor.get('experienciaDetalle')?.clearValidators();
-
-
-}else{
-
-  this.formAsesor.get('experienciaDetalle')?.setValidators([
-    Validators.required,
-    Validators.maxLength(100),
-    Validators.minLength(10),
-  ]);
-}
-this.formAsesor.get('experienciaDetalle')?.updateValueAndValidity();
-
-});
-
+    this.formAsesor.get('experiencia')?.valueChanges.subscribe((value) => {
+      if (value === 'S') {
+        this.formAsesor.get('experienciaDetalle')?.clearValidators();
+      } else {
+        this.formAsesor
+          .get('experienciaDetalle')
+          ?.setValidators([
+            Validators.required,
+            Validators.maxLength(100),
+            Validators.minLength(10),
+          ]);
+      }
+      this.formAsesor.get('experienciaDetalle')?.updateValueAndValidity();
+    });
   }
 
   regresar() {
@@ -210,6 +196,10 @@ this.formAsesor.get('experienciaDetalle')?.updateValueAndValidity();
           title: 'Solicitud enviada',
           icon: 'success',
           text: 'Pronto nos comunicaremos con usted',
+        }).then((res) => {
+          if (res.value) {
+            this.router.navigate(['/home']);
+          }
         });
       })
       .catch((error) => {
@@ -236,7 +226,7 @@ this.formAsesor.get('experienciaDetalle')?.updateValueAndValidity();
         text:
           error?.error?.message ??
           'Error al generar el formulario por favor intente mas tarde',
-          confirmButtonColor:'#2b317f'
+        confirmButtonColor: '#2b317f',
       });
     }
   }
@@ -256,7 +246,7 @@ this.formAsesor.get('experienciaDetalle')?.updateValueAndValidity();
         text:
           error?.error?.message ??
           'Error al generar el formulario por favor intente mas tarde',
-          confirmButtonColor:'#2b317f'
+        confirmButtonColor: '#2b317f',
       });
     }
   }
