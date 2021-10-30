@@ -25,6 +25,7 @@ import { CreateCriterionComponent } from './components/admin-criterion/create-cr
 import { RequestsComponent } from './components/manager/requests/requests.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RequestEntrepreneurshipComponent } from './components/request-entrepreneurship/request-entrepreneurship.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CreateCriterionComponent,
     ProfileComponent,
     RequestsComponent,
-    NotFoundPageComponent
+    NotFoundPageComponent,
+    RequestEntrepreneurshipComponent
   ],
   imports: [
     BrowserModule,

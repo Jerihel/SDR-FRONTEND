@@ -9,6 +9,7 @@ import { ProfileComponent } from "../components/profile/profile.component";
 import { LoginGuard } from "../guards/login/login.guard";
 import { NoLoginGuard } from "../guards/no-login/no-login.guard";
 import { NotFoundPageComponent } from '../components/not-found-page/not-found-page.component';
+import { RequestEntrepreneurshipComponent } from '../components/request-entrepreneurship/request-entrepreneurship.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: "admin/users", component: UsersComponent, canActivate: [] },
   { path: "admin/requests", component: RequestsComponent, canActivate: [] },
   { path: "profile", component: ProfileComponent, canActivate: [LoginGuard] },
-  { path: "**", component: NotFoundPageComponent },
+  { path: "request-entrepreneurship", component: RequestEntrepreneurshipComponent},
+  { path: "**", component: NotFoundPageComponent }
 ];
 
 
