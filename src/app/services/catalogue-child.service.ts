@@ -12,13 +12,13 @@ export class CatalogueChildService {
 
 public getAllCatalogueChild(){
 
-return this.general.getData<CatalogueChild[]>(`${environment.api}/internal/catalogue/getAll`)
+return this.general.getData<CatalogueChild[]>(`${environment.api}/external/catalogue/getAll`)
 
 }
 public getAllCatalogueChildByParent(id:number){
 
 
-  return this.general.getData<CatalogueChild[]>(`${environment.api}/internal/catalogue/getBy/${id}`);
+  return this.general.getData<CatalogueChild[]>(`${environment.api}/external/catalogue/getBy/${id}`);
 }
 
 }
