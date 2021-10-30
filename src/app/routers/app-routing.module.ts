@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: "form-enacter", component: FormEnacterComponent, canActivate: [NoLoginGuard] },
   { path: "form-patrocinador", component: PatrocinadoresEnactersComponent, canActivate: [NoLoginGuard] },
   { path: "login", component: LoginComponent, canActivate: [NoLoginGuard] },
-  { path: "auth/recover/password", component: RecoverPasswordComponent, canActivate: [NoLoginGuard] },
+  { path: "security/recover/password", component: RecoverPasswordComponent, canActivate: [NoLoginGuard] },
   { path: "admin/users", component: UsersComponent, canActivate: [LoginGuard] },
   { path: "admin/requests", component: RequestsComponent, canActivate: [LoginGuard] },
   { path: "admin/criterion", component: AdminCriterionComponent, canActivate: [LoginGuard] },
