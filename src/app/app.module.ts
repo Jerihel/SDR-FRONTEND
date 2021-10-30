@@ -45,9 +45,10 @@ import { FormEnacterComponent } from './components/landing-page/form-user-enacte
     CreateCriterionComponent,
     ProfileComponent,
     RequestsComponent,
-    NotFoundPageComponent,PatrocinadoresEnactersComponent,
+    NotFoundPageComponent,
+    PatrocinadoresEnactersComponent,
     FormEnacterComponent,
-AsesoresEnactersComponent
+    AsesoresEnactersComponent
 
   ],
   imports: [

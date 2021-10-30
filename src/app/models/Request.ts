@@ -11,3 +11,10 @@ export interface Request {
   appointment: Date;
   requestComment: string;
 }
+
+export interface RequestResponse {
+    estadoSolicitud: string;
+    noSolicitud: number;
+    nombreRevisonr: string;
+    nombreSolicitante: string;
+}

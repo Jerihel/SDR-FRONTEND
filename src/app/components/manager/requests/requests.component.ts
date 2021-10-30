@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgxSpinnerService, Spinner } from 'ngx-spinner';
-import { Request } from 'src/app/models/Request';
+import { RequestResponse } from 'src/app/models/Request';
 import { GeneralService } from 'src/app/services/general.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
@@ -19,8 +19,8 @@ export class RequestsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
   @ViewChild(MatSort) sort: MatSort | null = null;
 
-  selection = new SelectionModel<Request>(true, []);
-  dataSource = new MatTableDataSource<Request>();
+  selection = new SelectionModel<RequestResponse>(true, []);
+  dataSource = new MatTableDataSource<RequestResponse>();
   displayColumnns: string[] = [
     "select",
     "#",
@@ -36,17 +36,12 @@ export class RequestsComponent implements OnInit {
 
   ngOnInit() {
     this.spinner.show();
-    this.generalService.getData<Request[]>(`${environment.api}/internal/get/requestReasignables`).toPromise().then(res => {
+    this.generalService.getData<RequestResponse[]>(`${environment.api}/internal/get/requestReasignables`).toPromise().then(res => {
       this.dataSource.data = res;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }).catch(err => {
-      Swal.fire({
-        title: '!Error!',
-        text: err.error.message,
-        icon: 'error',
-        confirmButtonColor: '#2b317f'
-      });
+      console.log(err);
     }).finally(() => {
       this.spinner.hide();
     });
