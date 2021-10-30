@@ -205,7 +205,7 @@
                 <mat-label> ¿En que area le gustaría asesorar?</mat-label>
                 <mat-select required formControlName="areaAsesorar" #seleccionEstado>
                   <mat-option
-                    *ngFor="let item of catalogueChild"
+                    *ngFor="let item of catalogoAsesoramiento"
                     [value]="item.idCatalogueChild"
                   >
                     {{ item.name }}
@@ -226,7 +226,7 @@
                 <mat-label> ¿Puede realizarla a través de?</mat-label>
                 <mat-select matNativeControl  required formControlName="medioAsesoria" #seleccionEstado>
                   <mat-option
-                    *ngFor="let item of catalogueChild"
+                    *ngFor="let item of catalogoTipoAsesoramiento"
                     [value]="item.idCatalogueChild"
                   >
                     {{ item.name }}

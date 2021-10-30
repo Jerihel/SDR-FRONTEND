@@ -50,13 +50,12 @@ export class AsesoresEnactersComponent implements OnInit {
         icon: 'error',
         title: 'Error al Crear el formulario ',
         text: error?.error?.message ?? 'Error, por favor intente mas tarde',
+        confirmButtonColor:'#2b317f'
       });
     }
     this.spinner.hide();
 
-    setTimeout(() => {
-      this.router.navigate(['/home']);
-    }, 1000);
+
   }
   private buildForm() {
     this.formAsesor = this.formBuilder.group({
@@ -195,6 +194,7 @@ export class AsesoresEnactersComponent implements OnInit {
         text:
           error?.error?.message ??
           'Error al generar el formulario por favor intente mas tarde',
+          confirmButtonColor:'#2b317f'
       });
     }
   }
@@ -214,6 +214,7 @@ export class AsesoresEnactersComponent implements OnInit {
         text:
           error?.error?.message ??
           'Error al generar el formulario por favor intente mas tarde',
+          confirmButtonColor:'#2b317f'
       });
     }
   }

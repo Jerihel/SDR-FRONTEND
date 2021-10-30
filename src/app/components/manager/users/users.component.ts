@@ -67,9 +67,15 @@ export class UsersComponent implements OnInit {
 
   async ngOnInit() {
     this.spinner.show();
-    this.getAllUsers();
-    this.states = await this.generalService.getData(`${environment.api}/internal/catalogue/getBy/3`).toPromise();
-    this.roles = await this.generalService.getData(`${environment.api}/internal/catalogue/getBy/2`).toPromise();
+    try {
+      this.getAllUsers();
+    this.states = await this.generalService.getData(`${environment.api}/external/catalogue/getBy/3`).toPromise();
+    this.roles = await this.generalService.getData(`${environment.api}/external/catalogue/getBy/2`).toPromise();
+    } catch (error) {
+
+console.log(error);
+
+    }
     this.spinner.hide();
   }
 

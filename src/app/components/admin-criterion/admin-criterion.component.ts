@@ -77,6 +77,7 @@ export class AdminCriterionComponent implements OnInit {
         icon: 'info',
         title: 'Sin Criterios',
         text: error?.error?.message ?? 'No existen criterios de evaluacions',
+        confirmButtonColor:'#2b317f'
       });
     }
 

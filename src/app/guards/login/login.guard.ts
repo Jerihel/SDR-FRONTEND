@@ -26,7 +26,7 @@ export class LoginGuard implements CanActivate {
     | UrlTree {
     if (!this.auth.isLoggedIn()) {
       this.auth.logout();
-      this.router.navigate(["/login"], { queryParams: { redirect: state.url } });
+      this.router.navigate(["/login"]);
       AlertUtils.showToast(
         "info",
         `Por favor, iniciar sesión para acceder al modulo.`
