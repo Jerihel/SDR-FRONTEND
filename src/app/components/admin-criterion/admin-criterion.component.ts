@@ -104,9 +104,10 @@ export class AdminCriterionComponent implements OnInit {
         console.log('The dialog was closed: ', result);
       }
 
-
+      console.log("llenando tabla");
+      this.getCriterios()
     });
-    this.getCriterios();
+
   }
 
   crearCriterio() {
@@ -124,6 +125,7 @@ export class AdminCriterionComponent implements OnInit {
 
       }
     });
-    this.getCriterios();
+    console.log("llenando tabla");
+    this.getCriterios()
   }
 }

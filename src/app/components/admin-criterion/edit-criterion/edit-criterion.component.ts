@@ -97,8 +97,11 @@ export class EditCriterionComponent implements OnInit {
           icon: 'success',
           title: 'Criterio Actualizado',
           text: `El criterio ${res.noCriterio} se actualizo correctamente`,
+        }).then(() => {
+
+         this.dialogRef.close();
         });
-        this.dialogRef.close();
+
       })
       .catch((err) => {
         console.log('error al actualizar el criterio', err);

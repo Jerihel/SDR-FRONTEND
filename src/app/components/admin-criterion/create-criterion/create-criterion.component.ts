@@ -79,15 +79,19 @@ export class CreateCriterionComponent implements OnInit {
           title: 'Criterio Creado',
           icon: 'success',
           text: 'El criterio se ha creado correctamente',
+        }).then(() => {
+
+          this.dialogRef.close();
         });
 
-      this.dialogRef.close();
+
       })
       .catch((error) => {
         Swal.fire({
           title: 'Error',
           icon: 'error',
           text: 'Ha ocurrido un error al crear el criterio',
+          confirmButtonColor:'#2b317f'
         });
       });
 
