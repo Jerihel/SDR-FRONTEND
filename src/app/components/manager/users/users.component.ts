@@ -148,7 +148,7 @@ export class UsersComponent implements OnInit {
 
         Swal.fire({
           title: "¡Error!",
-          text: "Lo sentimos, ocurrio un error al intentar cambiar la contraseña. Por favor, intenta de nuevo más tarde.",
+          text: "Lo sentimos, ocurrio un error al intentar crear al usuario. Por favor, intenta de nuevo más tarde.",
           icon: 'error',
           confirmButtonColor: '#2b317f'
         });
@@ -176,7 +176,7 @@ export class UsersComponent implements OnInit {
 
         Swal.fire({
           title: "¡Error!",
-          text: "Lo sentimos, ocurrio un error al intentar cambiar la contraseña. Por favor, intenta de nuevo más tarde.",
+          text: "Lo sentimos, ocurrio un error al intentar guardar los cambios. Por favor, intenta de nuevo más tarde.",
           icon: 'error',
           confirmButtonColor: '#2b317f'
         });
