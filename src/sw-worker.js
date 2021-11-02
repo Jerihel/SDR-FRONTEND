@@ -2,6 +2,23 @@ let token;
 let refreshTokenTimeout;
 let api;
 
+self.addEventListener('fetch', event => {
+  const isApiUrl = event.request.url.startsWith(api);
+  const isInternal = event.request.url.includes('internal');
+  if (isApiUrl && isInternal) {
+    const modifiedHeaders = new Headers(event.request.headers);
+    modifiedHeaders.append('Authorization', token);
+
+    const authReq = new Request(event.request, {
+      headers: modifiedHeaders,
+      mode: 'cors'
+    });
+    event.respondWith((async () => fetch(authReq))());
+  }
+})
+
+importScripts('./ngsw-worker.js');
+
 const startRefreshTokenTimer = () => {
   const expires = new Date(JSON.parse(atob(token.split('.')[1])).exp * 1000);
   const timeout = expires.getTime() - Date.now() - (1000 * 60 * 2);
@@ -29,6 +46,12 @@ self.addEventListener('message', event => {
     token = event.data.token;
     console.log("[SW] Token set!");
     startRefreshTokenTimer();
+    const finishLogin = async () => {
+      event.source.postMessage({
+        type: "TOKEN_SET"
+      });
+    };
+    event.waitUntil(finishLogin());
   }
   if (event.data.type == "REMOVE_TOKEN") {
     console.log("[SW] Removing token");
@@ -49,20 +72,3 @@ self.addEventListener('message', event => {
     });
   }
 })
-
-self.addEventListener('fetch', event => {
-  const isApiUrl = event.request.url.startsWith(api);
-  const isInternal = event.request.url.includes('internal');
-  if (isApiUrl && isInternal) {
-    const modifiedHeaders = new Headers(event.request.headers);
-    modifiedHeaders.append('Authorization', token);
-
-    const authReq = new Request(event.request, {
-      headers: modifiedHeaders,
-      mode: 'cors'
-    });
-    event.respondWith((async () => fetch(authReq))());
-  }
-})
-
-importScripts('./ngsw-worker.js');

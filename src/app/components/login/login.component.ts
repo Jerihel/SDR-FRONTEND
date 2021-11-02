@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SwPush, SwUpdate } from '@angular/service-worker';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { User, UserResponse } from 'src/app/models/UserDto';
+import { User } from 'src/app/models/UserDto';
 import { AuthService } from 'src/app/services/auth.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
   hide = true;
   loginForm: FormGroup;
   redirect: string | null = null;
+  userLogged: User | null = null;
 
   constructor(
     private authService: AuthService,
@@ -38,6 +40,14 @@ export class LoginComponent implements OnInit {
         this.redirect = params.get("redirect");
       }
     })
+
+    navigator.serviceWorker.onmessage = (event) => {
+      if (event.data.type == 'TOKEN_SET') {
+        localStorage.setItem("user_info", JSON.stringify(this.userLogged));
+        location.href = this.redirect as string;
+        this.spinner.hide();
+      }
+    }
   }
 
   async login(login: any) {
@@ -62,18 +72,9 @@ export class LoginComponent implements OnInit {
         api: environment.api
       });
       res.token = undefined;
-      localStorage.setItem("user_info", JSON.stringify(res as User));
-      setTimeout(() => {
-        if (this.redirect)
-          this.router.navigate([this.redirect]);
-        else {
-
-        }
-        this.spinner.hide();
-      }, 1000);
+      this.userLogged = res;
     } catch (error: any) {
       this.spinner.hide();
-      console.log(error);
 
       if ([406, 404].includes(error.status)) {
         Swal.fire({
