@@ -70,7 +70,7 @@ export class RequestsComponent implements OnInit {
       const requests = this.selection.selected.map(item => item.noSolicitud);
       this.generalService.postData(`${environment.api}/internal/post/requestReasignable`, { requests }).toPromise().then(_ => {
         Swal.fire({
-          title: '!Success!',
+          title: '!Correcto!',
           text: "Solicitudes reasignadas exitosamente.",
           icon: 'success',
           confirmButtonColor: '#2b317f'

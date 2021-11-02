@@ -25,7 +25,7 @@ export class CreateCriterionComponent implements OnInit {
     this.buildForm();
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   private buildForm() {
     this.formCrearCriterio = this.formBuilder.group({
@@ -50,7 +50,7 @@ export class CreateCriterionComponent implements OnInit {
   }
 
   cancelar() {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
   guardar() {
@@ -79,9 +79,9 @@ export class CreateCriterionComponent implements OnInit {
           title: 'Criterio Creado',
           icon: 'success',
           text: 'El criterio se ha creado correctamente',
+          confirmButtonColor: '#2b317f'
         }).then(() => {
-
-          this.dialogRef.close();
+          this.dialogRef.close(true);
         });
 
 
@@ -91,7 +91,7 @@ export class CreateCriterionComponent implements OnInit {
           title: 'Error',
           icon: 'error',
           text: 'Ha ocurrido un error al crear el criterio',
-          confirmButtonColor:'#2b317f'
+          confirmButtonColor: '#2b317f'
         });
       });
 

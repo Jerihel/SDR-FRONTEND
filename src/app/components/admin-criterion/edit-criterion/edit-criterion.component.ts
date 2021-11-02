@@ -42,6 +42,7 @@ export class EditCriterionComponent implements OnInit {
         icon: 'error',
         title: 'Error al Crear el formulario ',
         text: error?.error?.message ?? 'Error, por favor intente mas tarde',
+        confirmButtonColor: '#2b317f'
       });
     }
     this.spinner.hide();
@@ -115,7 +116,7 @@ export class EditCriterionComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  editarCriterio() {}
+  editarCriterio() { }
 
   async getCatalogoHijo() {
     try {
@@ -128,10 +129,9 @@ export class EditCriterionComponent implements OnInit {
       console.log('entrando en el error');
       Swal.fire({
         icon: 'error',
-        title: 'No existen Catalagos',
-        text:
-          error?.error?.message ??
-          'No fue posible acceder a los catalogos. Por favor Intente mas tarde',
+        title: '¡Error!',
+        text: "Lo sentimos, ocurrio un error al intentar obtener la información. Por favor, intenta de nuevo más tarde.",
+        confirmButtonColor: '#2b317f'
       });
     }
   }

@@ -13,6 +13,7 @@ import { CRITERIOSSERVICESService } from 'src/app/services/criteriosservices.ser
 import Swal from 'sweetalert2';
 import { CreateCriterionComponent } from './create-criterion/create-criterion.component';
 import { EditCriterionComponent } from './edit-criterion/edit-criterion.component';
+import { AlertUtils } from 'src/app/utils/alert-utils';
 @Component({
   selector: 'app-admin-criterion',
   templateUrl: './admin-criterion.component.html',
@@ -25,14 +26,7 @@ export class AdminCriterionComponent implements OnInit {
   @ViewChild(MatSort)
   sort!: MatSort;
 
-  criteriosEvaluacion: CriterionEvalutionProjection[] = [
-    {
-      noCriterio: 1,
-      nombreCriterio: 'PREUBA',
-      ponderacion: 3,
-      estado: 'Activo',
-    },
-  ];
+  criteriosEvaluacion: CriterionEvalutionProjection[] = [];
 
   dataSource = new MatTableDataSource<CriterionEvalutionProjection>(
     this.criteriosEvaluacion
@@ -51,7 +45,7 @@ export class AdminCriterionComponent implements OnInit {
     private service: CRITERIOSSERVICESService,
     private router: Router,
     public dialog: MatDialog
-  ) {}
+  ) { }
 
   async ngOnInit() {
     console.log(this.criteriosEvaluacion);
@@ -71,15 +65,10 @@ export class AdminCriterionComponent implements OnInit {
       this.criteriosEvaluacion = await this.service
         .getAllCriterio()
         .toPromise();
-    } catch (error: any) {
-      console.log('error');
+    } catch (error) {
+      console.log('error', error);
       this.criteriosEvaluacion = [];
-      Swal.fire({
-        icon: 'info',
-        title: 'Sin Criterios',
-        text: error?.error?.message ?? 'No existen criterios de evaluacions',
-        confirmButtonColor: '#2b317f',
-      });
+      AlertUtils.showToast('info', "Aún no existen criterios de evaluacion.")
     }
 
     this.dataSource.data = this.criteriosEvaluacion;
@@ -87,7 +76,7 @@ export class AdminCriterionComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  clearFilter() {}
+  clearFilter() { }
   regresar() {
     this.router.navigate(['/home']);
   }
@@ -95,38 +84,26 @@ export class AdminCriterionComponent implements OnInit {
   async editarUsuario(criterio: CriterionEvalutionProjection) {
     console.log(`Criterios ${criterio}`);
     const dialogRef = this.dialog.open(EditCriterionComponent, {
-      height: '400px',
+      height: '420px',
       width: '600px',
       disableClose: true,
       data: { criterio },
     });
-    await dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        console.log('The dialog was closed: ', result);
-      }
-    });
-
-    this.getCriterios().then(() => {
-      console.log('llenando tabla');
+    dialogRef.afterClosed().subscribe(_ => {
+      this.getCriterios();
     });
   }
 
   async crearCriterio() {
     console.log('abriendo dialogo');
     const dialogRef = this.dialog.open(CreateCriterionComponent, {
-      height: '400px',
+      height: '340px',
       width: '600px',
       disableClose: true,
       data: {},
     });
-    await dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        console.log('The dialog was close: ', result);
-      }
-    });
-
-    this.getCriterios().then(() => {
-      console.log('llenando tabla');
+    dialogRef.afterClosed().subscribe(_ => {
+      this.getCriterios();
     });
   }
 }

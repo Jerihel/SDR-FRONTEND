@@ -1,93 +1,63 @@
 <div class="row">
   <div class="col-12 text-center">
-    <h1
-      class="font-weight-bold"
-      style="font-size: 25px; color: #2b317f"
-      mat-dialog-title
-    >
+    <h1 class="font-weight-bold" style="font-size: 25px; color: #2b317f" mat-dialog-title>
       Crear Criterio
     </h1>
-    <!-- <hr class="hr" width="75%"> -->
   </div>
 </div>
+<mat-divider></mat-divider><br>
 <div mat-dialog-content>
   <form [formGroup]="formCrearCriterio">
     <div class="item">
       <div class="item2">
-        <mat-form-field class="col" appearance="outline">
+        <mat-form-field class="col p-0" appearance="outline">
           <mat-label>Nombre del Criterio</mat-label>
           <input matInput formControlName="nombre" required />
-          <mat-error
-            *ngIf="
+          <mat-error *ngIf="
               this.formCrearCriterio.controls.nombre.dirty &&
               this.formCrearCriterio.controls.nombre.hasError('required')
-            "
-            >Este campo es obligatorio
+            ">Este campo es obligatorio
           </mat-error>
-          <mat-error
-            *ngIf="
+          <mat-error *ngIf="
               this.formCrearCriterio.controls.nombre.dirty &&
               (this.formCrearCriterio.controls.nombre.hasError('maxlength') ||
                 this.formCrearCriterio.controls.nombre.hasError('minlength'))
-            "
-            >El texto no debe ser mayor a 150 caracteres o menor a 5
-            caracteres</mat-error
-          >
+            ">El texto no debe ser mayor a 150 caracteres o menor a 5
+            caracteres</mat-error>
         </mat-form-field>
       </div>
 
       <div class="item2">
-        <mat-form-field class="col" appearance="outline">
+        <mat-form-field class="col p-0" appearance="outline">
           <mat-label>Ponderacion</mat-label>
-          <input
-            matInput
-            type="number"
-            min="1"
-            max="10"
-            formControlName="ponderacion"
-            required
-          />
-          <mat-error
-            *ngIf="
+          <input matInput type="number" min="1" max="10" formControlName="ponderacion" required />
+          <mat-error *ngIf="
               this.formCrearCriterio.controls.ponderacion.dirty &&
               this.formCrearCriterio.controls.ponderacion.hasError('required')
-            "
-            >Este campo es obligatorio</mat-error
-          >
-          <mat-error
-            *ngIf="
+            ">Este campo es obligatorio</mat-error>
+          <mat-error *ngIf="
               this.formCrearCriterio.controls.ponderacion.dirty &&
               (this.formCrearCriterio.controls.ponderacion.hasError('max') ||
                 this.formCrearCriterio.controls.ponderacion.hasError('min'))
-            "
-            >Solo se permiten numeros del 1 al 10</mat-error
-          >
-          <mat-error
-            *ngIf="
+            ">Solo se permiten numeros del 1 al 10</mat-error>
+          <mat-error *ngIf="
               this.formCrearCriterio.controls.ponderacion.dirty &&
               this.formCrearCriterio.controls.ponderacion.hasError('pattern')
-            "
-            >Solo se permiten numeros enteros del 1 al 10</mat-error
-          >
+            ">Solo se permiten numeros enteros del 1 al 10</mat-error>
         </mat-form-field>
       </div>
     </div>
   </form>
 </div>
-<hr class="hr" width="75%" />
-<div class="row justify-content-center mt-2">
-  <button mat-raised-button class="btn" (click)="cancelar()">
-    <i class="fa fa-angle-left mr-2"></i>
-    CANCELAR
+<mat-divider></mat-divider>
+<div class="row mt-4">
+  <button mat-raised-button class="btn-container ml-auto" color="warn" (click)="cancelar()">
+    <mat-icon>close</mat-icon>
+    Cancelar
   </button>
-  <button
-    mat-raised-button
-    class="btn ml-2"
-    type="submit"
-    (click)="guardar()"
-    [disabled]="!formCrearCriterio.valid"
-  >
-    <i class="material-icons mr-2"> group_add </i>
+  <button mat-raised-button class="btn-container ml-3 mr-3" color="primary" type="submit" (click)="guardar()"
+    [disabled]="!formCrearCriterio.valid">
+    <mat-icon>save</mat-icon>
     <span>Guardar</span>
   </button>
 </div>
