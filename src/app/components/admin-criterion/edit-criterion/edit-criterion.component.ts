@@ -1,3 +1,4 @@
+import { CriterionUpdate } from './../../../models/CriterioEvaluation';
 import { CatalogueChildService } from './../../../services/catalogue-child.service';
 import { CriterionEvalutionProjection } from './../../../models/CriterionEvalutionProjection';
 import { Component, Inject, OnInit } from '@angular/core';
@@ -41,6 +42,7 @@ export class EditCriterionComponent implements OnInit {
         icon: 'error',
         title: 'Error al Crear el formulario ',
         text: error?.error?.message ?? 'Error, por favor intente mas tarde',
+        confirmButtonColor: '#2b317f'
       });
     }
     this.spinner.hide();
@@ -78,15 +80,13 @@ export class EditCriterionComponent implements OnInit {
     console.log(valorFormulario);
     console.log(noCriterio);
 
-    const criterionEvaluation: CriterionEvalution = {
+    const criterionEvaluation: CriterionUpdate = {
       noCriterio: noCriterio,
-      nombreCriterio: valorFormulario.nombreCriterio,
+      nombreCriterio: valorFormulario.nombre,
       ponderacion: valorFormulario.ponderacion,
-      estado: valorFormulario.estado,
-      usuarioAgrega: '',
-      fechaAgrega: undefined,
-      fechaModifica: new Date(),
-      usuarioModifica: localStorage.getItem('username') || '',
+      estadoColaborador: valorFormulario.estado,
+
+      usuarioModifica: this.obtenerUsuario() || '',
     };
 
     this.criterio
@@ -97,8 +97,9 @@ export class EditCriterionComponent implements OnInit {
           icon: 'success',
           title: 'Criterio Actualizado',
           text: `El criterio ${res.noCriterio} se actualizo correctamente`,
+        }).then(() => {
+          this.dialogRef.close();
         });
-        this.dialogRef.close();
       })
       .catch((err) => {
         console.log('error al actualizar el criterio', err);
@@ -115,24 +116,29 @@ export class EditCriterionComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  editarCriterio() {}
+  editarCriterio() { }
 
   async getCatalogoHijo() {
     try {
       console.log('obteniendo catalogos hijos');
       //se obtiene los catalogos con el id 4 que perteneces al catalogo de estados de criterios de evaluacion.
       this.catalogueChild = await this.catalogueChildService
-        .getAllCatalogueChildByParent(4)
+        .getAllCatalogueChildByParent(3)
         .toPromise();
     } catch (error: any) {
       console.log('entrando en el error');
       Swal.fire({
         icon: 'error',
-        title: 'No existen Catalagos',
-        text:
-          error?.error?.message ??
-          'No fue posible acceder a los catalogos. Por favor Intente mas tarde',
+        title: '¡Error!',
+        text: "Lo sentimos, ocurrio un error al intentar obtener la información. Por favor, intenta de nuevo más tarde.",
+        confirmButtonColor: '#2b317f'
       });
     }
+  }
+
+  obtenerUsuario() {
+    let usuario: any = JSON.parse(localStorage.getItem('user_info') as string);
+
+    return usuario.username.toString();
   }
 }

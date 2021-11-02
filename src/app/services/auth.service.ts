@@ -3,7 +3,6 @@ import { GeneralService } from "./general.service";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { User, UserCreated, UserDetail, UserDto, UserProfile, UserResponse } from "../models/UserDto";
-import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",

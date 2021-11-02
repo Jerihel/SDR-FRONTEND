@@ -1,0 +1,293 @@
+<div class="col-11 mx-auto center-component main-conteiner">
+  <div class="card mx-auto bg-light">
+    <div class="container bg-white col-11 rounded mt-3">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h1
+            class="font-weight-bold"
+            style="font-size: 25px; color: #2b317f"
+            mat-dialog-title
+          >
+            Formulario Asesor
+          </h1>
+          <!-- <hr class="hr" width="75%"> -->
+        </div>
+      </div>
+        <div mat-dialog-content>
+        <form [formGroup]="formAsesor">
+          <div class="item">
+            <div class="item2">
+              <mat-form-field class="col" appearance="outline">
+                <mat-label>Nombre </mat-label>
+                <input
+                  matInput
+                  placeholder="nombre"
+                  formControlName="nombre"
+                  required
+                />
+                <mat-error
+                  *ngIf="
+                    this.formAsesor.controls.nombre.dirty &&
+                    this.formAsesor.controls.nombre.hasError('required')
+                  "
+                  >Este campo es obligatorio
+                </mat-error>
+                <mat-error
+                  *ngIf="
+                    this.formAsesor.controls.nombre.dirty &&
+                    (this.formAsesor.controls.nombre.hasError('maxlength') ||
+                      this.formAsesor.controls.nombre.hasError('minlength'))
+                  "
+                  >El texto no debe ser mayor a 75 caracteres o menor a 4
+                  caracteres</mat-error
+                >
+              </mat-form-field>
+            </div>
+
+            <div class="item2">
+              <mat-form-field class="col" appearance="outline">
+                <mat-label>Telefono</mat-label>
+                <input
+                  matInput
+ type="tel"
+                  formControlName="telefono"
+                  required
+                />
+                <mat-error
+                  *ngIf="
+                    this.formAsesor.controls.telefono.dirty &&
+                    this.formAsesor.controls.telefono.hasError('required')
+                  "
+                  >Este campo es obligatorio</mat-error
+                >
+
+                <mat-error
+                *ngIf="
+                  this.formAsesor.controls.telefono.dirty &&
+                  (this.formAsesor.controls.telefono.hasError('maxlength')||this.formAsesor.controls.telefono.hasError('minlength'))
+                "
+                >El numero de telefono debe ser de 8
+                caracteres</mat-error
+              >
+                <mat-error
+                  *ngIf="
+                    this.formAsesor.controls.telefono.dirty &&
+                    this.formAsesor.controls.telefono.hasError('pattern')
+                  "
+                  >Solo se permiten valores numericos <p></p> </mat-error
+                >
+
+              </mat-form-field>
+              <p *ngIf="
+              this.formAsesor.controls.telefono.dirty &&
+              this.formAsesor.controls.telefono.hasError('pattern')
+            "></p>
+            </div>
+
+            <div class="item2">
+              <mat-form-field class="col" appearance="outline">
+                <mat-label> Correo</mat-label>
+                <input
+                matInput
+               type="email"
+               placeholder="correo@example.com"
+                formControlName="correo"
+                required
+              />
+                <mat-error
+                  *ngIf="
+                    this.formAsesor.controls.correo.dirty &&
+                    this.formAsesor.controls.correo.hasError('required')
+                  "
+                  >Este campo es Obligatorio</mat-error
+                >
+                <mat-error
+                  *ngIf="
+                    this.formAsesor.controls.correo.dirty &&
+                    this.formAsesor.controls.correo.hasError('email')
+                  "
+                  >correo invalido</mat-error
+                >
+              </mat-form-field>
+            </div>
+
+            <div class="item2">
+              <mat-form-field class="col" appearance="outline">
+                <mat-label> Profesion</mat-label>
+                <input
+                matInput
+
+                formControlName="profesion"
+
+                required
+              />
+                <mat-error
+                  *ngIf="
+                    this.formAsesor.controls.profesion.dirty &&
+                    this.formAsesor.controls.profesion.hasError('required')
+                  "
+                  >Este campo es Obligatorio</mat-error
+                >
+
+                <mat-error
+                  *ngIf="
+                    this.formAsesor.controls.nombre.dirty &&
+                    (this.formAsesor.controls.profesion.hasError('maxlength') ||
+                      this.formAsesor.controls.profesion.hasError('minlength'))
+                  "
+                  >El texto no debe ser mayor a 50 caracteres o menor a 5
+                  caracteres</mat-error
+                >
+              </mat-form-field>
+            </div>
+
+            <div class="item2">
+              <mat-form-field class="col" appearance="outline">
+                <mat-label> ¿A que se dedica Actualmente?</mat-label>
+                <input
+                matInput
+
+                formControlName="ocupacion"
+
+                required
+              />
+                <mat-error
+                  *ngIf="
+                    this.formAsesor.controls.ocupacion.dirty &&
+                    this.formAsesor.controls.ocupacion.hasError('required')
+                  "
+                  >Este campo es Obligatorio</mat-error
+                >
+
+                <mat-error
+                *ngIf="
+                  this.formAsesor.controls.ocupacion.dirty &&
+                  (this.formAsesor.controls.ocupacion.hasError('maxlength') ||
+                    this.formAsesor.controls.ocupacion.hasError('minlength'))
+                "
+                >El texto no debe ser mayor a 100 caracteres o menor a 10
+                caracteres</mat-error
+              >
+              </mat-form-field>
+            </div>
+
+
+
+            <div class="item2">
+              <div class="col">
+                <label class="example-margin">¿Tiene Experiencia realizando asesoría?</label>
+                <mat-radio-group
+                  [(ngModel)]="experienciaAsesoria"
+                  formControlName="experiencia"
+                >
+                  <mat-radio-button class="example-margin" value="S"
+                    >Si</mat-radio-button
+                  >
+                  <mat-radio-button class="example-margin" value="N"
+                    >No</mat-radio-button
+                  >
+                </mat-radio-group>
+              </div>
+            </div>
+
+
+
+
+
+
+            <div class="item2" *ngIf="experienciaAsesoria==='N'">
+              <mat-form-field class="col" appearance="outline">
+                <mat-label>  Justifique</mat-label>
+                <input
+                matInput
+
+                formControlName="experienciaDetalle"
+
+                required
+              />
+                <mat-error
+                  *ngIf="
+                    this.formAsesor.controls.experienciaDetalle.dirty &&
+                    this.formAsesor.controls.experienciaDetalle.hasError('required')
+                  "
+                  >Este campo es Obligatorio</mat-error
+                >
+                <mat-error
+                *ngIf="
+                  this.formAsesor.controls.experienciaDetalle.dirty &&
+                  (this.formAsesor.controls.experienciaDetalle.hasError('maxlength') ||
+                    this.formAsesor.controls.experienciaDetalle.hasError('minlength'))
+                "
+                >El texto no debe ser mayor a 100 caracteres o menor a 10
+                caracteres</mat-error
+              >
+              </mat-form-field>
+            </div>
+
+            <div class="item2">
+              <mat-form-field class="col" appearance="outline">
+                <mat-label> ¿En que area le gustaría asesorar?</mat-label>
+                <mat-select required formControlName="areaAsesorar" #seleccionEstado>
+                  <mat-option
+                    *ngFor="let item of catalogoAsesoramiento"
+                    [value]="item.idCatalogueChild"
+                  >
+                    {{ item.name }}
+                  </mat-option>
+                </mat-select>
+                <mat-error
+                  *ngIf="
+                    this.formAsesor.controls.areaAsesorar.dirty &&
+                    this.formAsesor.controls.areaAsesorar.hasError('required')
+                  "
+                  >Este campo es Obligatorio</mat-error
+                >
+              </mat-form-field>
+            </div>
+
+            <div class="item2">
+              <mat-form-field class="col" appearance="outline">
+                <mat-label> ¿Puede realizarla a través de?</mat-label>
+                <mat-select matNativeControl  required formControlName="medioAsesoria" #seleccionEstado>
+                  <mat-option
+                    *ngFor="let item of catalogoTipoAsesoramiento"
+                    [value]="item.idCatalogueChild"
+                  >
+                    {{ item.name }}
+                  </mat-option>
+                </mat-select>
+                <mat-error
+                  *ngIf="
+                    this.formAsesor.controls.medioAsesoria.dirty &&
+                    this.formAsesor.controls.medioAsesoria.hasError('required')
+                  "
+                  >Este campo es Obligatorio</mat-error
+                >
+              </mat-form-field>
+            </div>
+
+
+          </div>
+        </form>
+        <div class="row justify-content-center mt-2">
+          <button mat-raised-button class="btn" (click)="regresar()">
+            <i class="fa fa-angle-left mr-2"></i>
+            REGRESAR
+          </button>
+          <button
+            mat-raised-button
+            class="btn ml-2"
+            type="submit"
+            (click)="generarSolicitud()"
+            [disabled]="!formAsesor.valid"
+          >
+            <i class="material-icons mr-2"> group_add </i>
+            <span>registrarse</span>
+          </button>
+        </div>
+
+      </div>
+
+
+
+    </div>

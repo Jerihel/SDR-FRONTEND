@@ -2,10 +2,20 @@ export interface CriterionEvalution{
     noCriterio: Number
     nombreCriterio:String
     ponderacion: String
-    estado: Number
+    estadoColaborador: Number
     usuarioAgrega?: String
     fechaAgrega?: Date
     fechaModifica?: Date
-    usuarioModifica?: string
+    usuarioModifica?: String
 
+}
+
+
+export interface CriterionUpdate{
+
+   noCriterio:number;
+  nombreCriterio:String;
+   estadoColaborador:number;
+ usuarioModifica:String;
+  ponderacion:number;
 }

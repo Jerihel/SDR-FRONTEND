@@ -1,3 +1,4 @@
+import { AsesoresEnactersComponent } from './components/landing-page/form-user-enacters/asesores-enacters/asesores-enacters.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -20,11 +21,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
+
 import { ProfileComponent } from './components/profile/profile.component';
 import { CreateCriterionComponent } from './components/admin-criterion/create-criterion/create-criterion.component';
 import { RequestsComponent } from './components/manager/requests/requests.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PatrocinadoresEnactersComponent } from './components/landing-page/form-user-enacters/patrocinadores-enacters/patrocinadores-enacters.component';
+import { FormEnacterComponent } from './components/landing-page/form-user-enacters/form-enacter/form-enacter.component';
+import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
 import { RequestEntrepreneurshipComponent } from './components/request-entrepreneurship/request-entrepreneurship.component';
 
 @NgModule({
@@ -42,6 +47,10 @@ import { RequestEntrepreneurshipComponent } from './components/request-entrepren
     ProfileComponent,
     RequestsComponent,
     NotFoundPageComponent,
+    PatrocinadoresEnactersComponent,
+    FormEnacterComponent,
+    AsesoresEnactersComponent,
+    RecoverPasswordComponent,
     RequestEntrepreneurshipComponent
   ],
   imports: [

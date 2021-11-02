@@ -67,9 +67,13 @@ export class UsersComponent implements OnInit {
 
   async ngOnInit() {
     this.spinner.show();
-    this.getAllUsers();
-    this.states = await this.generalService.getData(`${environment.api}/internal/catalogue/getBy/3`).toPromise();
-    this.roles = await this.generalService.getData(`${environment.api}/internal/catalogue/getBy/2`).toPromise();
+    try {
+      this.getAllUsers();
+      this.states = await this.generalService.getData(`${environment.api}/external/catalogue/getBy/3`).toPromise();
+      this.roles = await this.generalService.getData(`${environment.api}/external/catalogue/getBy/2`).toPromise();
+    } catch (error) {
+      console.log(error);
+    }
     this.spinner.hide();
   }
 
@@ -144,7 +148,7 @@ export class UsersComponent implements OnInit {
 
         Swal.fire({
           title: "¡Error!",
-          text: "Lo sentimos, ocurrio un error al intentar cambiar la contraseña. Por favor, intenta de nuevo más tarde.",
+          text: "Lo sentimos, ocurrio un error al intentar crear al usuario. Por favor, intenta de nuevo más tarde.",
           icon: 'error',
           confirmButtonColor: '#2b317f'
         });
@@ -172,7 +176,7 @@ export class UsersComponent implements OnInit {
 
         Swal.fire({
           title: "¡Error!",
-          text: "Lo sentimos, ocurrio un error al intentar cambiar la contraseña. Por favor, intenta de nuevo más tarde.",
+          text: "Lo sentimos, ocurrio un error al intentar guardar los cambios. Por favor, intenta de nuevo más tarde.",
           icon: 'error',
           confirmButtonColor: '#2b317f'
         });

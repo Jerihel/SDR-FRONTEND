@@ -20,7 +20,7 @@ export class RequestInterceptor implements HttpInterceptor {
 
       if ([401, 403].includes(err.status)) {
         this.authService.logout();
-        this.router.navigate(["/login"], { queryParams: { redirect: this.router.url } });
+        this.router.navigate(["/login"]);
         AlertUtils.showToast(
           "error",
           `No tienes los permisos suficientes para poder realizar esta acción.`
