@@ -67,8 +67,6 @@ export class AdminCriterionComponent implements OnInit {
         .toPromise();
     } catch (error) {
       console.log('error', error);
-      this.criteriosEvaluacion = [];
-      AlertUtils.showToast('info', "Aún no existen criterios de evaluacion.")
     }
 
     this.dataSource.data = this.criteriosEvaluacion;
