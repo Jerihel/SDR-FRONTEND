@@ -113,5 +113,8 @@
       }
     }
   },
-  "defaultProject": "sdr"
+  "defaultProject": "sdr",
+  "cli": {
+    "analytics": "5c322c70-25a3-43eb-b1db-722a0024abd5"
+  }
 }

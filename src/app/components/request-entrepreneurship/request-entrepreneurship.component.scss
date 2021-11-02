@@ -1,0 +1,86 @@
+@import "../../../assets/scss/style.scss";
+
+.main-conteiner{
+
+  margin-top: 100px;
+}
+
+
+.header-table {
+  justify-content: center;
+  background-color: #2b317f;
+  color: #fdbf21;
+}
+
+
+
+mat-cell {
+  justify-content: center;
+}
+
+.solicitud-table {
+  margin: 20px 10px;
+}
+
+.item {
+  display: flex;
+  width: 98%;
+  flex-wrap: wrap;
+  margin: 0 1%;
+}
+
+@media screen and (max-width: 800px) {
+  .mat-table {
+    border: 0;
+    vertical-align: middle;
+    text-align: center;
+  }
+  .mat-header-row {
+    display: none;
+  }
+  .mat-table caption {
+    font-size: 10px;
+  }
+
+  .mat-table .mat-row {
+    border-bottom: 19px solid #ddd;
+    display: block;
+  }
+
+  .mat-table .mat-cell {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: 16px;
+    text-align: right;
+    font-weight: bold;
+    height: 30px;
+    margin: 0 2% 4%;
+    padding-left: 4px;
+  }
+  .mat-table .mat-cell:before {
+    content: attr(data-label);
+    float: left;
+    text-transform: uppercase;
+    font-weight: normal;
+
+    font-size: 14px;
+  }
+  .mat-table .mat-cell:last-child {
+    border-bottom: 0;
+  }
+  .mat-table .mat-cell:first-child {
+    margin-top: 4%;
+  }
+  .example-section {
+    margin: 12px 0;
+  }
+  
+  .example-margin {
+    margin: 0 12px;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin-top: 4px;
+  }
+}

@@ -10,6 +10,7 @@ import { LoginGuard } from "../guards/login/login.guard";
 import { NoLoginGuard } from "../guards/no-login/no-login.guard";
 import { AsesoresEnactersComponent } from '../components/landing-page/form-user-enacters/asesores-enacters/asesores-enacters.component';
 import { NotFoundPageComponent } from '../components/not-found-page/not-found-page.component';
+import { RequestEntrepreneurshipComponent } from '../components/request-entrepreneurship/request-entrepreneurship.component';
 import { FormEnacterComponent } from '../components/landing-page/form-user-enacters/form-enacter/form-enacter.component';
 import { PatrocinadoresEnactersComponent } from '../components/landing-page/form-user-enacters/patrocinadores-enacters/patrocinadores-enacters.component';
 import { RecoverPasswordComponent } from '../components/recover-password/recover-password.component';
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path: "admin/requests", component: RequestsComponent, canActivate: [LoginGuard] },
   { path: "admin/criterion", component: AdminCriterionComponent, canActivate: [LoginGuard] },
   { path: "profile", component: ProfileComponent, canActivate: [LoginGuard] },
-  { path: "**", component: NotFoundPageComponent },
+  { path: "request-entrepreneurship", component: RequestEntrepreneurshipComponent, canActivate: [LoginGuard]},
+  { path: "**", component: NotFoundPageComponent }
 ];
 
 @NgModule({

@@ -30,7 +30,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PatrocinadoresEnactersComponent } from './components/landing-page/form-user-enacters/patrocinadores-enacters/patrocinadores-enacters.component';
 import { FormEnacterComponent } from './components/landing-page/form-user-enacters/form-enacter/form-enacter.component';
 import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
-
+import { RequestEntrepreneurshipComponent } from './components/request-entrepreneurship/request-entrepreneurship.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +50,8 @@ import { RecoverPasswordComponent } from './components/recover-password/recover-
     PatrocinadoresEnactersComponent,
     FormEnacterComponent,
     AsesoresEnactersComponent,
-    RecoverPasswordComponent
+    RecoverPasswordComponent,
+    RequestEntrepreneurshipComponent
   ],
   imports: [
     BrowserModule,
