@@ -159,7 +159,8 @@ export class PatrocinadoresEnactersComponent implements OnInit {
             text: 'Ha ocurrido un error, por favor intente de nuevo',
           });
         }
-      ).finally(() => {
+      )
+      .finally(() => {
         this.spinner.hide();
       });
   }
