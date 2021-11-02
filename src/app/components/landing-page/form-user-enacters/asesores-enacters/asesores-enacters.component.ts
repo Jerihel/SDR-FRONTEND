@@ -179,6 +179,7 @@ export class AsesoresEnactersComponent implements OnInit {
       experienceDetail: formulario.experienciaDetalle,
       adviseOn: formulario.areaAsesorar,
       adviseWay: formulario.medioAsesoria,
+      supportLookUp: null,
     };
     console.log(request1);
 

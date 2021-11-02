@@ -13,7 +13,7 @@
           <!-- <hr class="hr" width="75%"> -->
         </div>
       </div>
-      <div >
+      <div>
         <form [formGroup]="formEditarCriterio">
           <div class="item">
             <div class="item2">
@@ -104,7 +104,7 @@
                 <input
                   matInput
                   type="email"
-                  placeholder="correo@example.com"
+                  placeholder="correo@miumg.edu.gt"
                   formControlName="correo"
                   required
                 />
@@ -118,10 +118,12 @@
                 <mat-error
                   *ngIf="
                     this.formEditarCriterio.controls.correo.dirty &&
-                    this.formEditarCriterio.controls.correo.hasError('email')
+                   ( this.formEditarCriterio.controls.correo.hasError('email') || this.formEditarCriterio.controls.correo.hasError('correoUmg'))
                   "
-                  >correo invalido</mat-error
+                  > Debe ingresar el correo perteneciente a la UMG.</mat-error
                 >
+
+
               </mat-form-field>
             </div>
 
@@ -148,7 +150,11 @@
             <div class="item2">
               <mat-form-field class="col" appearance="outline">
                 <mat-label>Facultad</mat-label>
-                <mat-select required formControlName="facultad" #seleccionEstado>
+                <mat-select
+                  required
+                  formControlName="facultad"
+                  #seleccionEstado
+                >
                   <mat-option
                     *ngFor="let item of catalogueChild"
                     [value]="item.idCatalogueChild"
@@ -159,7 +165,9 @@
                 <mat-error
                   *ngIf="
                     this.formEditarCriterio.controls.facultad.dirty &&
-                    this.formEditarCriterio.controls.facultad.hasError('required')
+                    this.formEditarCriterio.controls.facultad.hasError(
+                      'required'
+                    )
                   "
                   >Este campo es Obligatorio</mat-error
                 >
@@ -180,7 +188,9 @@
                 <mat-error
                   *ngIf="
                     this.formEditarCriterio.controls.carrera.dirty &&
-                    this.formEditarCriterio.controls.carrera.hasError('required')
+                    this.formEditarCriterio.controls.carrera.hasError(
+                      'required'
+                    )
                   "
                   >Este campo es Obligatorio</mat-error
                 >
@@ -223,11 +233,14 @@
               </mat-form-field>
             </div>
 
-
             <div class="item2">
               <mat-form-field class="col" appearance="outline">
                 <mat-label>Inter&eacute;s</mat-label>
-                <mat-select required formControlName="intereses" #seleccionEstado>
+                <mat-select
+                  required
+                  formControlName="intereses"
+                  #seleccionEstado
+                >
                   <mat-option
                     *ngFor="let item of catalogueChild"
                     [value]="item.idCatalogueChild"
@@ -238,18 +251,26 @@
                 <mat-error
                   *ngIf="
                     this.formEditarCriterio.controls.intereses.dirty &&
-                    this.formEditarCriterio.controls.intereses.hasError('required')
+                    this.formEditarCriterio.controls.intereses.hasError(
+                      'required'
+                    )
                   "
                   >Este campo es Obligatorio</mat-error
                 >
               </mat-form-field>
             </div>
 
-
             <div class="item2">
               <mat-form-field class="col" appearance="outline">
-                <mat-label>¿Qu&eacute; buscas al formar parte de nuestro equipo?</mat-label>
-                <mat-select required formControlName="formarParte" #seleccionEstado>
+                <mat-label
+                  >¿Qu&eacute; buscas al formar parte de nuestro
+                  equipo?</mat-label
+                >
+                <mat-select
+                  required
+                  formControlName="formarParte"
+                  #seleccionEstado
+                >
                   <mat-option
                     *ngFor="let item of catalogueChild"
                     [value]="item.idCatalogueChild"
@@ -260,20 +281,14 @@
                 <mat-error
                   *ngIf="
                     this.formEditarCriterio.controls.formarParte.dirty &&
-                    this.formEditarCriterio.controls.formarParte.hasError('required')
+                    this.formEditarCriterio.controls.formarParte.hasError(
+                      'required'
+                    )
                   "
                   >Este campo es Obligatorio</mat-error
                 >
               </mat-form-field>
             </div>
-
-
-
-
-
-
-
-
           </div>
         </form>
         <div class="row justify-content-center mt-2">
@@ -292,11 +307,7 @@
             <span>Guardar</span>
           </button>
         </div>
-
       </div>
-
     </div>
-
   </div>
-
 </div>

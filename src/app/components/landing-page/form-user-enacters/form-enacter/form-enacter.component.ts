@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CatalogueChildService } from 'src/app/services/catalogue-child.service';
-
+import { ValidadorPersonalizado } from 'src/app/utils/ValidadorPersonalizado';
 @Component({
   selector: 'app-form-enacter',
   templateUrl: './form-enacter.component.html',
@@ -24,7 +24,7 @@ export class FormEnacterComponent implements OnInit {
   ngOnInit(): void {}
   private buildForm() {
     this.formEditarCriterio = this.formBuilder.group({
-      correo: ['', [Validators.required, Validators.email]],
+      correo: ['', [Validators.required, Validators.email,ValidadorPersonalizado.correoUmg]],
       nombre: [
         '',
         [

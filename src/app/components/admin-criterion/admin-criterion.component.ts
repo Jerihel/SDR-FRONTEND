@@ -89,9 +89,10 @@ export class AdminCriterionComponent implements OnInit {
       disableClose: true,
       data: { criterio },
     });
-    dialogRef.afterClosed().subscribe(_ => {
-      this.getCriterios();
+   await dialogRef.afterClosed().subscribe(_ => {
+
     });
+    this.getCriterios();
   }
 
   async crearCriterio() {
@@ -102,8 +103,10 @@ export class AdminCriterionComponent implements OnInit {
       disableClose: true,
       data: {},
     });
-    dialogRef.afterClosed().subscribe(_ => {
-      this.getCriterios();
-    });
+     await dialogRef.afterClosed().subscribe(_ => {
+
+    })
+
+    this.getCriterios();
   }
 }
