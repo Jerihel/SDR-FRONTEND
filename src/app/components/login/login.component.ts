@@ -17,12 +17,13 @@ export class LoginComponent implements OnInit {
   hide = true;
   loginForm: FormGroup;
   redirect: string | null = null;
+  userLogged: User | null = null;
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private spinner: NgxSpinnerService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {
 
     localStorage.setItem('section', 'login');
@@ -38,6 +39,14 @@ export class LoginComponent implements OnInit {
         this.redirect = params.get("redirect");
       }
     })
+
+    navigator.serviceWorker.onmessage = (event) => {
+      if (event.data.type == 'TOKEN_SET') {
+        this.spinner.hide();
+        localStorage.setItem("user_info", JSON.stringify(this.userLogged));
+        this.router.navigate([this.redirect]);
+      }
+    }
   }
 
   async login(login: any) {
@@ -62,15 +71,7 @@ export class LoginComponent implements OnInit {
         api: environment.api
       });
       res.token = undefined;
-      localStorage.setItem("user_info", JSON.stringify(res as User));
-      setTimeout(() => {
-        if (this.redirect)
-          this.router.navigate([this.redirect]);
-        else {
-
-        }
-        this.spinner.hide();
-      }, 1000);
+      this.userLogged = res;
     } catch (error: any) {
       this.spinner.hide();
       console.log(error);
