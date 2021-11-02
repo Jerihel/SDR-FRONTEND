@@ -1,0 +1,82 @@
+<div class="col-11 mx-auto center-component main-conteiner">
+    <div class="card mx-auto bg-light">
+      <div class="container bg-white col-11 rounded mt-3">
+        <div class="row justify-content-center">
+          <h1 class="font-weight-bold text-uppercase">Revisión de Solicitudes</h1>
+        </div>
+      </div>
+  
+      <div class="row mt-3 justify-content-center">
+  
+  
+        <div class="container mt-2 bg-white rounded col-11 mb-3">
+  
+  
+          <div class="mat-elevation-z8 analista-solicitud-table">
+            <mat-table [dataSource]="dataSource" matSort>
+              <ng-container matColumnDef="noSolicitud">
+                <mat-header-cell
+                  *matHeaderCellDef
+                  mat-sort-header
+                  class="header-table start"
+                  >No. Solicitud</mat-header-cell
+                >
+                <mat-cell *matCellDef="let requests " data-label="noSolicitud "
+                  >{{ requests.noSolicitud }}
+                </mat-cell>
+              </ng-container>
+  
+              <ng-container matColumnDef="nombreSolicitante">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="header-table"
+                  >Nombre Solicitante</mat-header-cell
+                >
+                <mat-cell *matCellDef="let requests" data-label="nombreSolicitante">
+                {{ requests.nombreSolicitante |uppercase}}
+                </mat-cell>
+              </ng-container>
+  
+              <ng-container matColumnDef="tipoSolicitud">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="header-table"
+                  >Tipo de Solicitud</mat-header-cell
+                >
+                <mat-cell *matCellDef="let requests" data-label="tipoSolicitud">
+                    {{ requests.tipoSolicitud|uppercase}}
+                </mat-cell>
+              </ng-container>
+  
+              <ng-container matColumnDef="estado">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="header-table"
+                  >Estado</mat-header-cell
+                >
+                <mat-cell
+                  *matCellDef="let requests"
+                  data-label="estado"
+                >
+                  {{ requests.estado|uppercase}}
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="acciones">
+                <mat-header-cell *matHeaderCellDef class="header-table end"
+                  >Acciones</mat-header-cell
+                >
+                <mat-cell *matCellDef="let requests" data-label="Acciones">
+                    <button mat-icon-button  >
+                        <mat-icon>visibility</mat-icon>
+                      </button>
+                    <button mat-icon-button  >
+                      <mat-icon>input</mat-icon>
+                    </button>
+                </mat-cell>
+              </ng-container>
+  
+              <mat-header-row *matHeaderRowDef="displayColumnns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayColumnns"></mat-row>
+            </mat-table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  
