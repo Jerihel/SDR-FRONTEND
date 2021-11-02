@@ -31,6 +31,7 @@ import { PatrocinadoresEnactersComponent } from './components/landing-page/form-
 import { FormEnacterComponent } from './components/landing-page/form-user-enacters/form-enacter/form-enacter.component';
 import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
 import { RequestEntrepreneurshipComponent } from './components/request-entrepreneurship/request-entrepreneurship.component';
+import { ReviewRequestsComponent } from './components/review-requests/review-requests.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { RequestEntrepreneurshipComponent } from './components/request-entrepren
     FormEnacterComponent,
     AsesoresEnactersComponent,
     RecoverPasswordComponent,
-    RequestEntrepreneurshipComponent
+    RequestEntrepreneurshipComponent,
+    ReviewRequestsComponent
   ],
   imports: [
     BrowserModule,

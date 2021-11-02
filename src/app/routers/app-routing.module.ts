@@ -14,6 +14,7 @@ import { RequestEntrepreneurshipComponent } from '../components/request-entrepre
 import { FormEnacterComponent } from '../components/landing-page/form-user-enacters/form-enacter/form-enacter.component';
 import { PatrocinadoresEnactersComponent } from '../components/landing-page/form-user-enacters/patrocinadores-enacters/patrocinadores-enacters.component';
 import { RecoverPasswordComponent } from '../components/recover-password/recover-password.component';
+import { ReviewRequestsComponent } from '../components/review-requests/review-requests.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
@@ -27,7 +28,8 @@ const routes: Routes = [
   { path: "admin/requests", component: RequestsComponent, canActivate: [LoginGuard] },
   { path: "admin/criterion", component: AdminCriterionComponent, canActivate: [LoginGuard] },
   { path: "profile", component: ProfileComponent, canActivate: [LoginGuard] },
-  { path: "request-entrepreneurship", component: RequestEntrepreneurshipComponent, canActivate: [LoginGuard]},
+  { path: "request/new", component: RequestEntrepreneurshipComponent },
+  { path: "reviewer/requests", component: ReviewRequestsComponent, canActivate: [LoginGuard]},
   { path: "**", component: NotFoundPageComponent }
 ];
 

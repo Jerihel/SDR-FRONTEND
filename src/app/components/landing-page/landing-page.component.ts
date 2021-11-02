@@ -1,8 +1,11 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Item } from 'src/app/models/Item';
-import { AsesoresEnactersComponent } from './form-user-enacters/asesores-enacters/asesores-enacters.component';
+import { GeneralService } from 'src/app/services/general.service';
+import { environment } from 'src/environments/environment';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-landing-page',
@@ -11,8 +14,13 @@ import { AsesoresEnactersComponent } from './form-user-enacters/asesores-enacter
 })
 export class LandingPageComponent implements AfterViewInit {
   items: Item[];
+  supportForm: FormGroup;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(
+    private route: ActivatedRoute,
+    private generalService: GeneralService,
+    private spinner: NgxSpinnerService
+  ) {
     this.items = [
       {
         title: 'Equipo Enactus',
@@ -30,6 +38,13 @@ export class LandingPageComponent implements AfterViewInit {
         image: 'assets/img/c3.jpg',
       },
     ];
+
+    this.supportForm = new FormGroup({
+      name: new FormControl(null, Validators.required),
+      subject: new FormControl(null, Validators.required),
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      message: new FormControl(null, Validators.required)
+    });
   }
 
   ngAfterViewInit() {
@@ -70,5 +85,47 @@ export class LandingPageComponent implements AfterViewInit {
 
   isLogged() {
     return false;
+  }
+
+  sendEmail() {
+    const value = this.supportForm.value;
+    if (this.supportForm.invalid) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Por favor, llena todos los campos',
+        icon: 'error',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#2b317f',
+        heightAuto: false
+      });
+      return;
+    }
+
+    this.spinner.show();
+    this.generalService.postData(environment.api + '/external/users/support', value).subscribe(
+      (res: any) => {
+        Swal.fire({
+          title: 'Enviado',
+          text: 'Tu mensaje ha sido enviado',
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#2b317f',
+          heightAuto: false
+        });
+        this.supportForm.reset();
+        this.spinner.hide();
+      },
+      (err) => {
+        Swal.fire({
+          title: 'Error',
+          text: 'No se pudo enviar tu mensaje',
+          icon: 'error',
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#2b317f',
+          heightAuto: false
+        });
+        this.spinner.hide();
+      }
+    );
   }
 }
