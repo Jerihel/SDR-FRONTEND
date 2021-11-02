@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-request-entrepreneurship',
@@ -8,10 +10,56 @@ import { Component, OnInit } from '@angular/core';
 export class RequestEntrepreneurshipComponent implements OnInit {
 
   checked = false;
-  
-  constructor() { }
+  formRequest!: FormGroup;
+  apoyoEconomico!: string;
+  constructor(
+    private formBuilder: FormBuilder,
+    private spinner: NgxSpinnerService
 
-  ngOnInit(): void {
+  ) {
+    this.buildForm();
   }
+
+  ngOnInit(): void {}
+  private buildForm() {
+    this.formRequest = this.formBuilder.group({
+      nombre: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(75),
+          Validators.minLength(4),
+        ],
+      ],
+      telefono: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(8),
+          Validators.minLength(8),
+
+          Validators.pattern(/^(0|\-?[1-9][0-9]*)$/),
+        ],
+      ],
+      correo: ['', [Validators.required, Validators.email]],
+      apoyo: [
+        '',
+        [
+          Validators.required
+
+        ],
+      ],
+      monto:[null],
+      otro:[null],
+      dateRequest: ["",[Validators.required]]
+
+
+    });
+  }
+
+  regresar() {}
+
+  generarSolicitud() {}
+
 
 }
