@@ -28,8 +28,8 @@ const routes: Routes = [
   { path: "admin/requests", component: RequestsComponent, canActivate: [LoginGuard] },
   { path: "admin/criterion", component: AdminCriterionComponent, canActivate: [LoginGuard] },
   { path: "profile", component: ProfileComponent, canActivate: [LoginGuard] },
-  { path: "request-entrepreneurship", component: RequestEntrepreneurshipComponent, canActivate: [LoginGuard]},
-  { path: "review-requests", component: ReviewRequestsComponent, canActivate: [LoginGuard]},
+  { path: "request/new", component: RequestEntrepreneurshipComponent },
+  { path: "reviewer/requests", component: ReviewRequestsComponent, canActivate: [LoginGuard]},
   { path: "**", component: NotFoundPageComponent }
 ];
 
