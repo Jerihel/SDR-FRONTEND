@@ -41,15 +41,9 @@ export class LoginComponent implements OnInit {
 
     navigator.serviceWorker.onmessage = (event) => {
       if (event.data.type == 'TOKEN_SET') {
-<<<<<<< HEAD
-        this.spinner.hide();
-        localStorage.setItem("user_info", JSON.stringify(this.userLogged));
-        this.router.navigate([this.redirect]);
-=======
         localStorage.setItem("user_info", JSON.stringify(this.userLogged));
         location.href = this.redirect as string;
         this.spinner.hide();
->>>>>>> 69b5d91c28dcaa831f1df6dd1b6fbc63439a49e6
       }
     }
   }
