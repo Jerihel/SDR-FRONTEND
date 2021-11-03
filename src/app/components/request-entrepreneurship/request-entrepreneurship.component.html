@@ -116,22 +116,29 @@
             <div class="item2">
               <mat-form-field class="col" appearance="outline">
                 <mat-label> ¿Cómo contactó con nosotros?</mat-label>
-                <input matInput formControlName="dateRequest" required />
+                <input matInput formControlName="aboutUs" required />
                 <mat-error
                   *ngIf="
+
+                    this.formRequest.controls.aboutUs.dirty &&
+                    this.formRequest.controls.aboutUs.hasError(
+                      'required'
+                    )
+
                     this.formRequest.controls.dateRequest.dirty &&
                     this.formRequest.controls.dateRequest.hasError('required')
+
                   "
                   >Este campo es Obligatorio</mat-error
                 >
 
                 <mat-error
                   *ngIf="
-                    this.formRequest.controls.dateRequest.dirty &&
-                    (this.formRequest.controls.dateRequest.hasError(
+                    this.formRequest.controls.aboutUs.dirty &&
+                    (this.formRequest.controls.aboutUs.hasError(
                       'maxlength'
                     ) ||
-                      this.formRequest.controls.dateRequest.hasError(
+                      this.formRequest.controls.aboutUs.hasError(
                         'minlength'
                       ))
                   "
@@ -140,6 +147,16 @@
                 >
               </mat-form-field>
             </div>
+
+
+         <!--     <div class="col-lg-6">
+                <div class="form-group mt-3">
+                <label class="example-margin">Requisitos de Emprendimiento:</label>
+                <br>
+                <mat-checkbox class="example-margin">Idea de negocio</mat-checkbox>
+                <br>
+                <mat-checkbox class="example-margin">Impacto sostenible</mat-checkbox>
+                <br>
 
             <div class="col-lg-6">
               <div class="form-group mt-3">
@@ -155,9 +172,82 @@
                   >Impacto sostenible</mat-checkbox
                 >
                 <br />
+
                 <mat-checkbox class="example-margin">Innovación</mat-checkbox>
               </div>
             </div>
+
+
+              <div class="col-lg-6">
+                <div class="form-group mt-3">
+                  <label class="example-margin">Ubicación Contextualizada:</label>
+                  <br>
+                  <mat-checkbox class="example-margin">Idea de emprendimiento</mat-checkbox>
+                  <br>
+                  <mat-checkbox class="example-margin">Modelo de negocio</mat-checkbox>
+                  <br>
+                  <mat-checkbox class="example-margin">Apoyo concreto</mat-checkbox>
+                </div>
+              </div>-->
+
+              <div  class="item2">
+                <mat-form-field class="col" appearance="outline">
+                  <mat-label>Requisitos de Emprendimiento</mat-label>
+                  <input matInput formControlName="requerimiento" required />
+                  <mat-error
+                    *ngIf="
+                      this.formRequest.controls.requerimiento.dirty &&
+                      this.formRequest.controls.requerimiento.hasError(
+                        'required'
+                      )
+                    "
+                    >Este campo es Obligatorio</mat-error
+                  >
+  
+                  <mat-error
+                    *ngIf="
+                      this.formRequest.controls.requerimiento.dirty &&
+                      (this.formRequest.controls.requerimiento.hasError(
+                        'maxlength'
+                      ) ||
+                        this.formRequest.controls.requerimiento.hasError(
+                          'minlength'
+                        ))
+                    "
+                    >El texto no debe ser mayor a 30 caracteres o menor a 10
+                    caracteres</mat-error
+                  >
+                </mat-form-field>
+              </div>
+
+              <div  class="item2">
+                <mat-form-field class="col" appearance="outline">
+                  <mat-label>Ubicación Contextualizada</mat-label>
+                  <input matInput formControlName="ubicacion" required />
+                  <mat-error
+                    *ngIf="
+                      this.formRequest.controls.ubicacion.dirty &&
+                      this.formRequest.controls.ubicacion.hasError(
+                        'required'
+                      )
+                    "
+                    >Este campo es Obligatorio</mat-error
+                  >
+  
+                  <mat-error
+                    *ngIf="
+                      this.formRequest.controls.ubicacion.dirty &&
+                      (this.formRequest.controls.ubicacion.hasError(
+                        'maxlength'
+                      ) ||
+                        this.formRequest.controls.ubicacion.hasError(
+                          'minlength'
+                        ))
+                    "
+                    >El texto no debe ser mayor a 30 caracteres o menor a 10
+                    caracteres</mat-error
+                  >
+                </mat-form-field>
 
             <div class="col-lg-6">
               <div class="form-group mt-3">
@@ -174,32 +264,40 @@
                 <mat-checkbox class="example-margin"
                   >Apoyo concreto</mat-checkbox
                 >
+
               </div>
             </div>
 
             <div class="item2">
               <mat-form-field class="col" appearance="outline">
                 <mat-label>Cuéntanos sobre tu idea de negocio</mat-label>
-                <input matInput formControlName="dateRequest" required />
+                <input matInput formControlName="detalle" required />
                 <mat-error
                   *ngIf="
+
+                    this.formRequest.controls.detalle.dirty &&
+                    this.formRequest.controls.detalle.hasError(
+                      'required'
+                    )
+
                     this.formRequest.controls.dateRequest.dirty &&
                     this.formRequest.controls.dateRequest.hasError('required')
+
                   "
                   >Este campo es Obligatorio</mat-error
                 >
 
                 <mat-error
                   *ngIf="
-                    this.formRequest.controls.dateRequest.dirty &&
-                    (this.formRequest.controls.dateRequest.hasError(
+                    this.formRequest.controls.detalle.dirty &&
+                    (this.formRequest.controls.detalle.hasError(
                       'maxlength'
                     ) ||
-                      this.formRequest.controls.dateRequest.hasError(
+                      this.formRequest.controls.detalle.hasError(
                         'minlength'
                       ))
                   "
-                  >El texto no debe ser mayor a 100 caracteres o menor a 10
+                  >El texto no debe ser mayor a 500 caracteres o menor a 10
                   caracteres</mat-error
                 >
               </mat-form-field>
@@ -207,11 +305,15 @@
           </div>
         </form>
         <div class="row justify-content-center mt-2">
+          <button mat-raised-button class="btn" (click)="regresar()">
+            <i class="fa fa-angle-left mr-2"></i>
+            REGRESAR
+          </button>
           <button
             mat-raised-button
             class="btn ml-2"
             type="submit"
-            (click)="regresar()"
+            (click)="generarSolicitud()"
             [disabled]="!formRequest.valid"
           >
             <i class="material-icons mr-2"> group_add </i>
