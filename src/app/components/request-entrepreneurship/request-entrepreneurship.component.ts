@@ -82,6 +82,10 @@ export class RequestEntrepreneurshipComponent implements OnInit {
     });
   }
 
+  regresar() {
+    this.router.navigate(['/home']);
+  }
+
   generarSolicitud() {
     if (this.formRequest.invalid) {
       Swal.fire({
