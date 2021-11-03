@@ -45,6 +45,8 @@ export class UsersComponent implements OnInit {
     config: NgbModalConfig
   ) {
 
+    localStorage.setItem("section", "users");
+
     config.backdrop = 'static';
     config.keyboard = false;
     this.createFormGroup = new FormGroup({
