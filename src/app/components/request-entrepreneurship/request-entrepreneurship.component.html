@@ -1,326 +1,141 @@
-<div class="col-11 mx-auto center-component main-conteiner">
-  <div class="card mx-auto bg-light">
-    <div class="container bg-white col-11 rounded mt-3">
-      <div class="row">
-        <div class="col-12 text-center">
-          <h1
-            class="font-weight-bold"
-            style="font-size: 25px; color: #2b317f"
-            mat-dialog-title
-          >
-            Solicitud de Emprendimiento
-          </h1>
-          <!-- <hr class="hr" width="75%"> -->
-        </div>
-      </div>
-      <div>
-        <form [formGroup]="formRequest">
-          <div class="item">
-            <div class="item2">
-              <mat-form-field class="col" appearance="outline">
-                <mat-label>Nombre </mat-label>
-                <input
-                  matInput
-                  placeholder="nombre"
-                  formControlName="nombre"
-                  required
-                />
-                <mat-error
-                  *ngIf="
-                    this.formRequest.controls.nombre.dirty &&
-                    this.formRequest.controls.nombre.hasError('required')
-                  "
-                  >Este campo es obligatorio
-                </mat-error>
-                <mat-error
-                  *ngIf="
-                    this.formRequest.controls.nombre.dirty &&
-                    (this.formRequest.controls.nombre.hasError('maxlength') ||
-                      this.formRequest.controls.nombre.hasError('minlength'))
-                  "
-                  >El texto no debe ser mayor a 75 caracteres o menor a 4
-                  caracteres</mat-error
-                >
-              </mat-form-field>
-            </div>
-
-            <div class="item2">
-              <mat-form-field class="col" appearance="outline">
-                <mat-label> Correo</mat-label>
-                <input
-                  matInput
-                  type="email"
-                  placeholder="correo@example.com"
-                  formControlName="correo"
-                  required
-                />
-                <mat-error
-                  *ngIf="
-                    this.formRequest.controls.correo.dirty &&
-                    this.formRequest.controls.correo.hasError('required')
-                  "
-                  >Este campo es Obligatorio</mat-error
-                >
-                <mat-error
-                  *ngIf="
-                    this.formRequest.controls.correo.dirty &&
-                    this.formRequest.controls.correo.hasError('email')
-                  "
-                  >correo invalido</mat-error
-                >
-              </mat-form-field>
-            </div>
-
-            <div class="item2">
-              <mat-form-field class="col" appearance="outline">
-                <mat-label>Telefono</mat-label>
-                <input
-                  matInput
-                  type="tel"
-                  formControlName="telefono"
-                  required
-                />
-                <mat-error
-                  *ngIf="
-                    this.formRequest.controls.telefono.dirty &&
-                    this.formRequest.controls.telefono.hasError('required')
-                  "
-                  >Este campo es obligatorio</mat-error
-                >
-
-                <mat-error
-                  *ngIf="
-                    this.formRequest.controls.telefono.dirty &&
-                    (this.formRequest.controls.telefono.hasError('maxlength') ||
-                      this.formRequest.controls.telefono.hasError('minlength'))
-                  "
-                  >El numero de telefono debe ser de 8 caracteres</mat-error
-                >
-                <mat-error
-                  *ngIf="
-                    this.formRequest.controls.telefono.dirty &&
-                    this.formRequest.controls.telefono.hasError('pattern')
-                  "
-                  >Solo se permiten valores numericos
-                  <p></p>
-                </mat-error>
-              </mat-form-field>
-              <p
-                *ngIf="
-                  this.formRequest.controls.telefono.dirty &&
-                  this.formRequest.controls.telefono.hasError('pattern')
-                "
-              ></p>
-            </div>
-
-            <div class="item2">
-              <mat-form-field class="col" appearance="outline">
-                <mat-label> ¿Cómo contactó con nosotros?</mat-label>
-                <input matInput formControlName="aboutUs" required />
-                <mat-error
-                  *ngIf="
-
-                    this.formRequest.controls.aboutUs.dirty &&
-                    this.formRequest.controls.aboutUs.hasError(
-                      'required'
-                    )
-
-                    this.formRequest.controls.dateRequest.dirty &&
-                    this.formRequest.controls.dateRequest.hasError('required')
-
-                  "
-                  >Este campo es Obligatorio</mat-error
-                >
-
-                <mat-error
-                  *ngIf="
-                    this.formRequest.controls.aboutUs.dirty &&
-                    (this.formRequest.controls.aboutUs.hasError(
-                      'maxlength'
-                    ) ||
-                      this.formRequest.controls.aboutUs.hasError(
-                        'minlength'
-                      ))
-                  "
-                  >El texto no debe ser mayor a 100 caracteres o menor a 10
-                  caracteres</mat-error
-                >
-              </mat-form-field>
-            </div>
-
-
-         <!--     <div class="col-lg-6">
-                <div class="form-group mt-3">
-                <label class="example-margin">Requisitos de Emprendimiento:</label>
-                <br>
-                <mat-checkbox class="example-margin">Idea de negocio</mat-checkbox>
-                <br>
-                <mat-checkbox class="example-margin">Impacto sostenible</mat-checkbox>
-                <br>
-
-            <div class="col-lg-6">
-              <div class="form-group mt-3">
-                <label class="example-margin"
-                  >Requisitos de Emprendimiento:</label
-                >
-                <br />
-                <mat-checkbox class="example-margin"
-                  >Idea de negocio</mat-checkbox
-                >
-                <br />
-                <mat-checkbox class="example-margin"
-                  >Impacto sostenible</mat-checkbox
-                >
-                <br />
-
-                <mat-checkbox class="example-margin">Innovación</mat-checkbox>
-              </div>
-            </div>
-
-
-              <div class="col-lg-6">
-                <div class="form-group mt-3">
-                  <label class="example-margin">Ubicación Contextualizada:</label>
-                  <br>
-                  <mat-checkbox class="example-margin">Idea de emprendimiento</mat-checkbox>
-                  <br>
-                  <mat-checkbox class="example-margin">Modelo de negocio</mat-checkbox>
-                  <br>
-                  <mat-checkbox class="example-margin">Apoyo concreto</mat-checkbox>
-                </div>
-              </div>-->
-
-              <div  class="item2">
-                <mat-form-field class="col" appearance="outline">
-                  <mat-label>Requisitos de Emprendimiento</mat-label>
-                  <input matInput formControlName="requerimiento" required />
-                  <mat-error
-                    *ngIf="
-                      this.formRequest.controls.requerimiento.dirty &&
-                      this.formRequest.controls.requerimiento.hasError(
-                        'required'
-                      )
-                    "
-                    >Este campo es Obligatorio</mat-error
-                  >
-  
-                  <mat-error
-                    *ngIf="
-                      this.formRequest.controls.requerimiento.dirty &&
-                      (this.formRequest.controls.requerimiento.hasError(
-                        'maxlength'
-                      ) ||
-                        this.formRequest.controls.requerimiento.hasError(
-                          'minlength'
-                        ))
-                    "
-                    >El texto no debe ser mayor a 30 caracteres o menor a 10
-                    caracteres</mat-error
-                  >
-                </mat-form-field>
-              </div>
-
-              <div  class="item2">
-                <mat-form-field class="col" appearance="outline">
-                  <mat-label>Ubicación Contextualizada</mat-label>
-                  <input matInput formControlName="ubicacion" required />
-                  <mat-error
-                    *ngIf="
-                      this.formRequest.controls.ubicacion.dirty &&
-                      this.formRequest.controls.ubicacion.hasError(
-                        'required'
-                      )
-                    "
-                    >Este campo es Obligatorio</mat-error
-                  >
-  
-                  <mat-error
-                    *ngIf="
-                      this.formRequest.controls.ubicacion.dirty &&
-                      (this.formRequest.controls.ubicacion.hasError(
-                        'maxlength'
-                      ) ||
-                        this.formRequest.controls.ubicacion.hasError(
-                          'minlength'
-                        ))
-                    "
-                    >El texto no debe ser mayor a 30 caracteres o menor a 10
-                    caracteres</mat-error
-                  >
-                </mat-form-field>
-
-            <div class="col-lg-6">
-              <div class="form-group mt-3">
-                <label class="example-margin">Ubicación Contextualizada:</label>
-                <br />
-                <mat-checkbox class="example-margin"
-                  >Idea de emprendimiento</mat-checkbox
-                >
-                <br />
-                <mat-checkbox class="example-margin"
-                  >Modelo de negocio</mat-checkbox
-                >
-                <br />
-                <mat-checkbox class="example-margin"
-                  >Apoyo concreto</mat-checkbox
-                >
-
-              </div>
-            </div>
-
-            <div class="item2">
-              <mat-form-field class="col" appearance="outline">
-                <mat-label>Cuéntanos sobre tu idea de negocio</mat-label>
-                <input matInput formControlName="detalle" required />
-                <mat-error
-                  *ngIf="
-
-                    this.formRequest.controls.detalle.dirty &&
-                    this.formRequest.controls.detalle.hasError(
-                      'required'
-                    )
-
-                    this.formRequest.controls.dateRequest.dirty &&
-                    this.formRequest.controls.dateRequest.hasError('required')
-
-                  "
-                  >Este campo es Obligatorio</mat-error
-                >
-
-                <mat-error
-                  *ngIf="
-                    this.formRequest.controls.detalle.dirty &&
-                    (this.formRequest.controls.detalle.hasError(
-                      'maxlength'
-                    ) ||
-                      this.formRequest.controls.detalle.hasError(
-                        'minlength'
-                      ))
-                  "
-                  >El texto no debe ser mayor a 500 caracteres o menor a 10
-                  caracteres</mat-error
-                >
-              </mat-form-field>
-            </div>
+<div class="col-11 mx-auto center-component">
+  <div class="align-vertical-center">
+    <mat-card class="container">
+      <div class="mx-5 my-4">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h1 class="font-weight-bold" style="font-size: 28px; color: #2b317f" mat-dialog-title>
+              Registrar Emprendimiento
+            </h1>
           </div>
-        </form>
-        <div class="row justify-content-center mt-2">
-          <button mat-raised-button class="btn" (click)="regresar()">
-            <i class="fa fa-angle-left mr-2"></i>
-            REGRESAR
-          </button>
-          <button
-            mat-raised-button
-            class="btn ml-2"
-            type="submit"
-            (click)="generarSolicitud()"
-            [disabled]="!formRequest.valid"
-          >
-            <i class="material-icons mr-2"> group_add </i>
-            <span>Guardar</span>
-          </button>
+        </div>
+        <div>
+          <form [formGroup]="formRequest">
+            <div class="row mt-3">
+              <mat-form-field class="col-sm-6 pl-0" appearance="outline">
+                <mat-label>Nombre </mat-label>
+                <input #name matInput placeholder="" formControlName="nombre" required maxlength="75" />
+                <mat-error *ngIf="this.formRequest.controls.nombre.dirty
+                  && this.formRequest.controls.nombre.hasError('required')">
+                  Este campo es obligatorio
+                </mat-error>
+                <mat-error *ngIf="this.formRequest.controls.nombre.dirty
+                  && (this.formRequest.controls.nombre.hasError('maxlength')
+                  || this.formRequest.controls.nombre.hasError('minlength'))">
+                  El texto no debe ser mayor a 75 caracteres o menor a 4 caracteres
+                </mat-error>
+                <mat-hint align="end">{{name.value.length}} / 75</mat-hint>
+              </mat-form-field>
+
+              <mat-form-field class="col-sm-6 pr-0" appearance="outline">
+                <mat-label> Correo</mat-label>
+                <input matInput type="email" placeholder="correo@ejemplo.com" formControlName="correo" required />
+                <mat-error *ngIf="this.formRequest.controls.correo.dirty
+                  && this.formRequest.controls.correo.hasError('required')">
+                  Este campo es Obligatorio
+                </mat-error>
+                <mat-error *ngIf="this.formRequest.controls.correo.dirty
+                  && this.formRequest.controls.correo.hasError('email')">
+                  Correo Invalido
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="col-sm-6 pl-0" appearance="outline">
+                <mat-label>Telefono</mat-label>
+                <input #tel matInput type="tel" formControlName="telefono" required maxlength="8" />
+                <mat-error *ngIf="this.formRequest.controls.telefono.dirty
+                  && this.formRequest.controls.telefono.hasError('required')">
+                  Este campo es obligatorio
+                </mat-error>
+
+                <mat-error *ngIf="this.formRequest.controls.telefono.dirty
+                  && (this.formRequest.controls.telefono.hasError('maxlength')
+                  || this.formRequest.controls.telefono.hasError('minlength'))">
+                  El numero de telefono debe ser de 8 caracteres
+                </mat-error>
+                <mat-error *ngIf="this.formRequest.controls.telefono.dirty 
+                  && this.formRequest.controls.telefono.hasError('pattern')">
+                  Solo se permiten valores numericos
+                </mat-error>
+                <mat-hint align="end">{{tel.value.length}} / 8</mat-hint>
+              </mat-form-field>
+              <mat-form-field class="col-sm-6 pr-0" appearance="outline">
+                <mat-label> ¿Cómo contactó con nosotros?</mat-label>
+                <input #contact matInput formControlName="aboutUs" required maxlength="100" />
+                <mat-error *ngIf="this.formRequest.controls.aboutUs.dirty
+                  && this.formRequest.controls.aboutUs.hasError('required')
+                  && this.formRequest.controls.dateRequest.dirty
+                  && this.formRequest.controls.dateRequest.hasError('required')">
+                  Este campo es obligatorio
+                </mat-error>
+                <mat-error *ngIf="this.formRequest.controls.aboutUs.dirty
+                  && (this.formRequest.controls.aboutUs.hasError('maxlength')
+                  || this.formRequest.controls.aboutUs.hasError('minlength'))">
+                  El texto no debe ser mayor a 100 caracteres o menor a 10 caracteres
+                </mat-error>
+                <mat-hint align="end">{{contact.value.length}} / 100</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="col-sm-6 pl-0">
+                <mat-label>Requisitos de Emprendimiento</mat-label>
+                <mat-select formControlName="requerimiento">
+                  <mat-option *ngFor="let item of requisitos" [value]="item.idCatalogueChild">{{item.name}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="this.formRequest.controls.requerimiento.dirty
+                  && this.formRequest.controls.requerimiento.hasError('required')">
+                  Este campo es Obligatorio
+                </mat-error>
+
+                <mat-error *ngIf="this.formRequest.controls.requerimiento.dirty 
+                  && (this.formRequest.controls.requerimiento.hasError('maxlength') 
+                  || this.formRequest.controls.requerimiento.hasError('minlength'))">
+                  El texto no debe ser mayor a 30 caracteres o menor a 10 caracteres
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="col-sm-6 pr-0" appearance="outline">
+                <mat-label>Ubicación Contextualizada</mat-label>
+                <mat-select formControlName="ubicacion">
+                  <mat-option *ngFor="let item of ubicaciones" [value]="item.idCatalogueChild">{{item.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="this.formRequest.controls.ubicacion.dirty 
+                  && this.formRequest.controls.ubicacion.hasError('required')">
+                  Este campo es Obligatorio
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="col-sm-12 p-0" appearance="outline">
+                <mat-label>Cuéntanos sobre tu idea de negocio</mat-label>
+                <textarea #detail matInput formControlName="detalle" required rows="4" maxlength="500"></textarea>
+                <mat-error *ngIf="this.formRequest.controls.detalle.dirty 
+                  && this.formRequest.controls.detalle.hasError('required') 
+                  && this.formRequest.controls.dateRequest.dirty 
+                  && this.formRequest.controls.dateRequest.hasError('required')">
+                  Este campo es Obligatorio
+                </mat-error>
+
+                <mat-error *ngIf="this.formRequest.controls.detalle.dirty 
+                  && (this.formRequest.controls.detalle.hasError('maxlength') 
+                  || this.formRequest.controls.detalle.hasError('minlength'))">
+                  El texto no debe ser mayor a 500 caracteres o menor a 10 caracteres
+                </mat-error>
+                <mat-hint align="end">{{detail.value.length}} / 500</mat-hint>
+              </mat-form-field>
+            </div>
+          </form>
+          <div class="row mt-2">
+            <button mat-raised-button class="btn-container mr-4 ml-auto" color="warn" (click)="regresar()">
+              <mat-icon>close</mat-icon>
+              Cancelar
+            </button>
+            <button mat-raised-button class="btn-container" color="primary" type="submit" (click)="generarSolicitud()"
+              [disabled]="!formRequest.valid">
+              <mat-icon>save</mat-icon>
+              <span>Guardar</span>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </mat-card>
   </div>
 </div>

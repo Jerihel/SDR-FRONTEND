@@ -8,12 +8,9 @@ import { RequestEntrepreneurDto } from '../models/RequestEntrepreneurDto';
 })
 export class EntrepreneurReqeustService {
 
-  constructor(private general:GeneralService) { }
+  constructor(private general: GeneralService) { }
 
-
-  createEntrepreneurRequest(request:RequestEntrepreneurDto){
-
-return this.general.postData<Request,RequestEntrepreneurDto>(`${environment.api}/external/save/requestEntrepreneur`,request);
-
+  createEntrepreneurRequest(request: RequestEntrepreneurDto) {
+    return this.general.postData<Request, RequestEntrepreneurDto>(`${environment.api}/external/save/requestEntrepreneur`, request);
   }
 }

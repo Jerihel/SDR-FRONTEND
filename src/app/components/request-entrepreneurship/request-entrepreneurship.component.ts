@@ -7,6 +7,8 @@ import { EntrepreneurRequestDto } from 'src/app/models/entrepreneurRequestDto';
 import Swal from 'sweetalert2';
 import { EntrepreneurReqeustService } from 'src/app/services/entrepreneur-request.service';
 import { RequestEntrepreneurDto } from 'src/app/models/RequestEntrepreneurDto';
+import { environment } from 'src/environments/environment';
+import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
   selector: 'app-request-entrepreneurship',
@@ -17,17 +19,31 @@ export class RequestEntrepreneurshipComponent implements OnInit {
 
   checked = false;
   formRequest!: FormGroup;
+  requisitos: any;
+  ubicaciones: any;
+
   constructor(
     private formBuilder: FormBuilder,
     private spinner: NgxSpinnerService,
     private entrepreneurRequestService: EntrepreneurReqeustService,
-    private router: Router
-
+    private router: Router,
+    private generalService: GeneralService
   ) {
     this.buildForm();
   }
 
-  ngOnInit(): void {}
+  async ngOnInit() {
+
+    this.spinner.show();
+    try {
+      this.requisitos = await this.generalService.getData(`${environment.api}/external/catalogue/getBy/12`).toPromise();
+      this.ubicaciones = await this.generalService.getData(`${environment.api}/external/catalogue/getBy/13`).toPromise();
+    } catch (error) {
+      console.log(error);
+    }
+    this.spinner.hide();
+  }
+
   private buildForm() {
     this.formRequest = this.formBuilder.group({
       nombre: [
@@ -49,26 +65,14 @@ export class RequestEntrepreneurshipComponent implements OnInit {
           Validators.pattern(/^(0|\-?[1-9][0-9]*)$/),
         ],
       ],
-      aboutUs: ["",[Validators.required]],
-
+      aboutUs: ["", Validators.required],
       requerimiento: [
         '',
         [
-          Validators.required,
-          Validators.maxLength(30),
-          Validators.minLength(10),
+          Validators.required
         ],
       ],
-
-      ubicacion: [
-        '',
-        [
-          Validators.required,
-          Validators.maxLength(30),
-          Validators.minLength(10),
-        ],
-      ],
-
+      ubicacion: ['', Validators.required],
       detalle: [
         '',
         [
@@ -77,8 +81,6 @@ export class RequestEntrepreneurshipComponent implements OnInit {
           Validators.minLength(10),
         ],
       ],
-
-
     });
   }
 
@@ -91,10 +93,12 @@ export class RequestEntrepreneurshipComponent implements OnInit {
       Swal.fire({
         title: 'Formulario invalido',
         icon: 'error',
-        text: 'por favor revise el formulario para poder continuar',
+        text: 'Por favor, revise el formulario para poder continuar',
       });
       return;
     }
+
+    this.spinner.show();
 
     const formulario = this.formRequest.value;
 
@@ -102,8 +106,8 @@ export class RequestEntrepreneurshipComponent implements OnInit {
       name: formulario.nombre,
       telephone: formulario.telefono,
       email: formulario.correo,
-      requestType: 0,
-      state: 0,
+      requestType: 2,
+      state: 9,
       lastName: null,
       idReviwer: null,
       appointmentLocation: null,
@@ -116,7 +120,7 @@ export class RequestEntrepreneurshipComponent implements OnInit {
       contextLocation: formulario.ubicacion,
       details: formulario.detalle,
       requirements: formulario.requerimiento
-   };
+    };
     console.log(request1);
 
     const requestEntrepreneur: RequestEntrepreneurDto = {
@@ -124,27 +128,35 @@ export class RequestEntrepreneurshipComponent implements OnInit {
       entrepreneurRequest: formulario2,
     };
 
+    console.log(requestEntrepreneur);
+
     this.entrepreneurRequestService
-    .createEntrepreneurRequest(requestEntrepreneur)
-    .toPromise()
-    .then((res) => {
-      Swal.fire({
-        title: 'Solicitud enviada',
-        icon: 'success',
-        text: 'Pronto nos comunicaremos con usted',
-      }).then((res) => {
-        if (res.value) {
-          this.router.navigate(['/home']);
-        }
+      .createEntrepreneurRequest(requestEntrepreneur)
+      .toPromise()
+      .then((res) => {
+        Swal.fire({
+          title: 'Solicitud enviada',
+          icon: 'success',
+          text: 'La solicitud ha sido creada exitosamente. Pronto nos comunicaremos contigo.',
+          confirmButtonColor: '#2b317f',
+          confirmButtonText: 'Aceptar',
+        }).then((res) => {
+          if (res.value) {
+            this.router.navigate(['/home']);
+          }
+        });
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: 'Error',
+          icon: 'error',
+          text: 'Error al realizar la operacion por favor intente mas tarde',
+          confirmButtonColor: '#2b317f',
+          confirmButtonText: 'Aceptar',
+        });
+      }).finally(() => {
+        this.spinner.hide();
       });
-    })
-    .catch((error) => {
-      Swal.fire({
-        title: 'Error',
-        icon: 'error',
-        text: 'Error al realizar la operacion por favor intente mas tarde',
-      });
-    });
-}
+  }
 
 }
