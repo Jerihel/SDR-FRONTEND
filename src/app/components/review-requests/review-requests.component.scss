@@ -1,21 +1,8 @@
 @import "../../../assets/scss/style.scss";
 
-.main-conteiner{
+.main-conteiner {
 
   margin-top: 100px;
-}
-
-
-.header-table {
-  justify-content: center;
-  background-color: #2b317f;
-  color: #fdbf21;
-}
-
-
-
-mat-cell {
-  justify-content: center;
 }
 
 .solicitud-table {
@@ -35,9 +22,11 @@ mat-cell {
     vertical-align: middle;
     text-align: center;
   }
+
   .mat-header-row {
     display: none;
   }
+
   .mat-table caption {
     font-size: 10px;
   }
@@ -57,6 +46,7 @@ mat-cell {
     margin: 0 2% 4%;
     padding-left: 4px;
   }
+
   .mat-table .mat-cell:before {
     content: attr(data-label);
     float: left;
@@ -65,22 +55,29 @@ mat-cell {
 
     font-size: 14px;
   }
+
   .mat-table .mat-cell:last-child {
     border-bottom: 0;
   }
+
   .mat-table .mat-cell:first-child {
     margin-top: 4%;
   }
+
   .example-section {
     margin: 12px 0;
   }
-  
+
   .example-margin {
     margin: 0 12px;
   }
-  
+
   ul {
     list-style-type: none;
     margin-top: 4px;
   }
+}
+
+::ng-deep .mat-sort-header-arrow {
+  color: $accent;
 }

@@ -17,9 +17,11 @@
     vertical-align: middle;
     text-align: center;
   }
+
   .mat-header-row {
     display: none;
   }
+
   .mat-table caption {
     font-size: 10px;
   }
@@ -39,6 +41,7 @@
     margin: 0 2% 4%;
     padding-left: 4px;
   }
+
   .mat-table .mat-cell:before {
     content: attr(data-label);
     float: left;
@@ -47,10 +50,16 @@
 
     font-size: 14px;
   }
+
   .mat-table .mat-cell:last-child {
     border-bottom: 0;
   }
+
   .mat-table .mat-cell:first-child {
     margin-top: 4%;
   }
+}
+
+::ng-deep .mat-sort-header-arrow {
+  color: $accent;
 }

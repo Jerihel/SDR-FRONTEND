@@ -179,6 +179,7 @@ export class AsesoresEnactersComponent implements OnInit {
       experienceDetail: formulario.experienciaDetalle,
       adviseOn: formulario.areaAsesorar,
       adviseWay: formulario.medioAsesoria,
+      supportLookUp: null,
     };
     console.log(request1);
 
@@ -227,6 +228,10 @@ export class AsesoresEnactersComponent implements OnInit {
           error?.error?.message ??
           'Error al generar el formulario por favor intente mas tarde',
         confirmButtonColor: '#2b317f',
+      }).then((res) => {
+        if (res.value) {
+          this.router.navigate(['/home']);
+        }
       });
     }
   }
@@ -247,6 +252,10 @@ export class AsesoresEnactersComponent implements OnInit {
           error?.error?.message ??
           'Error al generar el formulario por favor intente mas tarde',
         confirmButtonColor: '#2b317f',
+      }).then((res) => {
+        if (res.value) {
+          this.router.navigate(['/home']);
+        }
       });
     }
   }

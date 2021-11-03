@@ -41,7 +41,7 @@
         <ng-container *ngIf="isLogged() && isReviewer()">
           <li class="nav-item" style="cursor: pointer">
             <a class="nav-link" [class.active]="getSection() == 'reviewers'"
-              (click)="navTo('reviewers', 'reviewers')">Revisores</a>
+              (click)="navTo('reviewer/requests', 'reviewers')">Revisores</a>
           </li>
         </ng-container>
       </ul>

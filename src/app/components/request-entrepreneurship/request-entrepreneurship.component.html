@@ -13,7 +13,7 @@
           <!-- <hr class="hr" width="75%"> -->
         </div>
       </div>
-      <div >
+      <div>
         <form [formGroup]="formRequest">
           <div class="item">
             <div class="item2">
@@ -35,12 +35,8 @@
                 <mat-error
                   *ngIf="
                     this.formRequest.controls.nombre.dirty &&
-                    (this.formRequest.controls.nombre.hasError(
-                      'maxlength'
-                    ) ||
-                      this.formRequest.controls.nombre.hasError(
-                        'minlength'
-                      ))
+                    (this.formRequest.controls.nombre.hasError('maxlength') ||
+                      this.formRequest.controls.nombre.hasError('minlength'))
                   "
                   >El texto no debe ser mayor a 75 caracteres o menor a 4
                   caracteres</mat-error
@@ -87,9 +83,7 @@
                 <mat-error
                   *ngIf="
                     this.formRequest.controls.telefono.dirty &&
-                    this.formRequest.controls.telefono.hasError(
-                      'required'
-                    )
+                    this.formRequest.controls.telefono.hasError('required')
                   "
                   >Este campo es obligatorio</mat-error
                 >
@@ -97,21 +91,15 @@
                 <mat-error
                   *ngIf="
                     this.formRequest.controls.telefono.dirty &&
-                    (this.formRequest.controls.telefono.hasError(
-                      'maxlength'
-                    ) ||
-                      this.formRequest.controls.telefono.hasError(
-                        'minlength'
-                      ))
+                    (this.formRequest.controls.telefono.hasError('maxlength') ||
+                      this.formRequest.controls.telefono.hasError('minlength'))
                   "
                   >El numero de telefono debe ser de 8 caracteres</mat-error
                 >
                 <mat-error
                   *ngIf="
                     this.formRequest.controls.telefono.dirty &&
-                    this.formRequest.controls.telefono.hasError(
-                      'pattern'
-                    )
+                    this.formRequest.controls.telefono.hasError('pattern')
                   "
                   >Solo se permiten valores numericos
                   <p></p>
@@ -125,16 +113,21 @@
               ></p>
             </div>
 
-            <div  class="item2">
+            <div class="item2">
               <mat-form-field class="col" appearance="outline">
                 <mat-label> ¿Cómo contactó con nosotros?</mat-label>
                 <input matInput formControlName="aboutUs" required />
                 <mat-error
                   *ngIf="
+
                     this.formRequest.controls.aboutUs.dirty &&
                     this.formRequest.controls.aboutUs.hasError(
                       'required'
                     )
+
+                    this.formRequest.controls.dateRequest.dirty &&
+                    this.formRequest.controls.dateRequest.hasError('required')
+
                   "
                   >Este campo es Obligatorio</mat-error
                 >
@@ -154,7 +147,7 @@
                 >
               </mat-form-field>
             </div>
-            
+
 
          <!--     <div class="col-lg-6">
                 <div class="form-group mt-3">
@@ -164,9 +157,26 @@
                 <br>
                 <mat-checkbox class="example-margin">Impacto sostenible</mat-checkbox>
                 <br>
+
+            <div class="col-lg-6">
+              <div class="form-group mt-3">
+                <label class="example-margin"
+                  >Requisitos de Emprendimiento:</label
+                >
+                <br />
+                <mat-checkbox class="example-margin"
+                  >Idea de negocio</mat-checkbox
+                >
+                <br />
+                <mat-checkbox class="example-margin"
+                  >Impacto sostenible</mat-checkbox
+                >
+                <br />
+
                 <mat-checkbox class="example-margin">Innovación</mat-checkbox>
               </div>
             </div>
+
 
               <div class="col-lg-6">
                 <div class="form-group mt-3">
@@ -238,19 +248,41 @@
                     caracteres</mat-error
                   >
                 </mat-form-field>
+
+            <div class="col-lg-6">
+              <div class="form-group mt-3">
+                <label class="example-margin">Ubicación Contextualizada:</label>
+                <br />
+                <mat-checkbox class="example-margin"
+                  >Idea de emprendimiento</mat-checkbox
+                >
+                <br />
+                <mat-checkbox class="example-margin"
+                  >Modelo de negocio</mat-checkbox
+                >
+                <br />
+                <mat-checkbox class="example-margin"
+                  >Apoyo concreto</mat-checkbox
+                >
+
               </div>
+            </div>
 
-
-            <div  class="item2">
+            <div class="item2">
               <mat-form-field class="col" appearance="outline">
                 <mat-label>Cuéntanos sobre tu idea de negocio</mat-label>
                 <input matInput formControlName="detalle" required />
                 <mat-error
                   *ngIf="
+
                     this.formRequest.controls.detalle.dirty &&
                     this.formRequest.controls.detalle.hasError(
                       'required'
                     )
+
+                    this.formRequest.controls.dateRequest.dirty &&
+                    this.formRequest.controls.dateRequest.hasError('required')
+
                   "
                   >Este campo es Obligatorio</mat-error
                 >
@@ -270,8 +302,6 @@
                 >
               </mat-form-field>
             </div>
-
-
           </div>
         </form>
         <div class="row justify-content-center mt-2">
@@ -290,11 +320,7 @@
             <span>Guardar</span>
           </button>
         </div>
-
       </div>
-
     </div>
-
   </div>
-
 </div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { NavigationExtras, Router } from "@angular/router";
+import { SwPush, SwUpdate } from "@angular/service-worker";
 import { AuthService } from "src/app/services/auth.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-root",
@@ -13,9 +15,26 @@ export class AppComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private swUpdate: SwUpdate
   ) {
     localStorage.setItem("section", "home");
+    this.swUpdate.available.subscribe(async () => {
+      const toast = await Swal.fire({
+        title: 'Actualización disponible',
+        text: 'Se ha encontrado una nueva actualización, por favor actualice la página',
+        icon: 'info',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        showCancelButton: true,
+        confirmButtonColor: '#2b317f',
+        confirmButtonText: 'Actualizar',
+        cancelButtonText: 'Cancelar'
+      });
+      if (toast.isConfirmed) {
+        window.location.reload();
+      }
+    });
   }
 
   ngOnInit() {

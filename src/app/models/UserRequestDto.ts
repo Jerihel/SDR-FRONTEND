@@ -14,4 +14,5 @@ export interface UserRequestDto {
   experienceDetail: string | null;
   adviseOn: number | null;
   adviseWay: number | null;
+  supportLookUp: string  | null;
 }

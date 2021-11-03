@@ -67,8 +67,6 @@ export class AdminCriterionComponent implements OnInit {
         .toPromise();
     } catch (error) {
       console.log('error', error);
-      this.criteriosEvaluacion = [];
-      AlertUtils.showToast('info', "Aún no existen criterios de evaluacion.")
     }
 
     this.dataSource.data = this.criteriosEvaluacion;
@@ -89,9 +87,10 @@ export class AdminCriterionComponent implements OnInit {
       disableClose: true,
       data: { criterio },
     });
-    dialogRef.afterClosed().subscribe(_ => {
-      this.getCriterios();
+   await dialogRef.afterClosed().subscribe(_ => {
+
     });
+    this.getCriterios();
   }
 
   async crearCriterio() {
@@ -102,8 +101,10 @@ export class AdminCriterionComponent implements OnInit {
       disableClose: true,
       data: {},
     });
-    dialogRef.afterClosed().subscribe(_ => {
-      this.getCriterios();
-    });
+     await dialogRef.afterClosed().subscribe(_ => {
+
+    })
+
+    this.getCriterios();
   }
 }

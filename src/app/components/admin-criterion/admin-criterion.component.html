@@ -50,7 +50,12 @@
 
         <mat-header-row *matHeaderRowDef="displayColumnns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayColumnns"></mat-row>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="pt-3 pl-4" colspan="6">No se encontraron registros para mostrar.</td>
+        </tr>
       </mat-table>
+
+      <mat-divider></mat-divider>
       <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
     </div>
   </div>

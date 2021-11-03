@@ -13,8 +13,8 @@
           <!-- <hr class="hr" width="75%"> -->
         </div>
       </div>
-      <div >
-        <form [formGroup]="formEditarCriterio">
+      <div>
+        <form [formGroup]="formPatrocinador">
           <div class="item">
             <div class="item2">
               <mat-form-field class="col" appearance="outline">
@@ -27,18 +27,18 @@
                 />
                 <mat-error
                   *ngIf="
-                    this.formEditarCriterio.controls.nombre.dirty &&
-                    this.formEditarCriterio.controls.nombre.hasError('required')
+                    this.formPatrocinador.controls.nombre.dirty &&
+                    this.formPatrocinador.controls.nombre.hasError('required')
                   "
                   >Este campo es obligatorio
                 </mat-error>
                 <mat-error
                   *ngIf="
-                    this.formEditarCriterio.controls.nombre.dirty &&
-                    (this.formEditarCriterio.controls.nombre.hasError(
+                    this.formPatrocinador.controls.nombre.dirty &&
+                    (this.formPatrocinador.controls.nombre.hasError(
                       'maxlength'
                     ) ||
-                      this.formEditarCriterio.controls.nombre.hasError(
+                      this.formPatrocinador.controls.nombre.hasError(
                         'minlength'
                       ))
                   "
@@ -59,8 +59,8 @@
                 />
                 <mat-error
                   *ngIf="
-                    this.formEditarCriterio.controls.telefono.dirty &&
-                    this.formEditarCriterio.controls.telefono.hasError(
+                    this.formPatrocinador.controls.telefono.dirty &&
+                    this.formPatrocinador.controls.telefono.hasError(
                       'required'
                     )
                   "
@@ -69,11 +69,11 @@
 
                 <mat-error
                   *ngIf="
-                    this.formEditarCriterio.controls.telefono.dirty &&
-                    (this.formEditarCriterio.controls.telefono.hasError(
+                    this.formPatrocinador.controls.telefono.dirty &&
+                    (this.formPatrocinador.controls.telefono.hasError(
                       'maxlength'
                     ) ||
-                      this.formEditarCriterio.controls.telefono.hasError(
+                      this.formPatrocinador.controls.telefono.hasError(
                         'minlength'
                       ))
                   "
@@ -81,8 +81,8 @@
                 >
                 <mat-error
                   *ngIf="
-                    this.formEditarCriterio.controls.telefono.dirty &&
-                    this.formEditarCriterio.controls.telefono.hasError(
+                    this.formPatrocinador.controls.telefono.dirty &&
+                    this.formPatrocinador.controls.telefono.hasError(
                       'pattern'
                     )
                   "
@@ -92,8 +92,8 @@
               </mat-form-field>
               <p
                 *ngIf="
-                  this.formEditarCriterio.controls.telefono.dirty &&
-                  this.formEditarCriterio.controls.telefono.hasError('pattern')
+                  this.formPatrocinador.controls.telefono.dirty &&
+                  this.formPatrocinador.controls.telefono.hasError('pattern')
                 "
               ></p>
             </div>
@@ -110,15 +110,15 @@
                 />
                 <mat-error
                   *ngIf="
-                    this.formEditarCriterio.controls.correo.dirty &&
-                    this.formEditarCriterio.controls.correo.hasError('required')
+                    this.formPatrocinador.controls.correo.dirty &&
+                    this.formPatrocinador.controls.correo.hasError('required')
                   "
                   >Este campo es Obligatorio</mat-error
                 >
                 <mat-error
                   *ngIf="
-                    this.formEditarCriterio.controls.correo.dirty &&
-                    this.formEditarCriterio.controls.correo.hasError('email')
+                    this.formPatrocinador.controls.correo.dirty &&
+                    this.formPatrocinador.controls.correo.hasError('email')
                   "
                   >correo invalido</mat-error
                 >
@@ -154,27 +154,21 @@
                 />
                 <mat-error
                   *ngIf="
-                    this.formEditarCriterio.controls.monto.dirty &&
-                    this.formEditarCriterio.controls.monto.hasError(
-                      'required'
-                    )
+                    this.formPatrocinador.controls.monto.dirty &&
+                    this.formPatrocinador.controls.monto.hasError('required')
                   "
                   >Este campo es Obligatorio</mat-error
                 >
-
                 <mat-error
                   *ngIf="
-                    this.formEditarCriterio.controls.nombre.dirty &&
-                    (this.formEditarCriterio.controls.ocupacion.hasError(
-                      'maxlength'
-                    ) ||
-                      this.formEditarCriterio.controls.ocupacion.hasError(
-                        'minlength'
-                      ))
+                    this.formPatrocinador.controls.monto.dirty &&
+                    this.formPatrocinador.controls.monto.hasError(
+                      'pattern'
+                    )
                   "
-                  >El texto no debe ser mayor a 100 caracteres o menor a 10
-                  caracteres</mat-error
-                >
+                  >Solo se permiten valores enteros
+                  <p></p>
+                </mat-error>
               </mat-form-field>
             </div>
             <div *ngIf="apoyoEconomico === 'N'" class="item2">
@@ -189,39 +183,36 @@
                 />
                 <mat-error
                   *ngIf="
-                    this.formEditarCriterio.controls.otro.dirty &&
-                    this.formEditarCriterio.controls.otro.hasError(
-                      'required'
-                    )
+                    this.formPatrocinador.controls.otro.dirty &&
+                    this.formPatrocinador.controls.otro.hasError('required')
                   "
                   >Este campo es Obligatorio</mat-error
                 >
 
                 <mat-error
                   *ngIf="
-                    this.formEditarCriterio.controls.otro.dirty &&
-                    (this.formEditarCriterio.controls.otro.hasError(
+                    this.formPatrocinador.controls.otro.dirty &&
+                    (this.formPatrocinador.controls.otro.hasError(
                       'maxlength'
                     ) ||
-                      this.formEditarCriterio.controls.otro.hasError(
+                      this.formPatrocinador.controls.otro.hasError(
                         'minlength'
                       ))
                   "
-                  >El texto no debe ser mayor a 100 caracteres o menor a 10
+                  >El texto no debe ser mayor a 50 caracteres o menor a 10
                   caracteres</mat-error
                 >
               </mat-form-field>
             </div>
 
-
-            <div  class="item2">
+            <div class="item2">
               <mat-form-field class="col" appearance="outline">
                 <mat-label> ¿Que esperas luego del patrocinio?</mat-label>
                 <input matInput formControlName="afterPatrocinio" required />
                 <mat-error
                   *ngIf="
-                    this.formEditarCriterio.controls.afterPatrocinio.dirty &&
-                    this.formEditarCriterio.controls.afterPatrocinio.hasError(
+                    this.formPatrocinador.controls.afterPatrocinio.dirty &&
+                    this.formPatrocinador.controls.afterPatrocinio.hasError(
                       'required'
                     )
                   "
@@ -230,11 +221,11 @@
 
                 <mat-error
                   *ngIf="
-                    this.formEditarCriterio.controls.afterPatrocinio.dirty &&
-                    (this.formEditarCriterio.controls.afterPatrocinio.hasError(
+                    this.formPatrocinador.controls.afterPatrocinio.dirty &&
+                    (this.formPatrocinador.controls.afterPatrocinio.hasError(
                       'maxlength'
                     ) ||
-                      this.formEditarCriterio.controls.afterPatrocinio.hasError(
+                      this.formPatrocinador.controls.afterPatrocinio.hasError(
                         'minlength'
                       ))
                   "
@@ -243,14 +234,6 @@
                 >
               </mat-form-field>
             </div>
-
-
-
-
-
-
-
-
           </div>
         </form>
         <div class="row justify-content-center mt-2">
@@ -262,18 +245,14 @@
             mat-raised-button
             class="btn ml-2"
             type="submit"
-            (click)="regresar()"
-            [disabled]="!formEditarCriterio.valid"
+            (click)="generarSolicitud()"
+            [disabled]="!formPatrocinador.valid"
           >
             <i class="material-icons mr-2"> group_add </i>
             <span>Guardar</span>
           </button>
         </div>
-
       </div>
-
     </div>
-
   </div>
-
 </div>

@@ -1,11 +1,11 @@
 <section class="section">
   <div class="mx-1 px-1 mx-sm-2 px-sm-2 mx-md-3 px-md-3 mx-lg-4 px-lg-4 mx-xl-5 px-xl-5">
     <div class="mt-5">
-      <button mat-raised-button color="accent" class="btn-rounded btn-container mr-3">
+      <button mat-raised-button color="accent" class="btn-rounded btn-container mr-3" [routerLink]="['/home']">
         <mat-icon>arrow_back</mat-icon>
         Regresar
       </button>
-      <button mat-raised-button color="accent" class="btn-rounded btn-container">
+      <button mat-raised-button color="accent" class="btn-rounded btn-container" (click)="saveSelected()">
         <mat-icon>swap_horiz</mat-icon>
         Reasignar
       </button>
@@ -53,7 +53,7 @@
                 Nombre revisor
               </mat-header-cell>
               <mat-cell *matCellDef="let item" data-label="Usuario">
-                {{ item.nombreRevisonr }}
+                {{ item.nombreRevisonr==null? '--': item.nombreRevisonr }}
               </mat-cell>
             </ng-container>
 

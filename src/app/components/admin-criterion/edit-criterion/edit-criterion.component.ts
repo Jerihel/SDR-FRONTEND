@@ -28,14 +28,15 @@ export class EditCriterionComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private criterio: CRITERIOSSERVICESService
   ) {
-    this.buildForm();
   }
 
   async ngOnInit() {
     this.spinner.show();
     try {
       console.log(this.dialogRef.componentInstance.data.criterio);
-      this.criterioUpdate = this.dialogRef.componentInstance.data.criterio;
+      const criterio = this.dialogRef.componentInstance.data.criterio;
+      this.buildForm(criterio);
+      this.criterioUpdate = criterio;
       await this.getCatalogoHijo();
     } catch (error: any) {
       Swal.fire({
@@ -48,11 +49,11 @@ export class EditCriterionComponent implements OnInit {
     this.spinner.hide();
   }
 
-  private buildForm() {
+  private buildForm(criterio: CriterionEvalutionProjection) {
     this.formEditarCriterio = this.formBuilder.group({
-      estado: ['', [Validators.required]],
+      estado: [criterio.estado, [Validators.required]],
       nombre: [
-        '',
+        criterio.nombreCriterio,
         [
           Validators.required,
           Validators.maxLength(150),
@@ -60,7 +61,7 @@ export class EditCriterionComponent implements OnInit {
         ],
       ],
       ponderacion: [
-        '',
+        criterio.ponderacion,
         [
           Validators.required,
           Validators.max(10),
@@ -93,15 +94,13 @@ export class EditCriterionComponent implements OnInit {
       .updateCriterio(criterionEvaluation)
       .toPromise()
       .then((res) => {
+        this.dialogRef.close();
         Swal.fire({
           icon: 'success',
           title: 'Criterio Actualizado',
           text: `El criterio ${res.noCriterio} se actualizo correctamente`,
-        }).then(() => {
-          this.dialogRef.close();
         });
-      })
-      .catch((err) => {
+      }).catch((err) => {
         console.log('error al actualizar el criterio', err);
 
         Swal.fire({
