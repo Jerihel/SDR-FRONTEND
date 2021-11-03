@@ -74,19 +74,15 @@ export class CreateCriterionComponent implements OnInit {
     this.criterion
       .addCriterio(criterion)
       .toPromise()
-      .then((res) => {
+      .then(_ => {
+        this.dialogRef.close(true);
         Swal.fire({
           title: 'Criterio Creado',
           icon: 'success',
           text: 'El criterio se ha creado correctamente',
           confirmButtonColor: '#2b317f'
-        }).then(() => {
-          this.dialogRef.close(true);
         });
-
-
-      })
-      .catch((error) => {
+      }).catch((error) => {
         Swal.fire({
           title: 'Error',
           icon: 'error',

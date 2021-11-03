@@ -17,6 +17,11 @@ self.addEventListener('fetch', event => {
   }
 })
 
+<<<<<<< HEAD
+=======
+importScripts('./ngsw-worker.js');
+
+>>>>>>> 69b5d91c28dcaa831f1df6dd1b6fbc63439a49e6
 const startRefreshTokenTimer = () => {
   const expires = new Date(JSON.parse(atob(token.split('.')[1])).exp * 1000);
   const timeout = expires.getTime() - Date.now() - (1000 * 60 * 2);
@@ -44,9 +49,18 @@ self.addEventListener('message', event => {
     token = event.data.token;
     console.log("[SW] Token set!");
     startRefreshTokenTimer();
+<<<<<<< HEAD
     self.postMessage({
       type: "TOKEN_SET"
     });
+=======
+    const finishLogin = async () => {
+      event.source.postMessage({
+        type: "TOKEN_SET"
+      });
+    };
+    event.waitUntil(finishLogin());
+>>>>>>> 69b5d91c28dcaa831f1df6dd1b6fbc63439a49e6
   }
   if (event.data.type == "REMOVE_TOKEN") {
     console.log("[SW] Removing token");
@@ -67,5 +81,8 @@ self.addEventListener('message', event => {
     });
   }
 })
+<<<<<<< HEAD
 
 importScripts('./ngsw-worker.js');
+=======
+>>>>>>> 69b5d91c28dcaa831f1df6dd1b6fbc63439a49e6
