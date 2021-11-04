@@ -3,9 +3,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
+import { REQUESTSERVICE } from 'src/app/services/requestservice';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { RequestDto } from 'src/app/models/RequestDto';
 import { ReviewRequests } from 'src/app/models/ReviewRequests';
 
 import Swal from 'sweetalert2';
@@ -22,17 +24,12 @@ export class ReviewRequestsComponent implements OnInit {
   @ViewChild(MatSort)
   sort!: MatSort;
 
-  reviewRequests: ReviewRequests[] = [
-    {
-      noSolicitud: 1,
-      nombreSolicitante: 'Prueba',
-      tipoSolicitud: 'Prueba',
-      estado: 'Activo'
-    },
-  ];
+  requests: RequestDto[] = [];
 
-  dataSource = new MatTableDataSource<ReviewRequests>(
-    this.reviewRequests
+
+
+  dataSource = new MatTableDataSource<RequestDto>(
+    this.requests
   );
 
   displayColumnns: string[] = [
@@ -46,14 +43,36 @@ export class ReviewRequestsComponent implements OnInit {
   constructor(
     private spinner: NgxSpinnerService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private service: REQUESTSERVICE
   ) {}
 
   async ngOnInit() {
+    console.log(this.requests);
+    this.spinner.show();
+    await this.getRequest();
+    console.log(this.requests);
+    this.spinner.hide();
   }
 
   isLogged() {
     return true;
+  }
+
+  // METODO PARA MOSTRAR LAS SOLICITUDES
+  async getRequest() {
+    try {
+      console.log('OBTENIENDO SOLICITUDES');
+      this.requests = await this.service
+        .getAllRequest()
+        .toPromise();
+    } catch (error) {
+      console.log('error', error);
+    }
+
+    this.dataSource.data = this.requests;
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   
